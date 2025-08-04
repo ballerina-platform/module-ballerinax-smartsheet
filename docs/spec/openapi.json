@@ -213,8 +213,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/contacts/{contactId}" : {
@@ -277,8 +275,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/contactId"
       } ]
@@ -449,10 +445,7 @@
           "label" : "PHP",
           "source" : "/**\n* Requires libcurl\n*/\n\n$query = array(\n  \"since\" => \"2025-03-24T15%3A15%3A22Z\",\n  \"to\" => \"2025-03-24T16%3A15%3A22Z\",\n  \"streamPosition\" => \"XyzAb1234cdefghijklmnofpq\"\n);\n\n$curl = curl_init();\n\ncurl_setopt_array($curl, [\n  CURLOPT_HTTPHEADER => [\n    \"Accept-Encoding: deflate\",\n    \"Authorization: Bearer <YOUR_TOKEN_HERE>\"\n  ],\n  CURLOPT_URL => \"https://api.smartsheet.com/2.0/events?\" . http_build_query($query),\n  CURLOPT_RETURNTRANSFER => true,\n  CURLOPT_CUSTOMREQUEST => \"GET\",\n]);\n\n$response = curl_exec($curl);\n$error = curl_error($curl);\n\ncurl_close($curl);\n\nif ($error) {\n  echo \"cURL Error #:\" . $error;\n} else {\n  echo $response;\n}\n"
         } ]
-      },
-      "parameters" : [ {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      } ]
+      }
     },
     "/favorites" : {
       "get" : {
@@ -589,8 +582,6 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/ActorId"
       } ]
     },
@@ -656,8 +647,6 @@
         "$ref" : "#/components/parameters/favoriteType"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/ActorId"
       } ]
@@ -765,8 +754,6 @@
       }, {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/ActorId"
       } ]
     },
@@ -847,10 +834,7 @@
         }, {
           "OAuth2" : [ "READ_EVENTS" ]
         } ]
-      },
-      "parameters" : [ {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      } ]
+      }
     },
     "/folders/{folderId}" : {
       "get" : {
@@ -1030,8 +1014,6 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/folderId"
       } ]
     },
@@ -1112,8 +1094,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/folderId"
       } ]
@@ -1257,8 +1237,6 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/folderId"
       } ]
     },
@@ -1333,8 +1311,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/folderId"
       } ]
@@ -1412,8 +1388,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/folderId"
       } ]
@@ -1498,8 +1472,6 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/folderId"
       } ]
     },
@@ -1548,8 +1520,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/groups" : {
@@ -1683,8 +1653,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/groups/{groupId}" : {
@@ -1855,8 +1823,6 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/groupId"
       } ]
     },
@@ -1927,8 +1893,6 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/groupId"
       } ]
     },
@@ -1989,8 +1953,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/groupId"
       }, {
@@ -2130,8 +2092,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/imageurls" : {
@@ -2194,8 +2154,6 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/Content-Type"
       } ]
     },
@@ -2257,8 +2215,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/reports/{reportId}" : {
@@ -2344,8 +2300,6 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/Accept"
       }, {
         "$ref" : "#/components/parameters/accessApiLevel"
@@ -2422,8 +2376,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/reportId"
       } ]
@@ -2551,8 +2503,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/reportId"
       } ]
@@ -2699,8 +2649,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/reportId"
       } ]
@@ -2885,8 +2833,6 @@
         "$ref" : "#/components/parameters/accessApiLevel"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/search" : {
@@ -2957,8 +2903,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/search/sheets/{sheetId}" : {
@@ -3002,8 +2946,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/serverinfo" : {
@@ -3190,8 +3132,6 @@
         "$ref" : "#/components/parameters/accessApiLevel"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/import" : {
@@ -3274,8 +3214,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}" : {
@@ -3497,8 +3435,6 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/sheetId"
       } ]
     },
@@ -3625,8 +3561,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/attachments/{attachmentId}" : {
@@ -3724,8 +3658,6 @@
         "$ref" : "#/components/parameters/attachmentId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/attachments/{attachmentId}/versions" : {
@@ -3892,8 +3824,6 @@
         "$ref" : "#/components/parameters/attachmentId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/automationrules" : {
@@ -3948,8 +3878,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/automationrules/{automationRuleId}" : {
@@ -4091,8 +4019,6 @@
         "$ref" : "#/components/parameters/automationRuleId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/columns" : {
@@ -4143,6 +4069,10 @@
           "lang" : "Node.js",
           "label" : "Node.js",
           "source" : "// Set options\nvar options = {\n  sheetId: 9283173393803140\n};\n\n// List columns\nsmartsheet.sheets.getColumns(options)\n  .then(function(columnList) {\n    console.log(columnList);\n  })\n  .catch(function(error) {\n    console.log(error);\n  });\n"
+        }, {
+          "lang" : "Python",
+          "label" : "Python",
+          "source" : "# Sample 1: List All\nresponse = smartsheet_client.Sheets.get_columns(\n  9283173393803140,       # sheet_id\n  include_all=True)\ncolumns = response.data\n\n# Sample 2: Paginate the list of columns\nresponse = smartsheet_client.Sheets.get_columns(\n  9283173393803140,       # sheet_id\n  page_size=10,\n  page=1)\npages = response.total_pages\ncolumns = response.data\n"
         } ]
       },
       "post" : {
@@ -4206,8 +4136,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/columns/{columnId}" : {
@@ -4362,8 +4290,6 @@
         "$ref" : "#/components/parameters/columnId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/comments/{commentId}" : {
@@ -4513,8 +4439,6 @@
         "$ref" : "#/components/parameters/commentId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/comments/{commentId}/attachments" : {
@@ -4591,8 +4515,6 @@
         "$ref" : "#/components/parameters/commentId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/copy" : {
@@ -4665,8 +4587,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/Content-Type"
       }, {
@@ -4809,8 +4729,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/crosssheetreferences/{crossSheetReferenceId}" : {
@@ -4870,8 +4788,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/sheetId"
       }, {
@@ -5007,8 +4923,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/discussions/{discussionId}" : {
@@ -5106,8 +5020,6 @@
         "$ref" : "#/components/parameters/discussionId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/discussions/{discussionId}/attachments" : {
@@ -5168,8 +5080,6 @@
         "$ref" : "#/components/parameters/discussionId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/discussions/{discussionId}/comments" : {
@@ -5250,8 +5160,6 @@
         "$ref" : "#/components/parameters/discussionId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/emails" : {
@@ -5313,8 +5221,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/Content-Type"
       } ]
@@ -5390,8 +5296,6 @@
       }, {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/Content-Type"
       } ]
     },
@@ -5435,8 +5339,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/proofs/{proofId}" : {
@@ -5542,8 +5444,6 @@
         "$ref" : "#/components/parameters/proofId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/proofs/{proofId}/attachments" : {
@@ -5629,8 +5529,6 @@
         "$ref" : "#/components/parameters/proofId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/proofs/{proofId}/discussions" : {
@@ -5731,8 +5629,6 @@
         "$ref" : "#/components/parameters/proofId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/proofs/{proofId}/requestactions" : {
@@ -5777,8 +5673,6 @@
         "$ref" : "#/components/parameters/proofId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/proofs/{proofId}/requests" : {
@@ -5856,8 +5750,6 @@
         "$ref" : "#/components/parameters/proofId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/proofs/{proofId}/versions" : {
@@ -5981,8 +5873,6 @@
         "$ref" : "#/components/parameters/proofId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/publish" : {
@@ -6111,8 +6001,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/rows" : {
@@ -6318,8 +6206,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/rows/emails" : {
@@ -6384,8 +6270,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/rows/copy" : {
@@ -6453,8 +6337,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/rows/move" : {
@@ -6522,8 +6404,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/rows/{rowId}" : {
@@ -6586,8 +6466,6 @@
         "$ref" : "#/components/parameters/rowId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/rows/{rowId}/attachments" : {
@@ -6715,8 +6593,6 @@
         "$ref" : "#/components/parameters/rowId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/rows/{rowId}/columns/{columnId}/cellimages" : {
@@ -6793,8 +6669,6 @@
         "$ref" : "#/components/parameters/columnId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/rows/{rowId}/columns/{columnId}/history" : {
@@ -6869,8 +6743,6 @@
         "$ref" : "#/components/parameters/columnId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/rows/{rowId}/discussions" : {
@@ -7004,8 +6876,6 @@
         "$ref" : "#/components/parameters/rowId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/rows/{rowId}/proofs" : {
@@ -7056,8 +6926,6 @@
         "$ref" : "#/components/parameters/rowId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/sentupdaterequests" : {
@@ -7116,8 +6984,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/sentupdaterequests/{sentUpdateRequestId}" : {
@@ -7223,8 +7089,6 @@
         }
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/summary" : {
@@ -7291,8 +7155,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/summary/fields" : {
@@ -7566,8 +7428,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/summary/fields/{fieldId}/images" : {
@@ -7652,8 +7512,6 @@
         "$ref" : "#/components/parameters/summaryFieldId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/updaterequests" : {
@@ -7768,8 +7626,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/updaterequests/{updateRequestId}" : {
@@ -7922,8 +7778,6 @@
         }
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/shares" : {
@@ -8069,8 +7923,6 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/accessApiLevel"
@@ -8079,7 +7931,7 @@
     "/sheets/{sheetId}/shares/{shareId}" : {
       "get" : {
         "tags" : [ "sharing", "sheets" ],
-        "summary" : "Get Sheet Share",
+        "summary" : "Get Sheet Share.",
         "description" : "Gets the share specified in the URL.",
         "operationId" : "share-sheet-get",
         "responses" : {
@@ -8133,7 +7985,7 @@
       },
       "put" : {
         "tags" : [ "sharing", "sheets" ],
-        "summary" : "Update Sheet Share",
+        "summary" : "Update Sheet Share.",
         "description" : "Updates the access level of a user or group for the specified sheet.",
         "operationId" : "update-sheet-share",
         "requestBody" : {
@@ -8256,8 +8108,6 @@
         "$ref" : "#/components/parameters/accessApiLevel"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sheets/{sheetId}/sort" : {
@@ -8323,8 +8173,6 @@
       }, {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/Content-Type"
       } ]
     },
@@ -8387,8 +8235,6 @@
         "$ref" : "#/components/parameters/sheetId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sights" : {
@@ -8459,8 +8305,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/sights/{sightId}" : {
@@ -8652,8 +8496,6 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/sightId"
       } ]
     },
@@ -8727,10 +8569,7 @@
           "label" : "Python",
           "source" : "new_sight = smartsheet_client.Sights.copy_sight(\n  6327127650920324,                           # sight_id\n  smartsheet.models.ContainerDestination({\n    'destination_type': 'folder',           # folder, workspace, or home\n    'destination_id': 3791509922310020,     # folder_id\n    'new_name': 'newDashboardName'\n  })\n)\n"
         } ]
-      },
-      "parameters" : [ {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      } ]
+      }
     },
     "/sights/{sightId}/move" : {
       "post" : {
@@ -8802,10 +8641,7 @@
           "label" : "Python",
           "source" : "response = smartsheet_client.Sights.move_sight(\n  5363568917931908,                           # sight_id\n  smartsheet.models.ContainerDestination({\n    'destination_type': 'folder',           # folder, workspace, or home\n    'destination_id': 8460057768683396      # destination folder_id\n  })\n)\n"
         } ]
-      },
-      "parameters" : [ {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      } ]
+      }
     },
     "/sights/{sightId}/publish" : {
       "get" : {
@@ -8930,8 +8766,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/sightId"
       } ]
@@ -9078,8 +8912,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/accessApiLevel"
       }, {
@@ -9270,8 +9102,6 @@
         "$ref" : "#/components/parameters/shareId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/templates" : {
@@ -9330,8 +9160,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/templates/public" : {
@@ -9381,8 +9209,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/token" : {
@@ -9583,10 +9409,7 @@
           "label" : "Python",
           "source" : "smartsheet_client.Token.revoke_access_token()\n"
         } ]
-      },
-      "parameters" : [ {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      } ]
+      }
     },
     "/users" : {
       "get" : {
@@ -9725,8 +9548,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/users/me" : {
@@ -9788,10 +9609,7 @@
           "label" : "Python",
           "source" : "# Sample 1: Get current user\nuser_profile = smartsheet_client.Users.get_current_user()\n\n# Sample 2: Include groups\nuser_profile = smartsheet_client.Users.get_current_user(include=Groups)\n"
         } ]
-      },
-      "parameters" : [ {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      } ]
+      }
     },
     "/users/sheets" : {
       "get" : {
@@ -9852,10 +9670,7 @@
           "label" : "Python",
           "source" : "response = smartsheet_client.Sheets.list_org_sheets()\nsheets = response.data\n"
         } ]
-      },
-      "parameters" : [ {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      } ]
+      }
     },
     "/users/{userId}" : {
       "get" : {
@@ -10076,8 +9891,6 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/userId"
       } ]
     },
@@ -10202,8 +10015,6 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/userId"
       } ]
     },
@@ -10319,8 +10130,6 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/userId"
       }, {
         "$ref" : "#/components/parameters/alternateEmailId"
@@ -10387,8 +10196,6 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/userId"
       }, {
         "$ref" : "#/components/parameters/alternateEmailId"
@@ -10441,8 +10248,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/userId"
       } ]
@@ -10528,8 +10333,6 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/userId"
       } ]
     },
@@ -10580,8 +10383,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/userId"
       } ]
@@ -10716,8 +10517,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/webhooks/{webhookId}" : {
@@ -10868,8 +10667,6 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/webhookId"
       } ]
     },
@@ -10923,8 +10720,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/webhookId"
       } ]
@@ -11065,8 +10860,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/accessApiLevel"
       } ]
@@ -11265,8 +11058,6 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
       }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
-      }, {
         "$ref" : "#/components/parameters/workspaceId"
       } ]
     },
@@ -11345,8 +11136,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/workspaceId"
       } ]
@@ -11483,8 +11272,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/workspaceId"
       } ]
@@ -11629,8 +11416,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/accessApiLevel"
       }, {
@@ -11821,8 +11606,6 @@
         "$ref" : "#/components/parameters/shareId"
       }, {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       } ]
     },
     "/workspaces/{workspaceId}/sheets" : {
@@ -11900,8 +11683,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/workspaceId"
       } ]
@@ -11985,8 +11766,6 @@
       },
       "parameters" : [ {
         "$ref" : "#/components/parameters/Authorization"
-      }, {
-        "$ref" : "#/components/parameters/smartsheetIntegrationSourceHeader"
       }, {
         "$ref" : "#/components/parameters/workspaceId"
       } ]
@@ -12291,7 +12070,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DiscussionCreateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "CREATE",
+              "enum" : [ "CREATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/DiscussionCreateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DISCUSSION",
+              "enum" : [ "DISCUSSION" ]
+            }
+          },
+          "description" : "Triggered when a row-level, grid-level, or workspace-level comment is added\n"
         } ]
       },
       "AttachmentLoadAdditionalDetails" : {
@@ -13034,10 +12831,10 @@
           },
           "objectType" : {
             "type" : "string",
+            "description" : "Object representing a duration in days",
             "enum" : [ "DURATION" ]
           }
         },
-        "description" : "Object representing a duration in days",
         "example" : {
           "objectType" : "DURATION",
           "days" : 29
@@ -13055,7 +12852,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/ReportExportAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "EXPORT",
+              "enum" : [ "EXPORT" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/ReportExportAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "REPORT",
+              "enum" : [ "REPORT" ]
+            }
+          },
+          "description" : "Triggered when a user exports or prints the report"
         } ]
       },
       "InlineResponse2009" : {
@@ -13130,7 +12945,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/FolderDeleteAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "DELETE",
+              "enum" : [ "DELETE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "FOLDER",
+              "enum" : [ "FOLDER" ]
+            }
+          },
+          "description" : "Triggered when a folder is deleted\n"
         } ]
       },
       "DiscussionSendcommentAllOf2" : {
@@ -13175,6 +13008,7 @@
           },
           "dateFormat" : {
             "type" : "array",
+            "description" : "Format used for dates",
             "example" : [ "LOCALE_BASED", "MMMM_D_YYYY", "MMM_D_YYYY", "D_MMM_YYYY", "YYYY_MM_DD_HYPHEN", "YYYY_MM_DD_DOT", "DWWWW_MMMM_D_YYYY", "DWWW_DD_MMM_YYYY", "DWWW_MM_DD_YYYY", "MMMM_D", "D_MMMM" ],
             "items" : {
               "type" : "string"
@@ -13182,6 +13016,7 @@
           },
           "underline" : {
             "type" : "array",
+            "description" : "Indicates if the text is underlined",
             "example" : [ "none", "on" ],
             "items" : {
               "type" : "string"
@@ -13189,6 +13024,7 @@
           },
           "bold" : {
             "type" : "array",
+            "description" : "Indicates if the text is bold",
             "example" : [ "none", "on" ],
             "items" : {
               "type" : "string"
@@ -13196,6 +13032,7 @@
           },
           "italic" : {
             "type" : "array",
+            "description" : "Indicates if the text is italic",
             "example" : [ "none", "on" ],
             "items" : {
               "type" : "string"
@@ -13203,6 +13040,7 @@
           },
           "fontFamily" : {
             "type" : "array",
+            "description" : "Font family used for the text",
             "example" : [ {
               "name" : "Arial",
               "traits" : [ "sans-serif" ]
@@ -13230,6 +13068,7 @@
           },
           "numberFormat" : {
             "type" : "array",
+            "description" : "Format used for numbers",
             "example" : [ "none", "NUMBER", "CURRENCY", "PERCENT" ],
             "items" : {
               "type" : "string"
@@ -13245,6 +13084,7 @@
           },
           "textWrap" : {
             "type" : "array",
+            "description" : "Indicates if the text is wrapped",
             "example" : [ "none", "on" ],
             "items" : {
               "type" : "string"
@@ -13252,6 +13092,7 @@
           },
           "currency" : {
             "type" : "array",
+            "description" : "Currency code",
             "example" : [ {
               "code" : "none",
               "symbol" : "none"
@@ -13331,6 +13172,7 @@
           },
           "fontSize" : {
             "type" : "array",
+            "description" : "Font size of the text",
             "example" : [ "8", "9", "10", "12", "14", "16", "18", "20", "24", "28", "32", "36" ],
             "items" : {
               "type" : "string"
@@ -13338,6 +13180,7 @@
           },
           "strikethrough" : {
             "type" : "array",
+            "description" : "Indicates if the text has a strikethrough",
             "example" : [ "none", "on" ],
             "items" : {
               "type" : "string"
@@ -13345,6 +13188,7 @@
           },
           "decimalCount" : {
             "type" : "array",
+            "description" : "Number of decimal places",
             "example" : [ "0", "1", "2", "3", "4", "5" ],
             "items" : {
               "type" : "string"
@@ -13352,6 +13196,7 @@
           },
           "thousandsSeparator" : {
             "type" : "array",
+            "description" : "Character used as thousands separator",
             "example" : [ "none", "on" ],
             "items" : {
               "type" : "string"
@@ -13426,7 +13271,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetSendRowAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "SEND_ROW",
+              "enum" : [ "SEND_ROW" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/SheetSendRowAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a user sends selected sheet row(s) by email to user(s) or user group(s). \n\nAn individual `SHEET - SEND_ROW` event is issued for each user or user group listed as recipient\n"
         } ]
       },
       "ReportAddShareAllOf2" : {
@@ -13488,6 +13351,7 @@
           },
           "objectType" : {
             "type" : "string",
+            "description" : "Indicates the type of the object. For PredecessorList, this will always be 'PREDECESSOR_LIST'",
             "enum" : [ "PREDECESSOR_LIST" ]
           }
         },
@@ -13540,7 +13404,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/ReportPurgeAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "PURGE",
+              "enum" : [ "PURGE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "REPORT",
+              "enum" : [ "REPORT" ]
+            }
+          },
+          "description" : "Triggered when a report is deleted (\"Delete Forever\") from the deleted items bin\n"
         } ]
       },
       "AccountBulkUpdate" : {
@@ -13548,7 +13430,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/AccountBulkUpdateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "BULK_UPDATE",
+              "enum" : [ "BULK_UPDATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "ACCOUNT",
+              "enum" : [ "ACCOUNT" ]
+            }
+          },
+          "description" : "Triggered when an admin bulk updates users. This can be done through User Managementconsole on UI\n"
         } ]
       },
       "DashboardMoveAllOf2" : {
@@ -13592,7 +13492,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetRemoveShareMemberAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REMOVE_SHARE_MEMBER",
+              "enum" : [ "REMOVE_SHARE_MEMBER" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/SheetRemoveShareMemberAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a user is removed from a group that a sheet has been shared to via the sheet's sharing list, or via a workspace's sharing list. \n\nIf a sheet has been shared to a group directly via the sheet's sharing list, and via a workspace's sharing list, then an event will be generated for each of these shares\n"
         } ]
       },
       "FormActivateAllOf2" : {
@@ -13648,7 +13566,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/GroupRenameAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "RENAME",
+              "enum" : [ "RENAME" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/GroupRenameAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "GROUP",
+              "enum" : [ "GROUP" ]
+            }
+          },
+          "description" : "Triggered when a group name is updated. \n"
         } ]
       },
       "SheetUpdate" : {
@@ -13656,7 +13592,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetUpdateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "UPDATE",
+              "enum" : [ "UPDATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when an existing sheet is updated\n"
         } ]
       },
       "PropertiesOptions" : {
@@ -13742,7 +13696,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DashboardSaveAsNewAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "SAVE_AS_NEW",
+              "enum" : [ "SAVE_AS_NEW" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DASHBOARD",
+              "enum" : [ "DASHBOARD" ]
+            }
+          },
+          "description" : "Triggered when a user saves a copy of a dashboard by using the `Save As New` option.\n\nThis event is recorded for the original  dashboard. If the original dashboard belongs to a different organization, then `Save As New` event will be generated for the organization with original dashboard and for the organization with copied dashboard.\n\nFor copied dashboard, `Save As New` event is paired with a [DASHBOARD - CREATE](/api/smartsheet/openapi/schemas/dashboard_create) event\n"
         } ]
       },
       "ReportMoveAdditionalDetails" : {
@@ -13784,6 +13756,7 @@
       },
       "Columns" : {
         "type" : "array",
+        "description" : "An array of Column objects, each defining the properties and configuration of a column in a sheet. See the Column schema for details on individual column attributes",
         "items" : {
           "$ref" : "#/components/schemas/Column"
         }
@@ -13824,7 +13797,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DiscussionDeleteAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "DELETE",
+              "enum" : [ "DELETE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/DiscussionCreateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DISCUSSION",
+              "enum" : [ "DISCUSSION" ]
+            }
+          },
+          "description" : "Triggered when a comment that has no replies is deleted\n"
         } ]
       },
       "FolderExportAdditionalDetails" : {
@@ -13940,7 +13931,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/FormDeleteAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "DELETE",
+              "enum" : [ "DELETE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/FormActivateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "FORM",
+              "enum" : [ "FORM" ]
+            }
+          },
+          "description" : "Triggered when a sheet form is deleted\n"
         } ]
       },
       "AttachmentDeleteAllOf2" : {
@@ -14095,7 +14104,8 @@
             "type" : "string",
             "description" : "When the hyperlink is a URL link, this property contains the URL value. When the hyperlink is a dashboard/report/sheet link (that is, dashboardId, reportId, or sheetId is non-null), this property contains the permalink to the dashboard, report, or sheet"
           }
-        }
+        },
+        "description" : "Represents a hyperlink, which can be a URL or a link to a report, sheet, or dashboard"
       },
       "InlineResponse2006" : {
         "allOf" : [ {
@@ -14203,7 +14213,10 @@
         "type" : "object",
         "properties" : {
           "createdAt" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "description" : "Attachment creation date and time",
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "attachmentSubType" : {
             "type" : "string",
@@ -14268,7 +14281,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DashboardRemovePublishAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REMOVE_PUBLISH",
+              "enum" : [ "REMOVE_PUBLISH" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DASHBOARD",
+              "enum" : [ "DASHBOARD" ]
+            }
+          },
+          "description" : "Triggered when a user disables publish option for a dashboard"
         } ]
       },
       "DashboardAddWorkspaceShareAllOf2" : {
@@ -14305,6 +14336,7 @@
           },
           "workingDays" : {
             "type" : "array",
+            "description" : "Working days for a project sheet",
             "items" : {
               "type" : "string",
               "enum" : [ "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY" ]
@@ -14522,7 +14554,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DashboardLoadAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "LOAD",
+              "enum" : [ "LOAD" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DASHBOARD",
+              "enum" : [ "DASHBOARD" ]
+            }
+          },
+          "description" : "Triggered when a dashboard is viewed in the UI or loaded through the API"
         } ]
       },
       "Version" : {
@@ -14533,7 +14583,16 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/IndexResult"
         }, {
-          "$ref" : "#/components/schemas/InlineResponse20062AllOf2"
+          "type" : "object",
+          "properties" : {
+            "data" : {
+              "type" : "array",
+              "description" : "List of Summary Fields",
+              "items" : {
+                "$ref" : "#/components/schemas/SummaryField"
+              }
+            }
+          }
         } ]
       },
       "InlineResponse20064AllOf2" : {
@@ -14541,6 +14600,7 @@
         "properties" : {
           "result" : {
             "type" : "array",
+            "description" : "List of summary fields created by the operation",
             "items" : {
               "$ref" : "#/components/schemas/SummaryField"
             }
@@ -14553,7 +14613,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/AttachmentSendAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "SEND",
+              "enum" : [ "SEND" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AttachmentSendAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "ATTACHMENT",
+              "enum" : [ "ATTACHMENT" ]
+            }
+          },
+          "description" : "Triggered when an attachment is directly sent by email to user(s) or user group(s). An individual ATTACHMENT - SEND event is issued for each user or user group listed as recipient"
         } ]
       },
       "InlineResponse20065" : {
@@ -14726,27 +14804,6 @@
         "type" : "number",
         "description" : "SummaryField Id"
       },
-      "DiscussionCreateAllOf2" : {
-        "type" : "object",
-        "properties" : {
-          "action" : {
-            "type" : "string",
-            "description" : "The action applied to the specified object",
-            "example" : "CREATE",
-            "enum" : [ "CREATE" ]
-          },
-          "additionalDetails" : {
-            "$ref" : "#/components/schemas/DiscussionCreateAdditionalDetails"
-          },
-          "objectType" : {
-            "type" : "string",
-            "description" : "The Smartsheet resource impacted by the event",
-            "example" : "DISCUSSION",
-            "enum" : [ "DISCUSSION" ]
-          }
-        },
-        "description" : "Triggered when a row-level, grid-level, or workspace-level comment is added\n"
-      },
       "CreateWebhookRequest" : {
         "type" : "object",
         "properties" : {
@@ -14830,6 +14887,7 @@
           },
           "objectType" : {
             "type" : "string",
+            "description" : "Indicates the type of the object. For Duration, this will always be 'DURATION'",
             "enum" : [ "DURATION" ]
           }
         },
@@ -14858,6 +14916,7 @@
       },
       "AccessLevel" : {
         "type" : "string",
+        "description" : "Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER",
         "enum" : [ "ADMIN", "COMMENTER", "EDITOR", "EDITOR_SHARE", "OWNER", "VIEWER" ]
       },
       "InlineResponse20070" : {
@@ -15209,7 +15268,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/AccesstokenRevokeAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REVOKE",
+              "enum" : [ "REVOKE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccesstokenRevokeAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "ACCESS_TOKEN",
+              "enum" : [ "ACCESS_TOKEN" ]
+            }
+          },
+          "description" : "Triggered when an access token is revoked"
         } ]
       },
       "SheetAddWorkspaceShareAllOf2" : {
@@ -15266,7 +15343,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/AccountImportUsersAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "IMPORT_USERS",
+              "enum" : [ "IMPORT_USERS" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "ACCOUNT",
+              "enum" : [ "ACCOUNT" ]
+            }
+          },
+          "description" : "Triggered when an admin imports users through a CSV file. This can be done through User Administration console on UI\n"
         } ]
       },
       "TimestampWriteable" : {
@@ -15281,7 +15376,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/WorkspaceUpdateRecurringBackupAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "UPDATE_RECURRING_BACKUP",
+              "enum" : [ "UPDATE_RECURRING_BACKUP" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/FolderRequestBackupAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "WORKSPACE",
+              "enum" : [ "WORKSPACE" ]
+            }
+          },
+          "description" : "Triggered when a user updates the options (listed below in **`additionalDetails`**) in a recurring backup schedule for a workspace\n"
         } ]
       },
       "TitleWidgetContent" : {
@@ -15357,7 +15470,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetMoveRowAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "MOVE_ROW",
+              "enum" : [ "MOVE_ROW" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/SheetMoveRowAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when row(s) are moved from one sheet to another\n"
         } ]
       },
       "InlineResponse20080" : {
@@ -15454,7 +15585,8 @@
             "description" : "Image height",
             "example" : "1050"
           }
-        }
+        },
+        "description" : "Represents a user's profile image including its unique ID, width, and height"
       },
       "SheetIdAttachmentsBody" : {
         "type" : "object",
@@ -15582,30 +15714,35 @@
         "properties" : {
           "reports" : {
             "type" : "array",
+            "description" : "Reports accessible to the user",
             "items" : {
               "$ref" : "#/components/schemas/Report"
             }
           },
           "sheets" : {
             "type" : "array",
+            "description" : "Sheets accessible to the user",
             "items" : {
               "$ref" : "#/components/schemas/Sheet"
             }
           },
           "folders" : {
             "type" : "array",
+            "description" : "Folders accessible to the user",
             "items" : {
               "$ref" : "#/components/schemas/Folder"
             }
           },
           "sights" : {
             "type" : "array",
+            "description" : "Dashboards (Sights) accessible to the user",
             "items" : {
               "$ref" : "#/components/schemas/Sight"
             }
           },
           "templates" : {
             "type" : "array",
+            "description" : "Templates accessible to the user",
             "items" : {
               "$ref" : "#/components/schemas/Template"
             }
@@ -15675,6 +15812,7 @@
         "properties" : {
           "columns" : {
             "type" : "array",
+            "description" : "List of columns to include in the new sheet",
             "items" : {
               "$ref" : "#/components/schemas/ColumnToCreateASheet"
             }
@@ -15808,7 +15946,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetSendAsAttachmentAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "SEND_AS_ATTACHMENT",
+              "enum" : [ "SEND_AS_ATTACHMENT" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/SheetSendAsAttachmentAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a user sends a sheet as email attachment to user(s) or user group(s). \n\nAn individual `SHEET - SEND_AS_ATTACHMENT` event is issued for each user or user group listed as recipient\n"
         } ]
       },
       "UpdateProofStatusRequest" : {
@@ -15835,7 +15991,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetCreateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "CREATE",
+              "enum" : [ "CREATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/SheetCreateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a sheet is created (inserted)\n"
         } ]
       },
       "Schedule" : {
@@ -15938,7 +16112,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/ReportRemoveWorkspaceShareAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REMOVE_WORKSPACE_SHARE",
+              "enum" : [ "REMOVE_WORKSPACE_SHARE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/DashboardRemoveWorkspaceShareAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "REPORT",
+              "enum" : [ "REPORT" ]
+            }
+          },
+          "description" : "Triggered when a group or user is removed from a workspace's sharing list. \n\nNote that this event will appear for each report that is in the workspace. If a group or user is removed from a workspace's sharing list and the workspace is empty, then no events will be recorded\n"
         } ]
       },
       "UserAddToAccount" : {
@@ -15946,7 +16138,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/UserAddToAccountAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "ADD_TO_ACCOUNT",
+              "enum" : [ "ADD_TO_ACCOUNT" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/UserAddToAccountAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "USER",
+              "enum" : [ "USER" ]
+            }
+          },
+          "description" : "Triggered when a user is added to an auto-provisioned organization account by an admin or when the user logs in with email associated with an auto-provisioned domain\n"
         } ]
       },
       "DiscussionCreationRequestWithAttachment" : {
@@ -16141,7 +16351,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/WorkspaceRequestBackupAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REQUEST_BACKUP",
+              "enum" : [ "REQUEST_BACKUP" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/FolderRequestBackupAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "WORKSPACE",
+              "enum" : [ "WORKSPACE" ]
+            }
+          },
+          "description" : "Triggered when a user requests a backup for a workspace\n"
         } ]
       },
       "Image" : {
@@ -16164,6 +16392,7 @@
             "description" : "Original height (in pixels) of the uploaded image"
           }
         },
+        "description" : "Represents an image object, including its unique ID, dimensions, and alternate text",
         "x-tags" : [ "cellImages" ]
       },
       "GroupDownloadSheetAccessReport" : {
@@ -16171,7 +16400,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/GroupDownloadSheetAccessReportAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "DOWNLOAD_SHEET_ACCESS_REPORT",
+              "enum" : [ "DOWNLOAD_SHEET_ACCESS_REPORT" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "GROUP",
+              "enum" : [ "GROUP" ]
+            }
+          },
+          "description" : "Triggered when an admin downloads sheet access report for a group. This can be done through Group Management console on UI\n"
         } ]
       },
       "CallbackEvent" : {
@@ -16219,6 +16466,7 @@
             "format" : "date-time"
           }
         },
+        "description" : "Represents a hyperlink, which can be a URL or a link to a report, sheet, or dashboard",
         "x-tags" : [ "webhooks" ]
       },
       "ReportRemoveShareAdditionalDetails" : {
@@ -16423,7 +16671,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/UserDownloadSheetAccessReportAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "DOWNLOAD_SHEET_ACCESS_REPORT",
+              "enum" : [ "DOWNLOAD_SHEET_ACCESS_REPORT" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "USER",
+              "enum" : [ "USER" ]
+            }
+          },
+          "description" : "Triggered when an admin downloads sheet access report for a user. This can be done through User Management console on UI\n"
         } ]
       },
       "DashboardUpdate" : {
@@ -16431,7 +16697,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DashboardUpdateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "UPDATE",
+              "enum" : [ "UPDATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DASHBOARD",
+              "enum" : [ "DASHBOARD" ]
+            }
+          },
+          "description" : "Triggered when a change is made to a dashboard and the dashboard is saved\n"
         } ]
       },
       "SheetRemoveShareAdditionalDetails" : {
@@ -16546,7 +16830,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/UserTransferOwnedGroupsAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "TRANSFER_OWNED_GROUPS",
+              "enum" : [ "TRANSFER_OWNED_GROUPS" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/GroupTransferOwnershipAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "USER",
+              "enum" : [ "USER" ]
+            }
+          },
+          "description" : "Triggered when an admin transfers ownership of all groups owned by a user to another user. This can be done through User Management on UI\n"
         } ]
       },
       "ReportCreate" : {
@@ -16554,7 +16856,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/ReportCreateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "CREATE",
+              "enum" : [ "CREATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/ReportCreateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "REPORT",
+              "enum" : [ "REPORT" ]
+            }
+          },
+          "description" : "Triggered when a report is created (inserted)\n"
         } ]
       },
       "ReportRemoveShareMemberAdditionalDetails" : {
@@ -16684,7 +17004,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/ReportTransferOwnershipAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "TRANSFER_OWNERSHIP",
+              "enum" : [ "TRANSFER_OWNERSHIP" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/ReportTransferOwnershipAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "REPORT",
+              "enum" : [ "REPORT" ]
+            }
+          },
+          "description" : "Triggered when the ownership of a report is transferred\n"
         } ]
       },
       "SheetssheetIdrowsOneOf2" : {
@@ -16698,7 +17036,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/UserTransferOwnedItemsAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "TRANSFER_OWNED_ITEMS",
+              "enum" : [ "TRANSFER_OWNED_ITEMS" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/GroupTransferOwnershipAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "USER",
+              "enum" : [ "USER" ]
+            }
+          },
+          "description" : "Triggered when an admin transfers ownership of all items (sheets/reports/dashboards/workspaces) owned by a user to another user. This can be done through User Management on UI\n"
         } ]
       },
       "FolderIdCopyBody" : {
@@ -16830,6 +17186,7 @@
         "properties" : {
           "result" : {
             "type" : "array",
+            "description" : "List of field IDs for summary fields that were successfully deleted",
             "items" : {
               "type" : "number"
             }
@@ -16874,7 +17231,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/FolderRequestBackupAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REQUEST_BACKUP",
+              "enum" : [ "REQUEST_BACKUP" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/FolderRequestBackupAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "FOLDER",
+              "enum" : [ "FOLDER" ]
+            }
+          },
+          "description" : "Triggered when a user requests a backup for a folder\n"
         } ]
       },
       "DashboardRename" : {
@@ -16882,7 +17257,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DashboardRenameAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "RENAME",
+              "enum" : [ "RENAME" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/DashboardRenameAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DASHBOARD",
+              "enum" : [ "DASHBOARD" ]
+            }
+          },
+          "description" : "Triggered when a dashboard is renamed in the UI or via the API (update)\n"
         } ]
       },
       "SheetCreateCellLinkAdditionalDetails" : {
@@ -16932,7 +17325,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/AccountDownloadSheetAccessReportAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "DOWNLOAD_SHEET_ACCESS_REPORT",
+              "enum" : [ "DOWNLOAD_SHEET_ACCESS_REPORT" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "ACCOUNT",
+              "enum" : [ "ACCOUNT" ]
+            }
+          },
+          "description" : "Triggered when an admin downloads sheet access report for an organization account. This can be done through `User Management` console on UI\n"
         } ]
       },
       "Folder" : {
@@ -17046,6 +17457,7 @@
               "$ref" : "#/components/schemas/GroupMember"
             }, {
               "type" : "array",
+              "description" : "List of group members included in the response.",
               "items" : {
                 "$ref" : "#/components/schemas/GroupMember"
               }
@@ -17058,7 +17470,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/FormActivateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "ACTIVATE",
+              "enum" : [ "ACTIVATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/FormActivateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "FORM",
+              "enum" : [ "FORM" ]
+            }
+          },
+          "description" : "Triggered when a sheet form is activated\n"
         } ]
       },
       "IcalEnabled" : {
@@ -17120,7 +17550,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/WorkspaceDeleteAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "DELETE",
+              "enum" : [ "DELETE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "WORKSPACE",
+              "enum" : [ "WORKSPACE" ]
+            }
+          },
+          "description" : "Triggered when a workspace is deleted\n"
         } ]
       },
       "InlineResponse20046AllOf2" : {
@@ -17275,7 +17723,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DashboardTransferOwnershipAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "TRANSFER_OWNERSHIP",
+              "enum" : [ "TRANSFER_OWNERSHIP" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/DashboardTransferOwnershipAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DASHBOARD",
+              "enum" : [ "DASHBOARD" ]
+            }
+          },
+          "description" : "Triggered when the ownership of a dashboard is transferred\n"
         } ]
       },
       "AttachmentUpdateAllOf2" : {
@@ -17363,7 +17829,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/WorkspaceRemoveShareMemberAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REMOVE_SHARE_MEMBER",
+              "enum" : [ "REMOVE_SHARE_MEMBER" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "WORKSPACE",
+              "enum" : [ "WORKSPACE" ]
+            }
+          },
+          "description" : "Triggered when a user is removed from a group that a workspace has been shared to via the workspace's sharing list, or via a workspace's sharing list. \n\nIf a workspace has been shared to a group directly via the workspace's sharing list, and via a workspace's sharing list, then an event will be generated for each of these shares\n"
         } ]
       },
       "SheetIdRowsBody1" : {
@@ -17457,7 +17941,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/GroupTransferOwnershipAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "TRANSFER_OWNERSHIP",
+              "enum" : [ "TRANSFER_OWNERSHIP" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/GroupTransferOwnershipAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "GROUP",
+              "enum" : [ "GROUP" ]
+            }
+          },
+          "description" : "Triggered when a group's ownership is transferred\n"
         } ]
       },
       "AddRowsObject" : {
@@ -17636,7 +18138,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetRenameAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "RENAME",
+              "enum" : [ "RENAME" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/SheetRenameAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when an existing sheet is renamed\n"
         } ]
       },
       "DashboardMove" : {
@@ -17644,7 +18164,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DashboardMoveAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "MOVE",
+              "enum" : [ "MOVE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/DashboardMoveAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DASHBOARD",
+              "enum" : [ "DASHBOARD" ]
+            }
+          },
+          "description" : "Triggered when a dashboard is moved between workspaces and/or folders"
         } ]
       },
       "Result" : {
@@ -17758,7 +18296,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/ReportAddShareMemberAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "ADD_SHARE_MEMBER",
+              "enum" : [ "ADD_SHARE_MEMBER" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/ReportAddShareMemberAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "REPORT",
+              "enum" : [ "REPORT" ]
+            }
+          },
+          "description" : "Triggered when a user is added to a group that a report has been shared to via the report's sharing list, or via a workspace's sharing list. \n\nIf a report has been shared to a group directly via the report's sharing list, and via a workspace's sharing list, then an event will be generated for each of these shares\n"
         } ]
       },
       "Primary" : {
@@ -17770,7 +18326,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/ReportAddWorkspaceShareAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "ADD_WORKSPACE_SHARE",
+              "enum" : [ "ADD_WORKSPACE_SHARE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/ReportAddWorkspaceShareAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "REPORT",
+              "enum" : [ "REPORT" ]
+            }
+          },
+          "description" : "Triggered when a group or user is added to a workspace's sharing list. \n\nNote that this event will appear for each report that is in the workspace. If a group or user is added to a workspace's sharing list and the workspace is empty, then no events will be recorded\n"
         } ]
       },
       "WorkspacesBody" : {
@@ -17788,7 +18362,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/ReportSaveAsNewAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "SAVE_AS_NEW",
+              "enum" : [ "SAVE_AS_NEW" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "REPORT",
+              "enum" : [ "REPORT" ]
+            }
+          },
+          "description" : "Triggered when a user saves a copy of a report by using the `Save As New` option. \n\nThis event is recorded for the original report. If the original reports belongs to a different organization, then an event will be generated for organization with original report and for the organization with copied report.\n\nFor copied report, `Save As New` event is paired with a [REPORT - CREATE](/api/smartsheet/openapi/schemas/report_create) event\n"
         } ]
       },
       "SheetLoad" : {
@@ -17796,7 +18388,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetLoadAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "LOAD",
+              "enum" : [ "LOAD" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a sheet is viewed in the UI or loaded through the API\n"
         } ]
       },
       "DashboardAddWorkspaceShare" : {
@@ -17804,7 +18414,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DashboardAddWorkspaceShareAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "ADD_WORKSPACE_SHARE",
+              "enum" : [ "ADD_WORKSPACE_SHARE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/DashboardAddWorkspaceShareAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DASHBOARD",
+              "enum" : [ "DASHBOARD" ]
+            }
+          },
+          "description" : "Triggered when a group or user is added to a workspace's sharing list. Note that this event will appear for each dashboard that is in the workspace. If a group or user is added to a workspace's sharing list and the workspace is empty, then no events will be recorded. \n"
         } ]
       },
       "Cell" : {
@@ -17933,7 +18561,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/UserSendPasswordResetAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "SEND_PASSWORD_RESET",
+              "enum" : [ "SEND_PASSWORD_RESET" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "USER",
+              "enum" : [ "USER" ]
+            }
+          },
+          "description" : "Triggered when an admin sends a password reset email. This can be done through User Management on UI\n"
         } ]
       },
       "SheetCreateCellLinkAllOf2" : {
@@ -17976,7 +18622,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetRemoveShareAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REMOVE_SHARE",
+              "enum" : [ "REMOVE_SHARE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/SheetRemoveShareAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a group or user is removed from a sheet's sharing list\n"
         } ]
       },
       "SheetEmail" : {
@@ -18036,7 +18700,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetTransferOwnershipAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "TRANSFER_OWNERSHIP",
+              "enum" : [ "TRANSFER_OWNERSHIP" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/ReportTransferOwnershipAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when the ownership of a sheet is transferred\n"
         } ]
       },
       "ReportRemoveShareMember" : {
@@ -18044,7 +18726,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/ReportRemoveShareMemberAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REMOVE_SHARE_MEMBER",
+              "enum" : [ "REMOVE_SHARE_MEMBER" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/ReportRemoveShareMemberAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "REPORT",
+              "enum" : [ "REPORT" ]
+            }
+          },
+          "description" : "Triggered when a user is removed from a group that a report has been shared to via the report's sharing list, or via a workspace's sharing list. \n\nIf a report has been shared to a group directly via the report's sharing list, and via a workspace's sharing list, then an event will be generated for each of these shares\n"
         } ]
       },
       "Recipient" : {
@@ -18155,7 +18855,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/FolderCreateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "CREATE",
+              "enum" : [ "CREATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/FolderCreateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "FOLDER",
+              "enum" : [ "FOLDER" ]
+            }
+          },
+          "description" : "Triggered when a folder is created. \n\nFolders can be created in the UI with the `Create New` button, by selecting the `Save As New` option on an existing folder, or through the API\n"
         } ]
       },
       "SheetMoveAllOf2" : {
@@ -18196,7 +18914,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/UserRemoveSharesAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REMOVE_SHARES",
+              "enum" : [ "REMOVE_SHARES" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "USER",
+              "enum" : [ "USER" ]
+            }
+          },
+          "description" : "Triggered when an admin removes the user from all groups and from sharing for all sheets, workspaces, and dashboards owned by users on the organization account. This can be done through User Management on UI\n"
         } ]
       },
       "ReportLoad" : {
@@ -18204,7 +18940,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/ReportLoadAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "LOAD",
+              "enum" : [ "LOAD" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "REPORT",
+              "enum" : [ "REPORT" ]
+            }
+          },
+          "description" : "Triggered when a report is viewed in the UI or loaded through the API\n"
         } ]
       },
       "RowMapping" : {
@@ -18243,6 +18997,7 @@
           },
           "objectType" : {
             "type" : "string",
+            "description" : "The type of this object, always set to 'CONTACT",
             "enum" : [ "CONTACT" ]
           }
         },
@@ -18291,7 +19046,10 @@
             }
           },
           "lastUpdatedAt" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "description" : "The date and time when the proof was last updated",
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "proofType" : {
             "type" : "string",
@@ -18843,7 +19601,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/UpdateRequestCreateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "CREATE",
+              "enum" : [ "CREATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/UpdateRequestCreateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "UPDATE_REQUEST",
+              "enum" : [ "UPDATE_REQUEST" ]
+            }
+          },
+          "description" : "Triggered when a user creates a sheet update request. \n\nNotice that an update request is created whenever the user sends a new update request via the UI. Also, notice that even though update requests can be sent from a report, it is in fact an update request on the sheet that owns the rows sent in the update request\n"
         } ]
       },
       "DashboardCreateAllOf2" : {
@@ -19001,7 +19777,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/FormCreateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "CREATE",
+              "enum" : [ "CREATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/FormCreateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "FORM",
+              "enum" : [ "FORM" ]
+            }
+          },
+          "description" : "Triggered when a sheet form is created\n"
         } ]
       },
       "TimestampDateTime" : {
@@ -19013,7 +19807,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/UserRemoveFromAccountAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REMOVE_FROM_ACCOUNT",
+              "enum" : [ "REMOVE_FROM_ACCOUNT" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "USER",
+              "enum" : [ "USER" ]
+            }
+          },
+          "description" : "Triggered when a user is removed from the organization account. This can be done through User Management on UI or via the API (Remove User)\n"
         } ]
       },
       "InlineResponse20060AllOf2" : {
@@ -19088,7 +19900,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/UserUpdateUserAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "UPDATE_USER",
+              "enum" : [ "UPDATE_USER" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "USER",
+              "enum" : [ "USER" ]
+            }
+          },
+          "description" : "Triggered when the user account is updated. This can be done through User Management on UI or via the API\n"
         } ]
       },
       "SheetssheetIdsharesOneOf2" : {
@@ -19132,7 +19962,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/ReportAddShareAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "ADD_SHARE",
+              "enum" : [ "ADD_SHARE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/ReportAddShareAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "REPORT",
+              "enum" : [ "REPORT" ]
+            }
+          },
+          "description" : "Triggered when a group or user is added to the report's sharing list, or when a group or user's share permissions are changed\n"
         } ]
       },
       "DiscussionCreationRequest" : {
@@ -19169,7 +20017,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DashboardRemoveShareMemberAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REMOVE_SHARE_MEMBER",
+              "enum" : [ "REMOVE_SHARE_MEMBER" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/DashboardRemoveShareMemberAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DASHBOARD",
+              "enum" : [ "DASHBOARD" ]
+            }
+          },
+          "description" : "Triggered when a user is removed from a group that a dashboard has been shared to via the dashboard's sharing list, or via a workspace's sharing list. If a dashboard has been shared to a group directly via the dashboard's sharing list, and via a workspace's sharing list, then an event will be generated for each of these shares\n"
         } ]
       },
       "Error" : {
@@ -19483,7 +20349,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/WorkspaceTransferOwnershipAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "TRANSFER_OWNERSHIP",
+              "enum" : [ "TRANSFER_OWNERSHIP" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "WORKSPACE",
+              "enum" : [ "WORKSPACE" ]
+            }
+          },
+          "description" : "Triggered when a workspace ownership is transferred\n"
         } ]
       },
       "Callback" : {
@@ -19638,7 +20522,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/AccountDownloadLoginHistoryAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "DOWNLOAD_LOGIN_HISTORY",
+              "enum" : [ "DOWNLOAD_LOGIN_HISTORY" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "ACCOUNT",
+              "enum" : [ "ACCOUNT" ]
+            }
+          },
+          "description" : "Triggered when an admin downloads login history report for the users. This can be done through Login History console on UI\n"
         } ]
       },
       "GroupCreateAllOf2" : {
@@ -19969,7 +20871,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetAddWorkspaceShareAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "ADD_WORKSPACE_SHARE",
+              "enum" : [ "ADD_WORKSPACE_SHARE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/SheetAddWorkspaceShareAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a group or user is added to a workspace's sharing list. \n\nNote that this event will appear for each sheet that is in the workspace. If a group or user is added to a workspace's sharing list and the workspace is empty, then no events will be recorded\n"
         } ]
       },
       "InlineResponse20068AllOf2" : {
@@ -20027,7 +20947,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/WorkspaceExportAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "EXPORT",
+              "enum" : [ "EXPORT" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/WorkspaceExportAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "WORKSPACE",
+              "enum" : [ "WORKSPACE" ]
+            }
+          },
+          "description" : "Triggered when a user exports the workspace\n"
         } ]
       },
       "FolderCreateAdditionalDetails" : {
@@ -20089,7 +21027,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetRemoveWorkspaceShareAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REMOVE_WORKSPACE_SHARE",
+              "enum" : [ "REMOVE_WORKSPACE_SHARE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/DashboardRemoveWorkspaceShareAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a group or user is removed from a workspace's sharing list. \n\nNote that this event will appear for each sheet that is in the workspace. If a group or user is removed from a workspace's sharing list and the workspace is empty, then no events will be recorded\n"
         } ]
       },
       "AccountDownloadPublishedItemsReport" : {
@@ -20097,7 +21053,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/AccountDownloadPublishedItemsReportAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "DOWNLOAD_PUBLISHED_ITEMS_REPORT",
+              "enum" : [ "DOWNLOAD_PUBLISHED_ITEMS_REPORT" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "ACCOUNT",
+              "enum" : [ "ACCOUNT" ]
+            }
+          },
+          "description" : "Triggered when an admin downloads published items report. This can be done through `User Management` console on UI\n"
         } ]
       },
       "UserAddToAccountAllOf2" : {
@@ -20126,7 +21100,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/FolderSaveAsNewAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "SAVE_AS_NEW",
+              "enum" : [ "SAVE_AS_NEW" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "FOLDER",
+              "enum" : [ "FOLDER" ]
+            }
+          },
+          "description" : "Triggered when a user saves a copy of a folder by using the `Save As New` option via UI or `Copy Folder` via API.\n\nThis event is recorded for the original folder. Each `Save As New` event is paired with a [FOLDER - CREATE](/api/smartsheet/openapi/schemas/folder_create) event that is recorded for the copy of the folder\n"
         } ]
       },
       "StreamResult" : {
@@ -20185,10 +21177,10 @@
           },
           "objectType" : {
             "type" : "string",
+            "description" : "Object representing a calculated datetime",
             "enum" : [ "ABSTRACT_DATETIME" ]
           }
         },
-        "description" : "Object representing a calculated datetime",
         "example" : {
           "objectType" : "ABSTRACT_DATETIME",
           "value" : "2025-03-03T16:59:59"
@@ -20199,7 +21191,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetRequestBackupAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REQUEST_BACKUP",
+              "enum" : [ "REQUEST_BACKUP" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/FolderRequestBackupAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a user requests a backup for a sheet\n"
         } ]
       },
       "MiniUser" : {
@@ -20207,11 +21217,13 @@
         "properties" : {
           "name" : {
             "type" : "string",
+            "description" : "User's full name",
             "readOnly" : true,
             "example" : "Jane Doe"
           },
           "email" : {
             "type" : "string",
+            "description" : "User's email address",
             "format" : "email",
             "example" : "jane.doe@smartsheet.com"
           }
@@ -20279,6 +21291,7 @@
           },
           "objectType" : {
             "type" : "string",
+            "description" : "Type of this object, always set to 'CHECKBOX'",
             "enum" : [ "CHECKBOX" ]
           }
         },
@@ -20316,7 +21329,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/AccesstokenAuthorizeAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "AUTHORIZE",
+              "enum" : [ "AUTHORIZE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccesstokenAuthorizeAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "ACCESS_TOKEN",
+              "enum" : [ "ACCESS_TOKEN" ]
+            }
+          },
+          "description" : "Triggered when an access token creation is authorized by a user"
         } ]
       },
       "SheetRequestBackupAllOf2" : {
@@ -20369,7 +21400,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/UserSendInviteAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "SEND_INVITE",
+              "enum" : [ "SEND_INVITE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/UserAddToAccountAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "USER",
+              "enum" : [ "USER" ]
+            }
+          },
+          "description" : "Triggered when an admin sends/resends an invitation link to the user. This can be done through User Management console on UI or via the API (Add User). \n"
         } ]
       },
       "InlineResponse20090AllOf2" : {
@@ -20389,7 +21438,24 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DashboardCreateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "example" : "CREATE",
+              "enum" : [ "CREATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/DashboardCreateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DASHBOARD",
+              "enum" : [ "DASHBOARD" ]
+            }
+          },
+          "description" : "Triggered when a dashboard is created. Dashboards can be created in the UI with the `Create New` button, by selecting the `Save As New` option on an existing dashboard, or through the API\n"
         } ]
       },
       "InlineResponse2009AllOf2" : {
@@ -20450,7 +21516,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetAddShareAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "ADD_SHARE",
+              "enum" : [ "ADD_SHARE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/SheetAddShareAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a group or user is added to the sheet's sharing list, or when a group or user's share permissions are changed\n"
         } ]
       },
       "Predecessor" : {
@@ -20504,7 +21588,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/AttachmentCreateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "CREATE",
+              "enum" : [ "CREATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AttachmentCreateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "ATTACHMENT",
+              "enum" : [ "ATTACHMENT" ]
+            }
+          },
+          "description" : "Triggered when an attachment is created (i.e. uploaded) in a sheet, in a sheet row, or in a workspace\n"
         } ]
       },
       "FormCreateAllOf2" : {
@@ -20560,10 +21662,10 @@
           },
           "objectType" : {
             "type" : "string",
+            "description" : "Object representing a date",
             "enum" : [ "DATE" ]
           }
         },
-        "description" : "Object representing a date",
         "example" : {
           "objectType" : "DATE",
           "value" : "2025-01-14"
@@ -20582,12 +21684,12 @@
         "properties" : {
           "result" : {
             "type" : "array",
+            "description" : "A list of updated summary fields",
             "items" : {
               "$ref" : "#/components/schemas/SummaryField"
             }
           }
-        },
-        "description" : "A list of updated summary fields"
+        }
       },
       "ReportRemoveShareAllOf2" : {
         "type" : "object",
@@ -20615,7 +21717,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DashboardAddShareMemberAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "ADD_SHARE_MEMBER",
+              "enum" : [ "ADD_SHARE_MEMBER" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/DashboardAddShareMemberAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DASHBOARD",
+              "enum" : [ "DASHBOARD" ]
+            }
+          },
+          "description" : "Triggered when a user is added to a group that a dashboard has been shared to via the dashboard's sharing list, or via a workspace's sharing list. If a dashboard has been shared to a group directly via the dashboard's sharing list, and via a workspace's sharing list, then an event will be generated for each of these shares\n"
         } ]
       },
       "AccountListSheets" : {
@@ -20623,7 +21743,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/AccountListSheetsAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "LIST_SHEETS",
+              "enum" : [ "LIST_SHEETS" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "ACCOUNT",
+              "enum" : [ "ACCOUNT" ]
+            }
+          },
+          "description" : "Triggered when a summarized list of all sheets owned by the members of the organization account is generated. This can be done through API\n"
         } ]
       },
       "ReportSendAsAttachmentAdditionalDetails" : {
@@ -20694,7 +21832,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetExportAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "EXPORT",
+              "enum" : [ "EXPORT" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/SheetExportAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a user exports or prints the sheet\n"
         } ]
       },
       "SheetRemoveWorkspaceShareAllOf2" : {
@@ -20744,7 +21900,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/UserDeclineInviteAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "DECLINE_INVITE",
+              "enum" : [ "DECLINE_INVITE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/UserDeclineInviteAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "USER",
+              "enum" : [ "USER" ]
+            }
+          },
+          "description" : "Triggered when a user declines an invitation to join an organization account through email\n"
         } ]
       },
       "FolderIdFoldersBody" : {
@@ -20800,7 +21974,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetRestoreAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "RESTORE",
+              "enum" : [ "RESTORE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a sheet is in the deleted items bin and is restored (`Undelete`)\n"
         } ]
       },
       "MultiRowEmail" : {
@@ -20910,7 +22102,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetPurgeAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "PURGE",
+              "enum" : [ "PURGE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a sheet is deleted (\"Delete Forever\") from the deleted items bin\n"
         } ]
       },
       "UserTransferOwnedGroupsAllOf2" : {
@@ -20939,7 +22149,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetCopyRowAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "COPY_ROW",
+              "enum" : [ "COPY_ROW" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/SheetCopyRowAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when row(s) are copied from one sheet to another\n"
         } ]
       },
       "GroupIdMembersBody" : {
@@ -21028,6 +22256,7 @@
           },
           "objectType" : {
             "type" : "string",
+            "description" : "Type of this object, always set to 'MULTI_PICKLIST'",
             "enum" : [ "MULTI_PICKLIST" ]
           }
         },
@@ -21136,7 +22365,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/ReportRestoreAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "RESTORE",
+              "enum" : [ "RESTORE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "REPORT",
+              "enum" : [ "REPORT" ]
+            }
+          },
+          "description" : "Triggered when a report is in the deleted items bin and is restored (`Undelete`)\n"
         } ]
       },
       "FolderRequestBackupAdditionalDetails" : {
@@ -21237,7 +22484,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DashboardAddShareAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "ADD_SHARE",
+              "enum" : [ "ADD_SHARE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/DashboardAddShareAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DASHBOARD",
+              "enum" : [ "DASHBOARD" ]
+            }
+          },
+          "description" : "Triggered when a group or user is added to the dashboard's sharing list, or when a group or user's share permissions are changed"
         } ]
       },
       "SheetExportAdditionalDetails" : {
@@ -21295,7 +22560,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/ReportRenameAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "RENAME",
+              "enum" : [ "RENAME" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/ReportRenameAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "REPORT",
+              "enum" : [ "REPORT" ]
+            }
+          },
+          "description" : "Triggered when an existing report is renamed\n"
         } ]
       },
       "WidgetHyperlink" : {
@@ -21360,7 +22643,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/WorkspaceDeleteRecurringBackupAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "DELETE_RECURRING_BACKUP",
+              "enum" : [ "DELETE_RECURRING_BACKUP" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "WORKSPACE",
+              "enum" : [ "WORKSPACE" ]
+            }
+          },
+          "description" : "Triggered when a user deletes a recurring backup schedule for a workspace\n"
         } ]
       },
       "DashboardDelete" : {
@@ -21368,7 +22669,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DashboardDeleteAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "DELETE",
+              "enum" : [ "DELETE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DASHBOARD",
+              "enum" : [ "DASHBOARD" ]
+            }
+          },
+          "description" : "Triggered when a dashboard is deleted"
         } ]
       },
       "AccountBulkUpdateAllOf2" : {
@@ -21502,7 +22821,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/ReportMoveAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "MOVE",
+              "enum" : [ "MOVE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/ReportMoveAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "REPORT",
+              "enum" : [ "REPORT" ]
+            }
+          },
+          "description" : "Triggered when a report is moved between workspaces and/or folders\n"
         } ]
       },
       "ImageUrl" : {
@@ -21654,7 +22991,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DashboardPurgeAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "PURGE",
+              "enum" : [ "PURGE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DASHBOARD",
+              "enum" : [ "DASHBOARD" ]
+            }
+          },
+          "description" : "Triggered when a dashboard is deleted from the deleted items bin\n"
         } ]
       },
       "Options" : {
@@ -21677,7 +23032,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/WorkspaceSaveAsNewAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "SAVE_AS_NEW",
+              "enum" : [ "SAVE_AS_NEW" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "WORKSPACE",
+              "enum" : [ "WORKSPACE" ]
+            }
+          },
+          "description" : "Triggered when a user saves a copy of a workspace by using the `Save As New` option via UI or `Copy Workspace` via API. \n\nThis event is recorded for the original workspace. Each `Save As New` event is paired with a [WORKSPACE - CREATE](/api/smartsheet/openapi/schemas/workspace_create) event that is recorded for the copy of the workspace\n"
         } ]
       },
       "UserAcceptInvite" : {
@@ -21685,7 +23058,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/UserAcceptInviteAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "ACCEPT_INVITE",
+              "enum" : [ "ACCEPT_INVITE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "USER",
+              "enum" : [ "USER" ]
+            }
+          },
+          "description" : "Triggered when a user accepts an invitation to join an organization account through email\n"
         } ]
       },
       "DiscussionUpdate" : {
@@ -21693,7 +23084,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DiscussionUpdateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "UPDATE",
+              "enum" : [ "UPDATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/DiscussionCreateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DISCUSSION",
+              "enum" : [ "DISCUSSION" ]
+            }
+          },
+          "description" : "Triggered when a reply is made to a comment, or a reply is deleted from a comment\n"
         } ]
       },
       "ComponentsSchemasSheet" : {
@@ -21735,7 +23144,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetMoveAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "MOVE",
+              "enum" : [ "MOVE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/SheetMoveAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a sheet is moved between workspaces and/or folders\n"
         } ]
       },
       "AccountDownloadUserList" : {
@@ -21743,7 +23170,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/AccountDownloadUserListAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "DOWNLOAD_USER_LIST",
+              "enum" : [ "DOWNLOAD_USER_LIST" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "ACCOUNT",
+              "enum" : [ "ACCOUNT" ]
+            }
+          },
+          "description" : "Triggered when an admin downloads user list report for an organization account. This can be done through User Management console on UI\n"
         } ]
       },
       "WorkspaceAddShare" : {
@@ -21751,7 +23196,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/WorkspaceAddShareAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "ADD_SHARE",
+              "enum" : [ "ADD_SHARE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/WorkspaceAddShareAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "WORKSPACE",
+              "enum" : [ "WORKSPACE" ]
+            }
+          },
+          "description" : "Triggered when a group or user is added to the workspace's sharing list, or when a group or user's share permissions are changed\n"
         } ]
       },
       "ImageUrlMap" : {
@@ -21783,7 +23246,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/GroupDeleteAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "DELETE",
+              "enum" : [ "DELETE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "GROUP",
+              "enum" : [ "GROUP" ]
+            }
+          },
+          "description" : "Triggered when a group is deleted\n"
         } ]
       },
       "InlineResponse20039AllOf2" : {
@@ -21880,7 +23361,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/AccountRenameAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "RENAME",
+              "enum" : [ "RENAME" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountRenameAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "ACCOUNT",
+              "enum" : [ "ACCOUNT" ]
+            }
+          },
+          "description" : "Triggered when the organization account is renamed. This can be done through Account Administration console on UI\n"
         } ]
       },
       "CrossSheetReferenceRequestWithRowIds" : {
@@ -22027,7 +23526,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetSaveAsTemplateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "SAVE_AS_TEMPLATE",
+              "enum" : [ "SAVE_AS_TEMPLATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a user saves a copy of a sheet as a template by using the `Save As Template` option. \n\nThis event is recorded for the original sheet. \n\nIf the original sheet belongs to a different organization, then an event will be generated for organization with original sheet and for the organization with copied sheet.\n\nFor copied sheet, `Save As Template` event is paired with a [SHEET - CREATE](/api/smartsheet/openapi/schemas/sheet_create) event\n"
         } ]
       },
       "FolderRename" : {
@@ -22035,7 +23552,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/FolderRenameAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "RENAME",
+              "enum" : [ "RENAME" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/FolderRenameAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "FOLDER",
+              "enum" : [ "FOLDER" ]
+            }
+          },
+          "description" : "Triggered when a folder is renamed in the UI or via the API (update)\n"
         } ]
       },
       "InlineResponse20015AllOf2" : {
@@ -22170,7 +23705,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/WorkspaceCreateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "CREATE",
+              "enum" : [ "CREATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/WorkspaceCreateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "WORKSPACE",
+              "enum" : [ "WORKSPACE" ]
+            }
+          },
+          "description" : "Triggered when a workspace is created.\n\nWorkspaces can be created in the UI with the `Create New` button, by selecting the `Save As New` option on an existing workspace, or through the API\n"
         } ]
       },
       "RowEmail" : {
@@ -22206,7 +23759,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/GroupAddMemberAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "ADD_MEMBER",
+              "enum" : [ "ADD_MEMBER" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/GroupAddMemberAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "GROUP",
+              "enum" : [ "GROUP" ]
+            }
+          },
+          "description" : "Triggered when a member is added to a group\n"
         } ]
       },
       "SheetCreatedFromTemplate" : {
@@ -22366,7 +23937,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/AttachmentUpdateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "UPDATE",
+              "enum" : [ "UPDATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AttachmentDeleteAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "ATTACHMENT",
+              "enum" : [ "ATTACHMENT" ]
+            }
+          },
+          "description" : "Triggered when an existing attachment is updated (e.g. its description changed)"
         } ]
       },
       "InlineResponse20023" : {
@@ -22590,7 +24179,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/AccesstokenRefreshAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REFRESH",
+              "enum" : [ "REFRESH" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccesstokenRefreshAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "ACCESS_TOKEN",
+              "enum" : [ "ACCESS_TOKEN" ]
+            }
+          },
+          "description" : "Triggered when an access token is refreshed. See the [`POST /token`](/api/smartsheet/openapi/tokens/tokens-getorrefresh) operation for more information about access token refresh\n"
         } ]
       },
       "CommentCreationRequest" : {
@@ -22638,7 +24245,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DashboardAddPublishAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "ADD_PUBLISH",
+              "enum" : [ "ADD_PUBLISH" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/DashboardAddPublishAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DASHBOARD",
+              "enum" : [ "DASHBOARD" ]
+            }
+          },
+          "description" : "Triggered when a user publishes a dashboard or republishes a dashboard with new settings\n"
         } ]
       },
       "DashboardUpdateAllOf2" : {
@@ -22805,7 +24430,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/AttachmentLoadAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "LOAD",
+              "enum" : [ "LOAD" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AttachmentLoadAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "ATTACHMENT",
+              "enum" : [ "ATTACHMENT" ]
+            }
+          },
+          "description" : "Triggered when an attachment is loaded (i.e. viewed or downloaded)"
         } ]
       },
       "ReportIdSharesBody" : {
@@ -22839,7 +24482,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/UserRemoveFromGroupsAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REMOVE_FROM_GROUPS",
+              "enum" : [ "REMOVE_FROM_GROUPS" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "USER",
+              "enum" : [ "USER" ]
+            }
+          },
+          "description" : "Triggered when an admin removes an user from all groups owned by users on the organization account. This can be done through User Management on UI\n"
         } ]
       },
       "InlineResponse20032" : {
@@ -22873,7 +24534,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetDeleteAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "DELETE",
+              "enum" : [ "DELETE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a sheet is deleted\n"
         } ]
       },
       "InlineResponse20036" : {
@@ -23046,7 +24725,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/ReportDeleteAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "DELETE",
+              "enum" : [ "DELETE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "REPORT",
+              "enum" : [ "REPORT" ]
+            }
+          },
+          "description" : "Triggered when a report is deleted\n"
         } ]
       },
       "UserIdAlternateemailsBody" : {
@@ -23094,6 +24791,7 @@
       },
       "PropertiesType" : {
         "type" : "string",
+        "description" : "Specifies the type of a column property. Valid values include various column data types such as CHECKBOX, CONTACT_LIST, DATE, PICKLIST, and others",
         "enum" : [ "ABSTRACT_DATETIME", "CHECKBOX", "CONTACT_LIST", "DATE", "DATETIME", "DURATION", "MULTI_CONTACT_LIST", "MULTI_PICKLIST", "PICKLIST", "PREDECESSOR", "TEXT_NUMBER" ]
       },
       "InlineResponse20041" : {
@@ -23324,7 +25022,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/WorkspaceRemoveShareAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REMOVE_SHARE",
+              "enum" : [ "REMOVE_SHARE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/WorkspaceRemoveShareAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "WORKSPACE",
+              "enum" : [ "WORKSPACE" ]
+            }
+          },
+          "description" : "Triggered when a group or user is removed from a workspace's sharing list\n"
         } ]
       },
       "InlineResponse20019AllOf2" : {
@@ -23419,7 +25135,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetSaveAsNewAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "SAVE_AS_NEW",
+              "enum" : [ "SAVE_AS_NEW" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a user saves a copy of a sheet by using the `Save As New` option. \n\nThis event is recorded for the original sheet. \n\nIf the original sheet belongs to a different organization, then an event will be generated for organization with original sheet and for the organization with copied sheet.\n\nFor copied sheet, `Save As New` event is paired with a [SHEET - CREATE](/api/smartsheet/openapi/schemas/sheet_create) event\n"
         } ]
       },
       "AccountUpdateMainContactAllOf2" : {
@@ -23733,7 +25467,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DiscussionSendcommentAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "SEND_COMMENT",
+              "enum" : [ "SEND_COMMENT" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/DiscussionSendcommentAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DISCUSSION",
+              "enum" : [ "DISCUSSION" ]
+            }
+          },
+          "description" : "Triggered when a discussion comment (or discussion comment reply) is **directly** (i.e. instead of indirectly as part of another operation) sent by email to user(s) or user group(s). An individual `DISCUSSION - SEND_COMMENT` event is issued for each user or user group listed as recipient\n"
         } ]
       },
       "CommentRequest" : {
@@ -23772,7 +25524,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/GroupRemoveMemberAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REMOVE_MEMBER",
+              "enum" : [ "REMOVE_MEMBER" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/GroupRemoveMemberAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "GROUP",
+              "enum" : [ "GROUP" ]
+            }
+          },
+          "description" : "Triggered when a member is removed from a group\n"
         } ]
       },
       "SightName" : {
@@ -23818,10 +25588,10 @@
           },
           "objectType" : {
             "type" : "string",
+            "description" : "Object containing a list of Contacts",
             "enum" : [ "MULTI_CONTACT" ]
           }
-        },
-        "description" : "Object containing a list of Contacts"
+        }
       },
       "ReportPurgeAllOf2" : {
         "type" : "object",
@@ -23888,30 +25658,17 @@
           "stats" : {
             "$ref" : "#/components/schemas/WebhookStats"
           },
-          "scopeObjectId" : {
-            "type" : "number",
-            "description" : "Id of the object that is subscribed to. Specified when a webhook is created and cannot be changed",
-            "example" : 3285357287499652
-          },
           "modifiedAt" : {
             "readOnly" : true,
             "allOf" : [ {
               "$ref" : "#/components/schemas/Timestamp"
             } ]
           },
-          "scope" : {
-            "type" : "string",
-            "description" : "Scope of the subscription. Currently, the only supported value is sheet. Specified when a webhook is created and cannot be changed",
-            "example" : "sheet"
-          },
           "apiClientId" : {
             "type" : "string",
             "description" : "API client Id corresponding to third-party app that created the webhook. Read-only. Only present if webhook was created by third-party app",
             "readOnly" : true,
             "example" : "555555"
-          },
-          "subscope" : {
-            "$ref" : "#/components/schemas/Subscope"
           },
           "id" : {
             "type" : "number",
@@ -24076,7 +25833,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/WorkspaceAddShareMemberAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "ADD_SHARE_MEMBER",
+              "enum" : [ "ADD_SHARE_MEMBER" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/WorkspaceAddShareMemberAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "WORKSPACE",
+              "enum" : [ "WORKSPACE" ]
+            }
+          },
+          "description" : "Triggered when a user is added to a group that a workspace has been shared to via the workspace's sharing list, or via a workspace's sharing list. \n\nIf a workspace has been shared to a group directly via the workspace's sharing list, and via a workspace's sharing list, then an event will be generated for each of these shares\n"
         } ]
       },
       "Formula" : {
@@ -24088,7 +25863,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/WorkspaceCreateRecurringBackupAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "CREATE_RECURRING_BACKUP",
+              "enum" : [ "CREATE_RECURRING_BACKUP" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/WorkspaceCreateRecurringBackupAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "WORKSPACE",
+              "enum" : [ "WORKSPACE" ]
+            }
+          },
+          "description" : "Triggered when a user schedules a recurring backup for a workspace\n"
         } ]
       },
       "Filters" : {
@@ -24165,7 +25958,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/AttachmentDeleteAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "DELETE",
+              "enum" : [ "DELETE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AttachmentDeleteAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "ATTACHMENT",
+              "enum" : [ "ATTACHMENT" ]
+            }
+          },
+          "description" : "Triggered when an attachment is deleted"
         } ]
       },
       "SystemColumnType" : {
@@ -24257,7 +26068,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DiscussionSendAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "SEND",
+              "enum" : [ "SEND" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/DiscussionSendAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DISCUSSION",
+              "enum" : [ "DISCUSSION" ]
+            }
+          },
+          "description" : "Triggered when a discussion (i.e. whole thread of top comment and replies) is **directly** (i.e. instead of indirectly as part of another operation) sent by email to user(s) or user group(s). An individual `DISCUSSION - SEND` event is issued for each user or user group listed as recipient\n"
         } ]
       },
       "CellHistory" : {
@@ -24284,7 +26113,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetAddShareMemberAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "ADD_SHARE_MEMBER",
+              "enum" : [ "ADD_SHARE_MEMBER" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/SheetAddShareMemberAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a user is added to a group that a sheet has been shared to via the sheet's sharing list, or via a workspace's sharing list.\n\nIf a sheet has been shared to a group directly via the sheet's sharing list, and via a workspace's sharing list, then an event will be generated for each of these shares\n"
         } ]
       },
       "IndexResult" : {
@@ -24433,7 +26280,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/AccountUpdateMainContactAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "UPDATE_MAIN_CONTACT",
+              "enum" : [ "UPDATE_MAIN_CONTACT" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountUpdateMainContactAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "ACCOUNT",
+              "enum" : [ "ACCOUNT" ]
+            }
+          },
+          "description" : "Triggered when the main contact of the organization account is updated. This can be done through `Account Administration` console on UI\n"
         } ]
       },
       "SheetIdCrosssheetreferencesBody" : {
@@ -24492,7 +26357,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/WorkspaceRenameAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "RENAME",
+              "enum" : [ "RENAME" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/WorkspaceRenameAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "WORKSPACE",
+              "enum" : [ "WORKSPACE" ]
+            }
+          },
+          "description" : "Triggered when a workspace is renamed in the UI or via the API (update)\n"
         } ]
       },
       "InlineResponse20077AllOf2" : {
@@ -24512,7 +26395,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DashboardRemoveShareAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REMOVE_SHARE",
+              "enum" : [ "REMOVE_SHARE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/DashboardRemoveShareAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DASHBOARD",
+              "enum" : [ "DASHBOARD" ]
+            }
+          },
+          "description" : "Triggered when a group or user is removed from a dashboard's sharing list"
         } ]
       },
       "ChartColumnInfo" : {
@@ -24560,7 +26461,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DashboardRestoreAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "RESTORE",
+              "enum" : [ "RESTORE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DASHBOARD",
+              "enum" : [ "DASHBOARD" ]
+            }
+          },
+          "description" : "Triggered when a dashboard is in the deleted items bin and is restored (`Undelete`)\n"
         } ]
       },
       "UpdateColumn" : {
@@ -24601,7 +26520,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/SheetCreateCellLinkAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "CREATE_CELL_LINK",
+              "enum" : [ "CREATE_CELL_LINK" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/SheetCreateCellLinkAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "SHEET",
+              "enum" : [ "SHEET" ]
+            }
+          },
+          "description" : "Triggered when a link to another sheet cell is created in a sheet cell\n"
         } ]
       },
       "WebhooksBody" : {
@@ -24616,7 +26553,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/FolderExportAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "EXPORT",
+              "enum" : [ "EXPORT" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/FolderExportAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "FOLDER",
+              "enum" : [ "FOLDER" ]
+            }
+          },
+          "description" : "Triggered when a user exports the folder\n"
         } ]
       },
       "FormUpdate" : {
@@ -24624,7 +26579,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/FormUpdateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "UPDATE",
+              "enum" : [ "UPDATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/FormActivateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "FORM",
+              "enum" : [ "FORM" ]
+            }
+          },
+          "description" : "Triggered when an existing sheet form is updated\n"
         } ]
       },
       "TimestampNumber" : {
@@ -24805,6 +26778,7 @@
           },
           "objectType" : {
             "type" : "string",
+            "description" : "Type of this object, always set to 'DATETIME'",
             "enum" : [ "DATETIME" ]
           }
         },
@@ -24840,7 +26814,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/FormDeactivateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "DEACTIVATE",
+              "enum" : [ "DEACTIVATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/FormActivateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "FORM",
+              "enum" : [ "FORM" ]
+            }
+          },
+          "description" : "Triggered when a sheet form is deactivated\n"
         } ]
       },
       "PropertiesTitle" : {
@@ -24852,7 +26844,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/DashboardRemoveWorkspaceShareAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REMOVE_WORKSPACE_SHARE",
+              "enum" : [ "REMOVE_WORKSPACE_SHARE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/DashboardRemoveWorkspaceShareAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "DASHBOARD",
+              "enum" : [ "DASHBOARD" ]
+            }
+          },
+          "description" : "Triggered when a group or user is removed from a workspace's sharing list. Note that this event will appear for each dashboard that is in the workspace. If a group or user is removed from a workspace's sharing list and the workspace is empty, then no events will be recorded\n"
         } ]
       },
       "ReportAddWorkspaceShareAdditionalDetails" : {
@@ -24932,7 +26942,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/ReportUpdateAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "UPDATE",
+              "enum" : [ "UPDATE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/AccountBulkUpdateAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "REPORT",
+              "enum" : [ "REPORT" ]
+            }
+          },
+          "description" : "Triggered when an existing report is updated\n"
         } ]
       },
       "WorkspaceRenameAllOf2" : {
@@ -24973,7 +27001,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/ReportSendAsAttachmentAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "SEND_AS_ATTACHMENT",
+              "enum" : [ "SEND_AS_ATTACHMENT" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/ReportSendAsAttachmentAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "REPORT",
+              "enum" : [ "REPORT" ]
+            }
+          },
+          "description" : "Triggered when a user sends a report as email attachment to user(s) or user group(s). \n\nAn individual `REPORT - SEND_AS_ATTACHMENT` event is issued for each user or user group listed as recipient\n"
         } ]
       },
       "DashboardRemoveWorkspaceShareAllOf2" : {
@@ -25324,6 +27370,7 @@
       },
       "GroupMembersAddArray" : {
         "type" : "array",
+        "description" : "An array of GroupMemberAdd objects, each specifying the email address of a user to be added to a group",
         "items" : {
           "$ref" : "#/components/schemas/GroupMemberAdd"
         }
@@ -25440,7 +27487,25 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/Event"
         }, {
-          "$ref" : "#/components/schemas/ReportRemoveShareAllOf2"
+          "type" : "object",
+          "properties" : {
+            "action" : {
+              "type" : "string",
+              "description" : "The action applied to the specified object",
+              "example" : "REMOVE_SHARE",
+              "enum" : [ "REMOVE_SHARE" ]
+            },
+            "additionalDetails" : {
+              "$ref" : "#/components/schemas/ReportRemoveShareAdditionalDetails"
+            },
+            "objectType" : {
+              "type" : "string",
+              "description" : "The Smartsheet resource impacted by the event",
+              "example" : "REPORT",
+              "enum" : [ "REPORT" ]
+            }
+          },
+          "description" : "Triggered when a group or user is removed from a report's sharing list\n"
         } ]
       },
       "SelectionRange" : {
@@ -25898,19 +27963,6 @@
           "example" : "Bearer JKlMNOpQ12RStUVwxYZAbcde3F5g6hijklM789"
         },
         "x-ballerina-name" : "authorization"
-      },
-      "smartsheetIntegrationSourceHeader" : {
-        "name" : "smartsheet-integration-source",
-        "in" : "header",
-        "required" : false,
-        "style" : "simple",
-        "explode" : false,
-        "schema" : {
-          "type" : "string",
-          "description" : "Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:\n\n- Integration source type\n- Organization name\n- Integration source name \n\nFormat:\n\n```\nTYPE,OrgName,SourceName\n```\n\nExamples: \n\n`AI,SampleOrg,My-AI-Connector-v2`\n\n`SCRIPT,SampleOrg2,Accounting-updater-script`\n\n`APPLICATION,SampleOrg3,SheetUpdater`\n",
-          "example" : "AI,SampleOrg,My-AI-Connector-v2"
-        },
-        "x-ballerina-name" : "smartsheetIntegrationSource"
       },
       "includeAll" : {
         "name" : "includeAll",

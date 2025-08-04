@@ -1783,7 +1783,7 @@ public isolated client class Client {
         return self.clientEp->post(resourcePath, request, httpHeaders);
     }
 
-    # Get Sheet Share
+    # Get Sheet Share.
     #
     # + sheetId - Sheet Id of the sheet being accessed
     # + shareId - Share Id
@@ -1797,7 +1797,7 @@ public isolated client class Client {
         return self.clientEp->get(resourcePath, httpHeaders);
     }
 
-    # Update Sheet Share
+    # Update Sheet Share.
     #
     # + sheetId - Sheet Id of the sheet being accessed
     # + shareId - Share Id

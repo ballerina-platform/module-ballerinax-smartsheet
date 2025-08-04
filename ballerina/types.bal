@@ -11,7 +11,11 @@ public type InlineResponse2001Data AccesstokenAuthorize|AccesstokenRefresh|Acces
 
 public type DiscussionCreate record {
     *Event;
-    *DiscussionCreateAllOf2;
+    # The action applied to the specified object
+    "CREATE" action?;
+    DiscussionCreateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DISCUSSION" objectType?;
 };
 
 public type AttachmentLoadAdditionalDetails record {
@@ -32,27 +36,6 @@ public type ReactivateUserHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: rows-sort
@@ -60,27 +43,6 @@ public type RowsSortHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -92,41 +54,11 @@ public type ShareReportGetQueries record {
     decimal accessApiLevel = 0;
 };
 
-# Triggered when an admin downloads login history report for the users. This can be done through Login History console on UI
-public type AccountDownloadLoginHistoryAllOf2 record {
-    # The action applied to the specified object
-    "DOWNLOAD_LOGIN_HISTORY" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "ACCOUNT" objectType?;
-};
-
 # Represents the Headers record for the operation: deleteWebhook
 public type DeleteWebhookHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: delete-alternate-email
@@ -134,27 +66,6 @@ public type DeleteAlternateEmailHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # **Deprecated** Indicates whether the left nav toolbar is displayed. The default, or **true**, is to display the toolbar. If **false**, hides the toolbar
@@ -162,17 +73,6 @@ public type DeleteAlternateEmailHeaders record {
 # # Deprecated
 @deprecated
 public type ReadOnlyFullShowToolbar boolean;
-
-# Triggered when a user is added to a group that a workspace has been shared to via the workspace's sharing list, or via a workspace's sharing list. 
-# 
-# If a workspace has been shared to a group directly via the workspace's sharing list, and via a workspace's sharing list, then an event will be generated for each of these shares
-public type WorkspaceAddShareMemberAllOf2 record {
-    # The action applied to the specified object
-    "ADD_SHARE_MEMBER" action?;
-    WorkspaceAddShareMemberAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "WORKSPACE" objectType?;
-};
 
 public type DashboardTransferOwnershipAdditionalDetails record {
     # New access level of the new owner: `"OWNER"`
@@ -263,27 +163,6 @@ public type UpdaterequestsCreateHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -298,27 +177,6 @@ public type AutomationruleUpdateHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -367,37 +225,11 @@ public type FilteredEventsRequest record {
     string since?;
 };
 
-public type InlineResponse20062AllOf2 record {
-    # List of Summary Fields
-    SummaryField[] data?;
-};
-
 # Represents the Headers record for the operation: attachments-listOnSheet
 public type AttachmentsListOnSheetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type WorkspaceCreateRecurringBackupAdditionalDetails record {
@@ -409,18 +241,13 @@ public type WorkspaceCreateRecurringBackupAdditionalDetails record {
     boolean sendCompletionEmail?;
 };
 
-# Triggered when a user publishes a dashboard or republishes a dashboard with new settings
-public type DashboardAddPublishAllOf2 record {
-    # The action applied to the specified object
-    "ADD_PUBLISH" action?;
-    DashboardAddPublishAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DASHBOARD" objectType?;
-};
-
 public type FolderDelete record {
     *Event;
-    *FolderDeleteAllOf2;
+    # The action applied to the specified object
+    "DELETE" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "FOLDER" objectType?;
 };
 
 # Represents the Headers record for the operation: share-report-get
@@ -428,36 +255,6 @@ public type ShareReportGetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
-};
-
-# Triggered when a discussion comment (or discussion comment reply) is **directly** (i.e. instead of indirectly as part of another operation) sent by email to user(s) or user group(s). An individual `DISCUSSION - SEND_COMMENT` event is issued for each user or user group listed as recipient
-public type DiscussionSendcommentAllOf2 record {
-    # The action applied to the specified object
-    "SEND_COMMENT" action?;
-    DiscussionSendcommentAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DISCUSSION" objectType?;
 };
 
 # Represents the Headers record for the operation: get-sheetPublish
@@ -465,27 +262,6 @@ public type GetSheetPublishHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # CrossSheetReference object to create which will refer to the entire columns in the range from startColumnId to endColumnId
@@ -505,69 +281,29 @@ public type ProofsCreateHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
 };
 
-# Triggered when a group or user is added to the report's sharing list, or when a group or user's share permissions are changed
-public type ReportAddShareAllOf2 record {
-    # The action applied to the specified object
-    "ADD_SHARE" action?;
-    ReportAddShareAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "REPORT" objectType?;
-};
-
 public type HomeFoldersBody Folder;
-
-# Triggered when an access token is revoked
-public type AccesstokenRevokeAllOf2 record {
-    # The action applied to the specified object
-    "REVOKE" action?;
-    AccesstokenRevokeAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "ACCESS_TOKEN" objectType?;
-};
 
 public type AccountBulkUpdate record {
     *Event;
-    *AccountBulkUpdateAllOf2;
+    # The action applied to the specified object
+    "BULK_UPDATE" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "ACCOUNT" objectType?;
 };
 
 public type ReportPurge record {
     *Event;
-    *ReportPurgeAllOf2;
-};
-
-# Triggered when a dashboard is moved between workspaces and/or folders
-public type DashboardMoveAllOf2 record {
     # The action applied to the specified object
-    "MOVE" action?;
-    DashboardMoveAdditionalDetails additionalDetails?;
+    "PURGE" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
-    "DASHBOARD" objectType?;
+    "REPORT" objectType?;
 };
 
 public type InlineResponse2003AllOf2 record {
@@ -576,16 +312,11 @@ public type InlineResponse2003AllOf2 record {
 
 public type SheetRemoveShareMember record {
     *Event;
-    *SheetRemoveShareMemberAllOf2;
-};
-
-# Triggered when a sheet form is activated
-public type FormActivateAllOf2 record {
     # The action applied to the specified object
-    "ACTIVATE" action?;
-    FormActivateAdditionalDetails additionalDetails?;
+    "REMOVE_SHARE_MEMBER" action?;
+    SheetRemoveShareMemberAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
-    "FORM" objectType?;
+    "SHEET" objectType?;
 };
 
 public type DashboardRenameAdditionalDetails record {
@@ -601,12 +332,20 @@ public type ReportsreportIdsharesOneOf2 Share[];
 
 public type GroupRename record {
     *Event;
-    *GroupRenameAllOf2;
+    # The action applied to the specified object
+    "RENAME" action?;
+    GroupRenameAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "GROUP" objectType?;
 };
 
 public type SheetUpdate record {
     *Event;
-    *SheetUpdateAllOf2;
+    # The action applied to the specified object
+    "UPDATE" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 # When applicable for PICKLIST column type. Array of the options available for the field
@@ -614,7 +353,11 @@ public type PropertiesOptions string[];
 
 public type DashboardSaveAsNew record {
     *Event;
-    *DashboardSaveAsNewAllOf2;
+    # The action applied to the specified object
+    "SAVE_AS_NEW" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DASHBOARD" objectType?;
 };
 
 # Describes the sheet's publish settings
@@ -699,18 +442,13 @@ public type FolderSimpleResponse record {
     string name?;
 };
 
-# Triggered when an admin downloads user list report for an organization account. This can be done through User Management console on UI
-public type AccountDownloadUserListAllOf2 record {
-    # The action applied to the specified object
-    "DOWNLOAD_USER_LIST" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "ACCOUNT" objectType?;
-};
-
 public type FormDelete record {
     *Event;
-    *FormDeleteAllOf2;
+    # The action applied to the specified object
+    "DELETE" action?;
+    FormActivateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "FORM" objectType?;
 };
 
 # Updates User for the following attributes:
@@ -736,15 +474,6 @@ public type UserUpdate record {
     boolean licensedSheetCreator = false;
 };
 
-# Triggered when an attachment is deleted
-public type AttachmentDeleteAllOf2 record {
-    # The action applied to the specified object
-    "DELETE" action?;
-    AttachmentDeleteAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "ATTACHMENT" objectType?;
-};
-
 public type SheetsBody SheetToCreate|SheetToCreateFromTemplate;
 
 # Represents the Headers record for the operation: is-favorite
@@ -752,27 +481,6 @@ public type IsFavoriteHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # UserId of the user
     @http:Header {name: "x-smar-sc-actor-id"}
     string xSmarScActorId?;
@@ -802,39 +510,11 @@ public type Email record {
     string message?;
 };
 
-# Triggered when a group or user is removed from a workspace's sharing list. 
-# 
-# Note that this event will appear for each report that is in the workspace. If a group or user is removed from a workspace's sharing list and the workspace is empty, then no events will be recorded
-public type ReportRemoveWorkspaceShareAllOf2 record {
-    # The action applied to the specified object
-    "REMOVE_WORKSPACE_SHARE" action?;
-    DashboardRemoveWorkspaceShareAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "REPORT" objectType?;
-};
-
-# Triggered when a group or user is added to a workspace's sharing list. Note that this event will appear for each dashboard that is in the workspace. If a group or user is added to a workspace's sharing list and the workspace is empty, then no events will be recorded. 
-public type DashboardAddWorkspaceShareAllOf2 record {
-    # The action applied to the specified object
-    "ADD_WORKSPACE_SHARE" action?;
-    DashboardAddWorkspaceShareAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DASHBOARD" objectType?;
-};
-
-# Triggered when an admin imports users through a CSV file. This can be done through User Administration console on UI
-public type AccountImportUsersAllOf2 record {
-    # The action applied to the specified object
-    "IMPORT_USERS" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "ACCOUNT" objectType?;
-};
-
 # Represents the project settings dependencies for a specific sheet. Project settings may be updated on sheets that the user has editor access
 public type ProjectSettings record {
     # Non-working days for a project sheet
     string[] nonWorkingDays?;
+    # Working days for a project sheet
     ("MONDAY"|"TUESDAY"|"WEDNESDAY"|"THURSDAY"|"FRIDAY"|"SATURDAY"|"SUNDAY")[] workingDays?;
     # Length of a workday for a project sheet
     @constraint:Number {minValue: 1, maxValue: 24}
@@ -913,41 +593,12 @@ public type GetSheetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # The Accept request-header field can be used to specify certain media types which are acceptable for the response
     @http:Header {name: "Accept"}
     string accept?;
 };
 
-# Triggered when a row-level, grid-level, or workspace-level comment is added
-public type DiscussionCreateAllOf2 record {
-    # The action applied to the specified object
-    "CREATE" action?;
-    DiscussionCreateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DISCUSSION" objectType?;
-};
-
+# Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
 public type AccessLevel "ADMIN"|"COMMENTER"|"EDITOR"|"EDITOR_SHARE"|"OWNER"|"VIEWER";
 
 # Represents the Headers record for the operation: get-sight-publish-status
@@ -955,36 +606,6 @@ public type GetSightPublishStatusHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
-};
-
-# Triggered when a user is removed from the organization account. This can be done through User Management on UI or via the API (Remove User)
-public type UserRemoveFromAccountAllOf2 record {
-    # The action applied to the specified object
-    "REMOVE_FROM_ACCOUNT" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "USER" objectType?;
 };
 
 public type AccountRenameAdditionalDetails record {
@@ -996,50 +617,11 @@ public type AccountRenameAdditionalDetails record {
     string oldName?;
 };
 
-# Triggered when a sheet is deleted ("Delete Forever") from the deleted items bin
-public type SheetPurgeAllOf2 record {
-    # The action applied to the specified object
-    "PURGE" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
-};
-
-# Triggered when an existing sheet is updated
-public type SheetUpdateAllOf2 record {
-    # The action applied to the specified object
-    "UPDATE" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
-};
-
 # Represents the Headers record for the operation: comments-create
 public type CommentsCreateHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -1047,7 +629,11 @@ public type CommentsCreateHeaders record {
 
 public type AccesstokenRevoke record {
     *Event;
-    *AccesstokenRevokeAllOf2;
+    # The action applied to the specified object
+    "REVOKE" action?;
+    AccesstokenRevokeAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "ACCESS_TOKEN" objectType?;
 };
 
 # Represents the Headers record for the operation: proofs-deleteVersion
@@ -1055,27 +641,6 @@ public type ProofsDeleteVersionHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # **Deprecated** Indicates whether the left nav toolbar is displayed. The default, or **true**, is to display the toolbar. If **false**, hides the toolbar
@@ -1089,27 +654,6 @@ public type AddFavoriteHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # UserId of the user
     @http:Header {name: "x-smar-sc-actor-id"}
     string xSmarScActorId?;
@@ -1123,27 +667,6 @@ public type GetCurrentUserHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: attachments-versionsDelete
@@ -1151,44 +674,18 @@ public type AttachmentsVersionsDeleteHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type WorkspaceUpdateRecurringBackup record {
     *Event;
-    *WorkspaceUpdateRecurringBackupAllOf2;
+    # The action applied to the specified object
+    "UPDATE_RECURRING_BACKUP" action?;
+    FolderRequestBackupAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "WORKSPACE" objectType?;
 };
 
 public type TimestampWriteable TimestampDateTime|TimestampNumber;
-
-# Triggered when a group or user is removed from a dashboard's sharing list
-public type DashboardRemoveShareAllOf2 record {
-    # The action applied to the specified object
-    "REMOVE_SHARE" action?;
-    DashboardRemoveShareAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DASHBOARD" objectType?;
-};
 
 # Object that describes how the the System Column type of "AUTO_NUMBER" is auto-generated
 public type AutoNumberFormat record {
@@ -1218,27 +715,6 @@ public type CopyWorkspaceHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -1322,10 +798,15 @@ public type GetSheetQueries record {
 
 # All objects a user has access to, including dashboards, folders, reports, sheets, and templates
 public type Home record {
+    # Reports accessible to the user
     Report[] reports?;
+    # Sheets accessible to the user
     Sheet[] sheets?;
+    # Folders accessible to the user
     Folder[] folders?;
+    # Dashboards (Sights) accessible to the user
     Sight[] sights?;
+    # Templates accessible to the user
     Template[] templates?;
 };
 
@@ -1333,6 +814,7 @@ public type Report Sheet;
 
 # Sheet imported from CSV / XLSX file
 public type SheetImported record {
+    # Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
     AccessLevel accessLevel?;
     # Sheet name
     Name name?;
@@ -1417,7 +899,11 @@ public type AutomationRule record {
 
 public type SheetSendAsAttachment record {
     *Event;
-    *SheetSendAsAttachmentAllOf2;
+    # The action applied to the specified object
+    "SEND_AS_ATTACHMENT" action?;
+    SheetSendAsAttachmentAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 public type GroupMemberAdd record {
@@ -1427,7 +913,11 @@ public type GroupMemberAdd record {
 
 public type SheetCreate record {
     *Event;
-    *SheetCreateAllOf2;
+    # The action applied to the specified object
+    "CREATE" action?;
+    SheetCreateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 public type InlineResponse20020AllOf2 record {
@@ -1435,7 +925,11 @@ public type InlineResponse20020AllOf2 record {
 
 public type ReportRemoveWorkspaceShare record {
     *Event;
-    *ReportRemoveWorkspaceShareAllOf2;
+    # The action applied to the specified object
+    "REMOVE_WORKSPACE_SHARE" action?;
+    DashboardRemoveWorkspaceShareAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "REPORT" objectType?;
 };
 
 # Represents the Queries record for the operation: is-favorite
@@ -1455,27 +949,6 @@ public type SentupdaterequestsListHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Queries record for the operation: list-sights
@@ -1492,58 +965,23 @@ public type ListSightsQueries record {
     decimal page = 1;
 };
 
-# Triggered when a user is added to a group that a dashboard has been shared to via the dashboard's sharing list, or via a workspace's sharing list. If a dashboard has been shared to a group directly via the dashboard's sharing list, and via a workspace's sharing list, then an event will be generated for each of these shares
-public type DashboardAddShareMemberAllOf2 record {
-    # The action applied to the specified object
-    "ADD_SHARE_MEMBER" action?;
-    DashboardAddShareMemberAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DASHBOARD" objectType?;
-};
-
 # Represents the Headers record for the operation: copy-rows
 public type CopyRowsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
 };
 
-# Triggered when a group or user is added to the dashboard's sharing list, or when a group or user's share permissions are changed
-public type DashboardAddShareAllOf2 record {
-    # The action applied to the specified object
-    "ADD_SHARE" action?;
-    DashboardAddShareAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DASHBOARD" objectType?;
-};
-
 public type GroupDownloadSheetAccessReport record {
     *Event;
-    *GroupDownloadSheetAccessReportAllOf2;
+    # The action applied to the specified object
+    "DOWNLOAD_SHEET_ACCESS_REPORT" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "GROUP" objectType?;
 };
 
 public type ReportRemoveShareAdditionalDetails record {
@@ -1576,27 +1014,6 @@ public type AddGroupMembersHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type AttachmentDeleteAdditionalDetails record {
@@ -1610,40 +1027,13 @@ public type AttachmentDeleteAdditionalDetails record {
     int workspaceId?;
 };
 
-# Triggered when a user saves a copy of a folder by using the `Save As New` option via UI or `Copy Folder` via API.
-# 
-# This event is recorded for the original folder. Each `Save As New` event is paired with a [FOLDER - CREATE](/api/smartsheet/openapi/schemas/folder_create) event that is recorded for the copy of the folder
-public type FolderSaveAsNewAllOf2 record {
-    # The action applied to the specified object
-    "SAVE_AS_NEW" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "FOLDER" objectType?;
-};
-
-# Triggered when a user creates a sheet update request. 
-# 
-# Notice that an update request is created whenever the user sends a new update request via the UI. Also, notice that even though update requests can be sent from a report, it is in fact an update request on the sheet that owns the rows sent in the update request
-public type UpdateRequestCreateAllOf2 record {
-    # The action applied to the specified object
-    "CREATE" action?;
-    UpdateRequestCreateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "UPDATE_REQUEST" objectType?;
-};
-
-# Triggered when an existing report is renamed
-public type ReportRenameAllOf2 record {
-    # The action applied to the specified object
-    "RENAME" action?;
-    ReportRenameAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "REPORT" objectType?;
-};
-
 public type UserDownloadSheetAccessReport record {
     *Event;
-    *UserDownloadSheetAccessReportAllOf2;
+    # The action applied to the specified object
+    "DOWNLOAD_SHEET_ACCESS_REPORT" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "USER" objectType?;
 };
 
 # Represents the Queries record for the operation: row-discussions-list
@@ -1682,40 +1072,10 @@ public type ListSheetsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # If **true**, a rich version of the sheet is published with the ability to download row attachments and discussions
 public type ReadOnlyFullEnabled boolean;
-
-# Triggered when a report is moved between workspaces and/or folders
-public type ReportMoveAllOf2 record {
-    # The action applied to the specified object
-    "MOVE" action?;
-    ReportMoveAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "REPORT" objectType?;
-};
 
 # Represents the Queries record for the operation: list-sheets
 public type ListSheetsQueries record {
@@ -1737,15 +1097,6 @@ public type ListSheetsQueries record {
     decimal page = 1;
 };
 
-# Triggered when a dashboard is renamed in the UI or via the API (update)
-public type DashboardRenameAllOf2 record {
-    # The action applied to the specified object
-    "RENAME" action?;
-    DashboardRenameAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DASHBOARD" objectType?;
-};
-
 # Indicates which view the user has set for a read-write, default view of the published sheet. Must be one of the listed enum values
 public type ReadWriteDefaultView "CALENDAR"|"CARD"|"GRID";
 
@@ -1754,27 +1105,6 @@ public type SetSheetPublishHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -1797,12 +1127,20 @@ public type Id decimal;
 
 public type DashboardRename record {
     *Event;
-    *DashboardRenameAllOf2;
+    # The action applied to the specified object
+    "RENAME" action?;
+    DashboardRenameAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DASHBOARD" objectType?;
 };
 
 public type FolderRequestBackup record {
     *Event;
-    *FolderRequestBackupAllOf2;
+    # The action applied to the specified object
+    "REQUEST_BACKUP" action?;
+    FolderRequestBackupAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "FOLDER" objectType?;
 };
 
 # Represents the Headers record for the operation: attachments-delete
@@ -1810,27 +1148,6 @@ public type AttachmentsDeleteHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Queries record for the operation: list-contacts
@@ -1867,12 +1184,20 @@ public type SentupdaterequestsListQueries record {
 
 public type AccountDownloadSheetAccessReport record {
     *Event;
-    *AccountDownloadSheetAccessReportAllOf2;
+    # The action applied to the specified object
+    "DOWNLOAD_SHEET_ACCESS_REPORT" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "ACCOUNT" objectType?;
 };
 
 public type FormActivate record {
     *Event;
-    *FormActivateAllOf2;
+    # The action applied to the specified object
+    "ACTIVATE" action?;
+    FormActivateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "FORM" objectType?;
 };
 
 public type DashboardListing record {
@@ -1903,27 +1228,6 @@ public type IcalEnabled boolean;
 
 # Represents the Headers record for the operation: tokens-getOrRefresh
 public type TokensGetOrRefreshHeaders record {
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the response
     @http:Header {name: "Content-Type"}
     "application/x-www-form-urlencoded" contentType?;
@@ -1931,15 +1235,8 @@ public type TokensGetOrRefreshHeaders record {
 
 public type WorkspaceDelete record {
     *Event;
-    *WorkspaceDeleteAllOf2;
-};
-
-# Triggered when a user saves a copy of a workspace by using the `Save As New` option via UI or `Copy Workspace` via API. 
-# 
-# This event is recorded for the original workspace. Each `Save As New` event is paired with a [WORKSPACE - CREATE](/api/smartsheet/openapi/schemas/workspace_create) event that is recorded for the copy of the workspace
-public type WorkspaceSaveAsNewAllOf2 record {
     # The action applied to the specified object
-    "SAVE_AS_NEW" action?;
+    "DELETE" action?;
     AccountBulkUpdateAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
     "WORKSPACE" objectType?;
@@ -1977,15 +1274,6 @@ public type UpdateRowsObject record {
     decimal parentId?;
 };
 
-# Triggered when a folder is renamed in the UI or via the API (update)
-public type FolderRenameAllOf2 record {
-    # The action applied to the specified object
-    "RENAME" action?;
-    FolderRenameAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "FOLDER" objectType?;
-};
-
 public type InlineResponse20012AllOf2 record {
     # List of Group Members
     GroupMember[] members?;
@@ -1998,7 +1286,11 @@ public type SharedSecret record {
 
 public type DashboardTransferOwnership record {
     *Event;
-    *DashboardTransferOwnershipAllOf2;
+    # The action applied to the specified object
+    "TRANSFER_OWNERSHIP" action?;
+    DashboardTransferOwnershipAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DASHBOARD" objectType?;
 };
 
 # Represents the Queries record for the operation: columns-listOnSheet
@@ -2011,15 +1303,6 @@ public type ColumnsListOnSheetQueries record {
     boolean includeAll = false;
     # Which page to return. Defaults to 1 if not specified. If you specify a value greater than the total number of pages, the last page of results is returned
     decimal page = 1;
-};
-
-# Triggered when an existing attachment is updated (e.g. its description changed)
-public type AttachmentUpdateAllOf2 record {
-    # The action applied to the specified object
-    "UPDATE" action?;
-    AttachmentDeleteAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "ATTACHMENT" objectType?;
 };
 
 public type SheetAddShareMemberAdditionalDetails record {
@@ -2042,7 +1325,11 @@ public type SheetAddShareMemberAdditionalDetails record {
 
 public type WorkspaceRemoveShareMember record {
     *Event;
-    *WorkspaceRemoveShareMemberAllOf2;
+    # The action applied to the specified object
+    "REMOVE_SHARE_MEMBER" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "WORKSPACE" objectType?;
 };
 
 public type SheetIdRowsBody1 Row|SheetssheetIdrowsOneOf21;
@@ -2052,27 +1339,6 @@ public type ProofsCreateProofRequestsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -2099,27 +1365,6 @@ public type ProofsDeleteProofRequestsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type InlineResponse20054AllOf2 record {
@@ -2140,7 +1385,11 @@ public type GetFolderQueries record {
 
 public type SheetLoad record {
     *Event;
-    *SheetLoadAllOf2;
+    # The action applied to the specified object
+    "LOAD" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 # Represents the Headers record for the operation: SetReportPublish
@@ -2148,27 +1397,6 @@ public type SetReportPublishHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -2176,7 +1404,11 @@ public type SetReportPublishHeaders record {
 
 public type DashboardAddWorkspaceShare record {
     *Event;
-    *DashboardAddWorkspaceShareAllOf2;
+    # The action applied to the specified object
+    "ADD_WORKSPACE_SHARE" action?;
+    DashboardAddWorkspaceShareAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DASHBOARD" objectType?;
 };
 
 public type InlineResponse20011AllOf2 record {
@@ -2188,30 +1420,33 @@ public type InlineResponse20061AllOf2 record {
     SentUpdateRequest[] data?;
 };
 
-# Triggered when a link to another sheet cell is created in a sheet cell
-public type SheetCreateCellLinkAllOf2 record {
-    # The action applied to the specified object
-    "CREATE_CELL_LINK" action?;
-    SheetCreateCellLinkAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
-};
-
 public type UserSendPasswordReset record {
     *Event;
-    *UserSendPasswordResetAllOf2;
+    # The action applied to the specified object
+    "SEND_PASSWORD_RESET" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "USER" objectType?;
 };
 
 public type SheetRemoveShare record {
     *Event;
-    *SheetRemoveShareAllOf2;
+    # The action applied to the specified object
+    "REMOVE_SHARE" action?;
+    SheetRemoveShareAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 public type SheetEmail Email;
 
 public type SheetTransferOwnership record {
     *Event;
-    *SheetTransferOwnershipAllOf2;
+    # The action applied to the specified object
+    "TRANSFER_OWNERSHIP" action?;
+    ReportTransferOwnershipAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 # Specifies the recipient of an email. The recipient may be either an individual or a group. To specify an individual, set the email attribute; to specify a group, set the groupId attribute. Either email and groupId may be set, but not both
@@ -2232,38 +1467,6 @@ public type AddAlternateEmailHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
-};
-
-# Triggered when a user sends a report as email attachment to user(s) or user group(s). 
-# 
-# An individual `REPORT - SEND_AS_ATTACHMENT` event is issued for each user or user group listed as recipient
-public type ReportSendAsAttachmentAllOf2 record {
-    # The action applied to the specified object
-    "SEND_AS_ATTACHMENT" action?;
-    ReportSendAsAttachmentAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "REPORT" objectType?;
 };
 
 public type DiscussionSendAdditionalDetails record {
@@ -2292,41 +1495,15 @@ public type DiscussionListAttachmentsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
-};
-
-# Triggered when a sheet is moved between workspaces and/or folders
-public type SheetMoveAllOf2 record {
-    # The action applied to the specified object
-    "MOVE" action?;
-    SheetMoveAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
 };
 
 public type ReportLoad record {
     *Event;
-    *ReportLoadAllOf2;
+    # The action applied to the specified object
+    "LOAD" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "REPORT" objectType?;
 };
 
 public type RowMapping record {
@@ -2369,6 +1546,7 @@ public type Row record {
     Attachment[] attachments?;
     # URL that represents a direct link to the row in Smartsheet. Only returned if the include query string parameter contains rowPermalink
     string permaLink?;
+    # Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
     AccessLevel accessLevel?;
     # Columns of row. Only returned if the include query string parameter contains columns
     Column[] columns?;
@@ -2407,15 +1585,6 @@ public type Row record {
     decimal rowNumber?;
     # Sibling Id
     decimal siblingId?;
-};
-
-# Triggered when an admin removes the user from all groups and from sharing for all sheets, workspaces, and dashboards owned by users on the organization account. This can be done through User Management on UI
-public type UserRemoveSharesAllOf2 record {
-    # The action applied to the specified object
-    "REMOVE_SHARES" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "USER" objectType?;
 };
 
 public type ReportPublish record {
@@ -2469,27 +1638,6 @@ public type GetContactHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: share-workspace-get
@@ -2497,40 +1645,15 @@ public type ShareWorkspaceGetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type UpdateRequestCreate record {
     *Event;
-    *UpdateRequestCreateAllOf2;
-};
-
-# Triggered when a dashboard is created. Dashboards can be created in the UI with the `Create New` button, by selecting the `Save As New` option on an existing dashboard, or through the API
-public type DashboardCreateAllOf2 record {
+    # The action applied to the specified object
     "CREATE" action?;
-    DashboardCreateAdditionalDetails additionalDetails?;
+    UpdateRequestCreateAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
-    "DASHBOARD" objectType?;
+    "UPDATE_REQUEST" objectType?;
 };
 
 # Represents the Headers record for the operation: get-folder
@@ -2538,27 +1661,6 @@ public type GetFolderHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: updaterequests-list
@@ -2566,27 +1668,6 @@ public type UpdaterequestsListHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # The format descriptor. Only returned if the include query string parameter contains format and this column has a non-default format applied to it
@@ -2599,27 +1680,6 @@ public type ColumnsListOnSheetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type CopyOrMoveRowResult record {
@@ -2634,27 +1694,6 @@ public type AddImageToCellHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Should be equal to "attachment" to tell the API that a file is in the body of the POST request, followed by a semicolon, followed by **filename=** and the URL-encoded filename in quotes
     @http:Header {name: "Content-Disposition"}
     string contentDisposition?;
@@ -2670,7 +1709,11 @@ public type AddImageToCellHeaders record {
 
 public type UserUpdateUser record {
     *Event;
-    *UserUpdateUserAllOf2;
+    # The action applied to the specified object
+    "UPDATE_USER" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "USER" objectType?;
 };
 
 public type SheetssheetIdsharesOneOf2 Share[];
@@ -2707,40 +1750,12 @@ public type DiscussionDeleteHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
-};
-
-# Triggered when a group name is updated. 
-public type GroupRenameAllOf2 record {
-    # The action applied to the specified object
-    "RENAME" action?;
-    GroupRenameAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "GROUP" objectType?;
 };
 
 public type SummaryField record {
+    # Represents a hyperlink, which can be a URL or a link to a report, sheet, or dashboard
     Hyperlink hyperlink?;
+    # Represents an image object, including its unique ID, dimensions, and alternate text
     Image image?;
     # When applicable for PICKLIST column type
     string symbol?;
@@ -2775,15 +1790,6 @@ public type SummaryField record {
     boolean locked?;
     # Indicates whether summary field values are restricted to the type
     boolean validation?;
-};
-
-# Triggered when an admin transfers ownership of all items (sheets/reports/dashboards/workspaces) owned by a user to another user. This can be done through User Management on UI
-public type UserTransferOwnedItemsAllOf2 record {
-    # The action applied to the specified object
-    "TRANSFER_OWNED_ITEMS" action?;
-    GroupTransferOwnershipAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "USER" objectType?;
 };
 
 public type GroupTransferOwnershipAdditionalDetails record {
@@ -2839,6 +1845,7 @@ public type Sheet record {
     string owner?;
     # Represents the entire summary, or a list of defined fields and values, for a specific sheet
     SheetSummary summary?;
+    # Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
     AccessLevel accessLevel?;
     # Returned only if the sheet belongs to an expired trial (value = **true**)
     boolean readOnly?;
@@ -2876,27 +1883,6 @@ public type UpdateGroupHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type InlineResponse20028AllOf2 record {
@@ -2909,27 +1895,6 @@ public type DeleteSummaryFieldsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Sheet to create from template
@@ -2971,41 +1936,11 @@ public type DeleteRowsQueries record {
     boolean ignoreRowsNotFound = false;
 };
 
-# Triggered when an admin downloads sheet access report for an organization account. This can be done through `User Management` console on UI
-public type AccountDownloadSheetAccessReportAllOf2 record {
-    # The action applied to the specified object
-    "DOWNLOAD_SHEET_ACCESS_REPORT" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "ACCOUNT" objectType?;
-};
-
 # Represents the Headers record for the operation: set-sight-publish-status
 public type SetSightPublishStatusHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -3038,27 +1973,6 @@ public type CreateWorkspaceHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -3075,27 +1989,26 @@ public type SheetssheetIdrowsOneOf21 Row[];
 
 public type SheetRemoveWorkspaceShare record {
     *Event;
-    *SheetRemoveWorkspaceShareAllOf2;
-};
-
-# Triggered when a user is added to an auto-provisioned organization account by an admin or when the user logs in with email associated with an auto-provisioned domain
-public type UserAddToAccountAllOf2 record {
     # The action applied to the specified object
-    "ADD_TO_ACCOUNT" action?;
-    UserAddToAccountAdditionalDetails additionalDetails?;
+    "REMOVE_WORKSPACE_SHARE" action?;
+    DashboardRemoveWorkspaceShareAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
-    "USER" objectType?;
+    "SHEET" objectType?;
 };
 
 public type FolderSaveAsNew record {
     *Event;
-    *FolderSaveAsNewAllOf2;
+    # The action applied to the specified object
+    "SAVE_AS_NEW" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "FOLDER" objectType?;
 };
 
-# Object representing a calculated datetime
 public type AbstractDatetimeObjectValue record {
     # Datetime, in the **date-time** format defined by <a href="https://tools.ietf.org/html/rfc3339#section-5.6" target="_blank" rel="noopener noreferrer">RFC 3339, section 5.6</a>
     string value?;
+    # Object representing a calculated datetime
     "ABSTRACT_DATETIME" objectType?;
 };
 
@@ -3104,27 +2017,6 @@ public type AttachmentsVersionListHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type WorkspacesworkspaceIdBody record {
@@ -3144,16 +2036,11 @@ public type AccesstokenRevokeAdditionalDetails record {
 
 public type AccesstokenAuthorize record {
     *Event;
-    *AccesstokenAuthorizeAllOf2;
-};
-
-# Triggered when a user requests a backup for a sheet
-public type SheetRequestBackupAllOf2 record {
     # The action applied to the specified object
-    "REQUEST_BACKUP" action?;
-    FolderRequestBackupAdditionalDetails additionalDetails?;
+    "AUTHORIZE" action?;
+    AccesstokenAuthorizeAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
+    "ACCESS_TOKEN" objectType?;
 };
 
 # Represents the Queries record for the operation: attachments-versionList
@@ -3168,7 +2055,11 @@ public type AttachmentsVersionListQueries record {
 
 public type UserSendInvite record {
     *Event;
-    *UserSendInviteAllOf2;
+    # The action applied to the specified object
+    "SEND_INVITE" action?;
+    UserAddToAccountAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "USER" objectType?;
 };
 
 public type InlineResponse20090AllOf2 record {
@@ -3186,27 +2077,6 @@ public type DeleteRowsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type Group record {
@@ -3226,7 +2096,11 @@ public type Group record {
 
 public type SheetAddShare record {
     *Event;
-    *SheetAddShareAllOf2;
+    # The action applied to the specified object
+    "ADD_SHARE" action?;
+    SheetAddShareAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 public type InlineResponse20076AllOf2 record {
@@ -3248,19 +2122,10 @@ public type DeleteSummaryFieldsQueries record {
     string ids;
 };
 
-# Triggered when a user schedules a recurring backup for a workspace
-public type WorkspaceCreateRecurringBackupAllOf2 record {
-    # The action applied to the specified object
-    "CREATE_RECURRING_BACKUP" action?;
-    WorkspaceCreateRecurringBackupAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "WORKSPACE" objectType?;
-};
-
-# Object representing a date
 public type DateObjectValue record {
     # Date in the **full-date** format defined by [(https://tools.ietf.org/html/rfc3339#section-5.6" target="_blank" rel="noopener noreferrer">RFC 3339, section 5.6]</a>
     string value?;
+    # Object representing a date
     "DATE" objectType?;
 };
 
@@ -3271,44 +2136,18 @@ public type AttachmentsAttachToCommentHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
 };
 
-# Triggered when a group or user is removed from a report's sharing list
-public type ReportRemoveShareAllOf2 record {
-    # The action applied to the specified object
-    "REMOVE_SHARE" action?;
-    ReportRemoveShareAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "REPORT" objectType?;
-};
-
 public type DashboardAddShareMember record {
     *Event;
-    *DashboardAddShareMemberAllOf2;
+    # The action applied to the specified object
+    "ADD_SHARE_MEMBER" action?;
+    DashboardAddShareMemberAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DASHBOARD" objectType?;
 };
 
 # Represents the Headers record for the operation: list-sight-shares
@@ -3316,32 +2155,15 @@ public type ListSightSharesHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type SheetExport record {
     *Event;
-    *SheetExportAllOf2;
+    # The action applied to the specified object
+    "EXPORT" action?;
+    SheetExportAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 # Represents the Queries record for the operation: move-rows
@@ -3357,41 +2179,15 @@ public type UpdateSheetShareHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type UserDeclineInvite record {
     *Event;
-    *UserDeclineInviteAllOf2;
-};
-
-# Triggered when a discussion (i.e. whole thread of top comment and replies) is **directly** (i.e. instead of indirectly as part of another operation) sent by email to user(s) or user group(s). An individual `DISCUSSION - SEND` event is issued for each user or user group listed as recipient
-public type DiscussionSendAllOf2 record {
     # The action applied to the specified object
-    "SEND" action?;
-    DiscussionSendAdditionalDetails additionalDetails?;
+    "DECLINE_INVITE" action?;
+    UserDeclineInviteAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
-    "DISCUSSION" objectType?;
+    "USER" objectType?;
 };
 
 public type FolderIdFoldersBody Folder;
@@ -3407,7 +2203,11 @@ public type AccesstokenRefreshAdditionalDetails record {
 
 public type SheetRestore record {
     *Event;
-    *SheetRestoreAllOf2;
+    # The action applied to the specified object
+    "RESTORE" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 public type MultiRowEmail RowEmail;
@@ -3420,27 +2220,6 @@ public type CreateSheetInWorkspaceHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -3483,6 +2262,7 @@ public type Webhook record {
 };
 
 public type SharesshareIdBody record {
+    # Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
     AccessLevel accessLevel?;
 };
 
@@ -3499,27 +2279,6 @@ public type ShareSheetGetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type InlineResponse20074AllOf2 record {
@@ -3543,12 +2302,20 @@ public type InlineResponse20044AllOf2 record {
 
 public type WorkspaceDeleteRecurringBackup record {
     *Event;
-    *WorkspaceDeleteRecurringBackupAllOf2;
+    # The action applied to the specified object
+    "DELETE_RECURRING_BACKUP" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "WORKSPACE" objectType?;
 };
 
 public type DashboardDelete record {
     *Event;
-    *DashboardDeleteAllOf2;
+    # The action applied to the specified object
+    "DELETE" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DASHBOARD" objectType?;
 };
 
 # Represents the Queries record for the operation: copy-folder
@@ -3576,27 +2343,6 @@ public type AttachmentsVersionUploadHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -3607,27 +2353,6 @@ public type ImportSheetIntoWorkspaceHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Should be equal to "attachment" to tell the API that a file is in the body of the POST request, followed by a semicolon, followed by **filename=** and the URL-encoded filename in quotes
     @http:Header {name: "Content-Disposition"}
     string contentDisposition?;
@@ -3648,7 +2373,9 @@ public type InlineResponse20071AllOf2 record {
 
 # Sheet created from scratch using the specified columns
 public type SheetCreated record {
+    # Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
     AccessLevel accessLevel?;
+    # An array of Column objects, each defining the properties and configuration of a column in a sheet. See the Column schema for details on individual column attributes
     Columns columns?;
     # Sheet name
     Name name?;
@@ -3663,26 +2390,6 @@ public type UpdateRequest record {
     *UpdateRequestAllOf2;
 };
 
-# Triggered when a user declines an invitation to join an organization account through email
-public type UserDeclineInviteAllOf2 record {
-    # The action applied to the specified object
-    "DECLINE_INVITE" action?;
-    UserDeclineInviteAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "USER" objectType?;
-};
-
-# Triggered when a user is added to a group that a report has been shared to via the report's sharing list, or via a workspace's sharing list. 
-# 
-# If a report has been shared to a group directly via the report's sharing list, and via a workspace's sharing list, then an event will be generated for each of these shares
-public type ReportAddShareMemberAllOf2 record {
-    # The action applied to the specified object
-    "ADD_SHARE_MEMBER" action?;
-    ReportAddShareMemberAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "REPORT" objectType?;
-};
-
 public type ItemResult GenericResult;
 
 # Represents the Headers record for the operation: getWebhook
@@ -3690,27 +2397,6 @@ public type GetWebhookHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: list-sheet-shares
@@ -3718,27 +2404,6 @@ public type ListSheetSharesHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Queries record for the operation: getReport
@@ -3767,7 +2432,11 @@ public type GetReportQueries record {
 
 public type WorkspaceSaveAsNew record {
     *Event;
-    *WorkspaceSaveAsNewAllOf2;
+    # The action applied to the specified object
+    "SAVE_AS_NEW" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "WORKSPACE" objectType?;
 };
 
 # Represents the Headers record for the operation: update-sight
@@ -3775,27 +2444,6 @@ public type UpdateSightHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -3803,7 +2451,11 @@ public type UpdateSightHeaders record {
 
 public type DiscussionUpdate record {
     *Event;
-    *DiscussionUpdateAllOf2;
+    # The action applied to the specified object
+    "UPDATE" action?;
+    DiscussionCreateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DISCUSSION" objectType?;
 };
 
 public type ContainerDestinationForMove record {
@@ -3817,7 +2469,11 @@ public type ContainerDestinationForMove record {
 
 public type SheetMove record {
     *Event;
-    *SheetMoveAllOf2;
+    # The action applied to the specified object
+    "MOVE" action?;
+    SheetMoveAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 # Represents the Headers record for the operation: copy-folder
@@ -3825,27 +2481,6 @@ public type CopyFolderHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -3867,27 +2502,6 @@ public type SentupdaterequestGetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Queries record for the operation: share-sheet
@@ -3906,16 +2520,11 @@ public type ImageUrlMap record {
 
 public type GroupDelete record {
     *Event;
-    *GroupDeleteAllOf2;
-};
-
-# Triggered when a report is in the deleted items bin and is restored (`Undelete`)
-public type ReportRestoreAllOf2 record {
     # The action applied to the specified object
-    "RESTORE" action?;
+    "DELETE" action?;
     AccountBulkUpdateAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
-    "REPORT" objectType?;
+    "GROUP" objectType?;
 };
 
 public type UserAddToAccountAdditionalDetails record {
@@ -3925,24 +2534,6 @@ public type UserAddToAccountAdditionalDetails record {
     # 
     # The full list of available user types can be seen <a href="https://help.smartsheet.com/learning-track/shared-users/user-types-and-permissions" target="_blank" rel="noopener noreferrer">here</a>. Please notice that user types Unlicensed User and Free Collaborator are not applicable for this event
     string userTypes?;
-};
-
-# Triggered when a user exports or prints the sheet
-public type SheetExportAllOf2 record {
-    # The action applied to the specified object
-    "EXPORT" action?;
-    SheetExportAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
-};
-
-# Triggered when an admin sends a password reset email. This can be done through User Management on UI
-public type UserSendPasswordResetAllOf2 record {
-    # The action applied to the specified object
-    "SEND_PASSWORD_RESET" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "USER" objectType?;
 };
 
 # Represents the Queries record for the operation: update-sheet-share
@@ -4010,7 +2601,11 @@ public type SheetAddWorkspaceShareAdditionalDetails record {
 
 public type SheetSaveAsTemplate record {
     *Event;
-    *SheetSaveAsTemplateAllOf2;
+    # The action applied to the specified object
+    "SAVE_AS_TEMPLATE" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 # Represents the Headers record for the operation: move-sight
@@ -4018,27 +2613,6 @@ public type MoveSightHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -4051,27 +2625,6 @@ public type GetCrosssheetReferenceHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type RowEmail Email;
@@ -4084,6 +2637,7 @@ public type DeleteReportShareQueries record {
 
 # Sheet created from template
 public type SheetCreatedFromTemplate record {
+    # Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
     AccessLevel accessLevel?;
     # Sheet name
     Name name?;
@@ -4096,15 +2650,6 @@ public type SheetCreatedFromTemplate record {
 public type InlineResponse20078AllOf2 record {
     # List of Sheets
     SheetList[] data?;
-};
-
-# Triggered when a user requests a backup for a workspace
-public type WorkspaceRequestBackupAllOf2 record {
-    # The action applied to the specified object
-    "REQUEST_BACKUP" action?;
-    FolderRequestBackupAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "WORKSPACE" objectType?;
 };
 
 public type UpdateWebhookRequest record {
@@ -4140,17 +2685,29 @@ public type UserDeclineInviteAdditionalDetails record {
 
 public type AttachmentUpdate record {
     *Event;
-    *AttachmentUpdateAllOf2;
+    # The action applied to the specified object
+    "UPDATE" action?;
+    AttachmentDeleteAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "ATTACHMENT" objectType?;
 };
 
 public type AccesstokenRefresh record {
     *Event;
-    *AccesstokenRefreshAllOf2;
+    # The action applied to the specified object
+    "REFRESH" action?;
+    AccesstokenRefreshAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "ACCESS_TOKEN" objectType?;
 };
 
 public type DashboardAddPublish record {
     *Event;
-    *DashboardAddPublishAllOf2;
+    # The action applied to the specified object
+    "ADD_PUBLISH" action?;
+    DashboardAddPublishAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DASHBOARD" objectType?;
 };
 
 # Represents the Queries record for the operation: list-home-contents
@@ -4173,27 +2730,6 @@ public type RowDiscussionsListHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type InlineResponse20073AllOf2 record {
@@ -4206,27 +2742,6 @@ public type ListHomeContentsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: column-delete
@@ -4234,27 +2749,6 @@ public type ColumnDeleteHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type ReportIdSharesBody Share|ReportsreportIdsharesOneOf2;
@@ -4269,32 +2763,15 @@ public type ProofsDeleteHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type SheetDelete record {
     *Event;
-    *SheetDeleteAllOf2;
+    # The action applied to the specified object
+    "DELETE" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 # Represents the Headers record for the operation: delete-report-share
@@ -4302,27 +2779,6 @@ public type DeleteReportShareHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: automationrules-list
@@ -4330,38 +2786,6 @@ public type AutomationrulesListHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
-};
-
-# Triggered when a user exports or prints the report. 
-# 
-# Printing a report is a PDF export, then browser print, thus is reported as PDF export
-public type ReportExportAllOf2 record {
-    # The action applied to the specified object
-    "EXPORT" action?;
-    ReportExportAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "REPORT" objectType?;
 };
 
 public type ServerInfo record {
@@ -4376,39 +2800,10 @@ public type AddUserHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
-};
-
-# Triggered when a user updates the options (listed below in **`additionalDetails`**) in a recurring backup schedule for a workspace
-public type WorkspaceUpdateRecurringBackupAllOf2 record {
-    # The action applied to the specified object
-    "UPDATE_RECURRING_BACKUP" action?;
-    FolderRequestBackupAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "WORKSPACE" objectType?;
 };
 
 public type SummaryFieldAddImage record {
+    # Represents an image object, including its unique ID, dimensions, and alternate text
     Image image?;
     Timestamp createdAt?;
     Timestamp modifiedAt?;
@@ -4436,27 +2831,6 @@ public type GetSightHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type InlineResponse20040AllOf2 record {
@@ -4486,15 +2860,6 @@ public type DashboardRemoveWorkspaceShareAdditionalDetails record {
     int workspaceId?;
 };
 
-# Triggered when a user exports the folder
-public type FolderExportAllOf2 record {
-    # The action applied to the specified object
-    "EXPORT" action?;
-    FolderExportAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "FOLDER" objectType?;
-};
-
 # See [Column Types](/api/smartsheet/openapi/columns)
 public type Type "ABSTRACT_DATETIME"|"CHECKBOX"|"CONTACT_LIST"|"DATE"|"DATETIME"|"DURATION"|"MULTI_CONTACT_LIST"|"MULTI_PICKLIST"|"PICKLIST"|"PREDECESSOR"|"TEXT_NUMBER";
 
@@ -4508,16 +2873,8 @@ public type ListWebhooksQueries record {
     decimal page = 1;
 };
 
-# Triggered when a report is viewed in the UI or loaded through the API
-public type ReportLoadAllOf2 record {
-    # The action applied to the specified object
-    "LOAD" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "REPORT" objectType?;
-};
-
 public type Share record {
+    # Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
     AccessLevel accessLevel?;
     Timestamp modifiedAt?;
     # The subject of the email that is optionally sent to notify the recipient. You can specify this attribute
@@ -4565,7 +2922,11 @@ public type DashboardRemoveShareAdditionalDetails record {
 
 public type DiscussionSendcomment record {
     *Event;
-    *DiscussionSendcommentAllOf2;
+    # The action applied to the specified object
+    "SEND_COMMENT" action?;
+    DiscussionSendcommentAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DISCUSSION" objectType?;
 };
 
 # Represents the Queries record for the operation: add-user
@@ -4593,10 +2954,10 @@ public type AutomationrulesListQueries record {
     decimal page = 1;
 };
 
-# Object containing a list of Contacts
 public type MultiContactObjectValue record {
     # List of Contacts
     ContactObjectValue[] value?;
+    # Object containing a list of Contacts
     "MULTI_CONTACT" objectType?;
 };
 
@@ -4607,30 +2968,15 @@ public type WebhookAllOf2 record {
     # Details about the reason the webhook was disabled. Read-only. Only present when enabled=false
     string disabledDetails?;
     WebhookStats stats?;
-    # Id of the object that is subscribed to. Specified when a webhook is created and cannot be changed
-    decimal scopeObjectId?;
     Timestamp modifiedAt?;
-    # Scope of the subscription. Currently, the only supported value is sheet. Specified when a webhook is created and cannot be changed
-    string scope?;
     # API client Id corresponding to third-party app that created the webhook. Read-only. Only present if webhook was created by third-party app
     string apiClientId?;
-    # An object that contains an array of column Ids if you want to limit the subscription to a subscope. Specified when a webhook is created and cannot be changed
-    Subscope subscope?;
     # Webhook Id
     decimal id?;
     # Shared secret for this Webhook, randomly generated by Smartsheet. Read-only. See [Authenticating Callbacks](/api/smartsheet/openapi/webhooks) for details about how this value can be used
     string sharedSecret?;
     # Webhook status. Read-only. See Webhook Status for list of possible values
     "DISABLED_ADMINISTRATIVE"|"DISABLED_APP_REVOKED"|"DISABLED_BY_OWNER"|"DISABLED_CALLBACK_FAILED"|"DISABLED_SCOPE_INACCESSIBLE"|"DISABLED_VERIFICATION_FAILED"|"ENABLED"|"NEW_NOT_VERIFIED" status?;
-};
-
-# Triggered when a sheet form is deleted
-public type FormDeleteAllOf2 record {
-    # The action applied to the specified object
-    "DELETE" action?;
-    FormActivateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "FORM" objectType?;
 };
 
 public type GenericResult record {
@@ -4649,7 +2995,11 @@ public type ObjectValue AbstractDatetimeObjectValue|CheckboxObjectValue|ContactO
 
 public type AttachmentDelete record {
     *Event;
-    *AttachmentDeleteAllOf2;
+    # The action applied to the specified object
+    "DELETE" action?;
+    AttachmentDeleteAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "ATTACHMENT" objectType?;
 };
 
 public type InlineResponse20024AllOf2 record {
@@ -4664,27 +3014,6 @@ public type ShareSheetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: sentupdaterequest-delete
@@ -4692,27 +3021,6 @@ public type SentupdaterequestDeleteHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type CellHistory Cell;
@@ -4731,27 +3039,6 @@ public type ResetSharedSecretHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -4794,27 +3081,6 @@ public type AttachmentsAttachToSheetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -4837,12 +3103,20 @@ public type DashboardAddShareMemberAdditionalDetails record {
 
 public type DashboardRemoveShare record {
     *Event;
-    *DashboardRemoveShareAllOf2;
+    # The action applied to the specified object
+    "REMOVE_SHARE" action?;
+    DashboardRemoveShareAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DASHBOARD" objectType?;
 };
 
 public type SheetCreateCellLink record {
     *Event;
-    *SheetCreateCellLinkAllOf2;
+    # The action applied to the specified object
+    "CREATE_CELL_LINK" action?;
+    SheetCreateCellLinkAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 public type TimestampNumber decimal;
@@ -4853,7 +3127,11 @@ public type InlineResponse2007AllOf2 record {
 
 public type DashboardRemoveWorkspaceShare record {
     *Event;
-    *DashboardRemoveWorkspaceShareAllOf2;
+    # The action applied to the specified object
+    "REMOVE_WORKSPACE_SHARE" action?;
+    DashboardRemoveWorkspaceShareAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DASHBOARD" objectType?;
 };
 
 public type ReportAddWorkspaceShareAdditionalDetails record {
@@ -4874,15 +3152,6 @@ public type ReportAddWorkspaceShareAdditionalDetails record {
     int workspaceId?;
 };
 
-# Triggered when a workspace is renamed in the UI or via the API (update)
-public type WorkspaceRenameAllOf2 record {
-    # The action applied to the specified object
-    "RENAME" action?;
-    WorkspaceRenameAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "WORKSPACE" objectType?;
-};
-
 public type InlineResponse20079AllOf2 record {
     # Updated User Properties
     UserProfileImageResponse[] data?;
@@ -4895,27 +3164,6 @@ public type ProofsListDiscussionsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type ColumnToCreateASheet record {
@@ -4939,43 +3187,14 @@ public type ColumnToCreateASheet record {
     Primary primary?;
 };
 
+# An array of GroupMemberAdd objects, each specifying the email address of a user to be added to a group
 public type GroupMembersAddArray GroupMemberAdd[];
-
-# Triggered when row(s) are moved from one sheet to another
-public type SheetMoveRowAllOf2 record {
-    # The action applied to the specified object
-    "MOVE_ROW" action?;
-    SheetMoveRowAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
-};
 
 # Represents the Headers record for the operation: proofs-listAttachments
 public type ProofsListAttachmentsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: move-rows
@@ -4983,27 +3202,6 @@ public type MoveRowsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -5014,50 +3212,9 @@ public type DeleteSightHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
-};
-
-# Triggered when a member is removed from a group
-public type GroupRemoveMemberAllOf2 record {
-    # The action applied to the specified object
-    "REMOVE_MEMBER" action?;
-    GroupRemoveMemberAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "GROUP" objectType?;
 };
 
 public type WebhooksAllOf2 record {
-};
-
-# Triggered when a workspace is created.
-# 
-# Workspaces can be created in the UI with the `Create New` button, by selecting the `Save As New` option on an existing workspace, or through the API
-public type WorkspaceCreateAllOf2 record {
-    # The action applied to the specified object
-    "CREATE" action?;
-    WorkspaceCreateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "WORKSPACE" objectType?;
 };
 
 # Represents the Queries record for the operation: create-sheet-in-workspace
@@ -5071,7 +3228,11 @@ public type CreateSheetInWorkspaceQueries record {
 
 public type ReportRemoveShare record {
     *Event;
-    *ReportRemoveShareAllOf2;
+    # The action applied to the specified object
+    "REMOVE_SHARE" action?;
+    ReportRemoveShareAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "REPORT" objectType?;
 };
 
 # Represents the Headers record for the operation: list-webhooks
@@ -5079,40 +3240,6 @@ public type ListWebhooksHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
-};
-
-# Triggered when a user saves a copy of a report by using the `Save As New` option. 
-# 
-# This event is recorded for the original report. If the original reports belongs to a different organization, then an event will be generated for organization with original report and for the organization with copied report.
-# 
-# For copied report, `Save As New` event is paired with a [REPORT - CREATE](/api/smartsheet/openapi/schemas/report_create) event
-public type ReportSaveAsNewAllOf2 record {
-    # The action applied to the specified object
-    "SAVE_AS_NEW" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "REPORT" objectType?;
 };
 
 public type InlineResponse20048AllOf2 record {
@@ -5134,61 +3261,16 @@ public type GroupAddMemberAdditionalDetails record {
     int memberUserId?;
 };
 
-# Triggered when a user saves a copy of a dashboard by using the `Save As New` option.
-# 
-# This event is recorded for the original  dashboard. If the original dashboard belongs to a different organization, then `Save As New` event will be generated for the organization with original dashboard and for the organization with copied dashboard.
-# 
-# For copied dashboard, `Save As New` event is paired with a [DASHBOARD - CREATE](/api/smartsheet/openapi/schemas/dashboard_create) event
-public type DashboardSaveAsNewAllOf2 record {
-    # The action applied to the specified object
-    "SAVE_AS_NEW" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DASHBOARD" objectType?;
-};
-
 # Represents the Headers record for the operation: list-events
 public type ListEventsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Strongly recommended to make sure payload is compressed. Must be set to one of the following values:
     # * deflate
     # * gzip
     @http:Header {name: "Accept-Encoding"}
     "deflate"|"gzip" acceptEncoding?;
-};
-
-# Triggered when a user is removed from a group that a workspace has been shared to via the workspace's sharing list, or via a workspace's sharing list. 
-# 
-# If a workspace has been shared to a group directly via the workspace's sharing list, and via a workspace's sharing list, then an event will be generated for each of these shares
-public type WorkspaceRemoveShareMemberAllOf2 record {
-    # The action applied to the specified object
-    "REMOVE_SHARE_MEMBER" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "WORKSPACE" objectType?;
 };
 
 public type ReportAddShareAdditionalDetails record {
@@ -5211,36 +3293,6 @@ public type DeleteGroupHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
-};
-
-# Triggered when a group or user is added to the sheet's sharing list, or when a group or user's share permissions are changed
-public type SheetAddShareAllOf2 record {
-    # The action applied to the specified object
-    "ADD_SHARE" action?;
-    SheetAddShareAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
 };
 
 # Represents the Queries record for the operation: proofs-getAllProofs
@@ -5258,27 +3310,6 @@ public type ProofsGetAllProofsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type InlineResponse20022AllOf2 record {
@@ -5289,59 +3320,20 @@ public type InlineResponse20030AllOf2 record {
     AutomationRule result?;
 };
 
-# Triggered when an attachment is loaded (i.e. viewed or downloaded)
-public type AttachmentLoadAllOf2 record {
-    # The action applied to the specified object
-    "LOAD" action?;
-    AttachmentLoadAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "ATTACHMENT" objectType?;
-};
-
-# Triggered when an existing sheet form is updated
-public type FormUpdateAllOf2 record {
-    # The action applied to the specified object
-    "UPDATE" action?;
-    FormActivateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "FORM" objectType?;
-};
-
 # Represents the Headers record for the operation: rows-addToSheet
 public type RowsAddToSheetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
 };
 
-# Object representing a duration in days
 public type DurationObjectValue record {
     # Number of days
     float days?;
+    # Object representing a duration in days
     "DURATION" objectType?;
 };
 
@@ -5349,7 +3341,11 @@ public type WorkspaceIdSharesBody Share|WorkspacesworkspaceIdsharesOneOf2;
 
 public type ReportExport record {
     *Event;
-    *ReportExportAllOf2;
+    # The action applied to the specified object
+    "EXPORT" action?;
+    ReportExportAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "REPORT" objectType?;
 };
 
 # Represents the Queries record for the operation: rows-addToSheet
@@ -5390,27 +3386,6 @@ public type GetReportPublishHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type GroupRemoveMemberAdditionalDetails record {
@@ -5427,55 +3402,54 @@ public type FormatTables record {
     string[] verticalAlign?;
     # The default setting is "none". Typically this is black text and a white background
     string[] color?;
+    # Format used for dates
     string[] dateFormat?;
+    # Indicates if the text is underlined
     string[] underline?;
+    # Indicates if the text is bold
     string[] bold?;
+    # Indicates if the text is italic
     string[] italic?;
+    # Font family used for the text
     FontFamily[] fontFamily?;
     # A format descriptor where each element describes the formats the Smartsheet Web app displays for format values that have not been set. Each value refers to an index of the following options
     string defaults?;
+    # Format used for numbers
     string[] numberFormat?;
     # The default setting is "default" which is equivalent to "left"
     string[] horizontalAlign?;
+    # Indicates if the text is wrapped
     string[] textWrap?;
+    # Currency code
     Currency[] currency?;
+    # Font size of the text
     string[] fontSize?;
+    # Indicates if the text has a strikethrough
     string[] strikethrough?;
+    # Number of decimal places
     string[] decimalCount?;
+    # Character used as thousands separator
     string[] thousandsSeparator?;
-};
-
-# Triggered when an admin downloads sheet access report for a group. This can be done through Group Management console on UI
-public type GroupDownloadSheetAccessReportAllOf2 record {
-    # The action applied to the specified object
-    "DOWNLOAD_SHEET_ACCESS_REPORT" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "GROUP" objectType?;
 };
 
 public type SheetSendRow record {
     *Event;
-    *SheetSendRowAllOf2;
+    # The action applied to the specified object
+    "SEND_ROW" action?;
+    SheetSendRowAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 public type UsersuserIdalternateemailsOneOf2 AddAlternateEmail[];
 
 public type SightListItem SightResult;
 
-# Triggered when a group is deleted
-public type GroupDeleteAllOf2 record {
-    # The action applied to the specified object
-    "DELETE" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "GROUP" objectType?;
-};
-
 # Object containing a list of references to rows on which the current row depends
 public type PredecessorList record {
     # List of references to rows on which the current row depends
     Predecessor[] predecessors?;
+    # Indicates the type of the object. For PredecessorList, this will always be 'PREDECESSOR_LIST'
     "PREDECESSOR_LIST" objectType?;
 };
 
@@ -5531,37 +3505,21 @@ public type ColumnsAddToSheetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
 };
 
+# An array of Column objects, each defining the properties and configuration of a column in a sheet. See the Column schema for details on individual column attributes
 public type Columns Column[];
 
 public type DiscussionDelete record {
     *Event;
-    *DiscussionDeleteAllOf2;
+    # The action applied to the specified object
+    "DELETE" action?;
+    DiscussionCreateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DISCUSSION" objectType?;
 };
 
 public type FolderExportAdditionalDetails record {
@@ -5580,15 +3538,6 @@ public type IndexResultUnknownPages record {
     decimal? pageSize?;
     # If the data field value is not empty, returns a static value of -1. When you reach the first empty page after the end of the result set, then all four fields are set with a static value of “0”
     decimal totalCount?;
-};
-
-# Triggered when a workspace is deleted
-public type WorkspaceDeleteAllOf2 record {
-    # The action applied to the specified object
-    "DELETE" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "WORKSPACE" objectType?;
 };
 
 public type InlineResponse2001 record {
@@ -5619,27 +3568,6 @@ public type ListCrosssheetReferencesHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type InlineResponse2002 record {
@@ -5678,6 +3606,7 @@ public type InlineResponse2006 record {
     *InlineResponse2006AllOf2;
 };
 
+# Represents a hyperlink, which can be a URL or a link to a report, sheet, or dashboard
 public type Hyperlink record {
     # If non-null, this hyperlink is a link to the report with this Id
     decimal reportId?;
@@ -5689,19 +3618,9 @@ public type Hyperlink record {
     string url?;
 };
 
-# Triggered when a user is removed from a group that a sheet has been shared to via the sheet's sharing list, or via a workspace's sharing list. 
-# 
-# If a sheet has been shared to a group directly via the sheet's sharing list, and via a workspace's sharing list, then an event will be generated for each of these shares
-public type SheetRemoveShareMemberAllOf2 record {
-    # The action applied to the specified object
-    "REMOVE_SHARE_MEMBER" action?;
-    SheetRemoveShareMemberAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
-};
-
 # Attachment Object
 public type Attachment record {
+    # Attachment creation date and time
     Timestamp createdAt?;
     # Attachment sub type. Note--Folder type is for EGNYTE values and the rest are GOOGLE_DRIVE values
     "DOCUMENT"|"DRAWING"|"FOLDER"|"PDF"|"PRESENTATION"|"SPREADSHEET" attachmentSubType?;
@@ -5732,7 +3651,11 @@ public type Index decimal;
 
 public type DashboardRemovePublish record {
     *Event;
-    *DashboardRemovePublishAllOf2;
+    # The action applied to the specified object
+    "REMOVE_PUBLISH" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DASHBOARD" objectType?;
 };
 
 public type FolderIdSheetsBody SheetToCreate|SheetToCreateFromTemplate;
@@ -5777,7 +3700,11 @@ public type InlineResponse20060 record {
 
 public type DashboardLoad record {
     *Event;
-    *DashboardLoadAllOf2;
+    # The action applied to the specified object
+    "LOAD" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DASHBOARD" objectType?;
 };
 
 # Describes the sheet's publish settings. Used as a request body to set publish status
@@ -5821,7 +3748,11 @@ public type InlineResponse20063 record {
 
 public type AttachmentSend record {
     *Event;
-    *AttachmentSendAllOf2;
+    # The action applied to the specified object
+    "SEND" action?;
+    AttachmentSendAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "ATTACHMENT" objectType?;
 };
 
 # A number that is incremented every time a sheet is modified
@@ -5829,35 +3760,19 @@ public type Version decimal;
 
 public type InlineResponse20062 record {
     *IndexResult;
-    *InlineResponse20062AllOf2;
+    # List of Summary Fields
+    SummaryField[] data?;
 };
 
 # A list of created summary fields
 public type InlineResponse20064AllOf2 record {
+    # List of summary fields created by the operation
     SummaryField[] result?;
-};
-
-# Triggered when the organization account is renamed. This can be done through Account Administration console on UI
-public type AccountRenameAllOf2 record {
-    # The action applied to the specified object
-    "RENAME" action?;
-    AccountRenameAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "ACCOUNT" objectType?;
 };
 
 public type InlineResponse20065 record {
     *Result;
     *InlineResponse20065AllOf2;
-};
-
-# Triggered when a group or user is removed from a workspace's sharing list
-public type WorkspaceRemoveShareAllOf2 record {
-    # The action applied to the specified object
-    "REMOVE_SHARE" action?;
-    WorkspaceRemoveShareAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "WORKSPACE" objectType?;
 };
 
 # Represents the Queries record for the operation: share-report
@@ -5911,27 +3826,6 @@ public type DeleteSightShareHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type CreateWebhookRequest record {
@@ -5972,6 +3866,7 @@ public type Duration record {
     decimal minutes?;
     # The number of days for this duration
     decimal days?;
+    # Indicates the type of the object. For Duration, this will always be 'DURATION'
     "DURATION" objectType?;
 };
 
@@ -5980,27 +3875,6 @@ public type GetAlternateEmailHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: getReports
@@ -6008,27 +3882,6 @@ public type GetReportsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: update-user
@@ -6036,42 +3889,12 @@ public type UpdateUserHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Queries record for the operation: update-workspace
 public type UpdateWorkspaceQueries record {
     # Allows COMMENTER access for inputs and return values. For backwards-compatibility, VIEWER is the default. For example, to see whether a user has COMMENTER access for a sheet, use accessApiLevel=1
     decimal accessApiLevel = 0;
-};
-
-# Triggered when a summarized list of all sheets owned by the members of the organization account is generated. This can be done through API
-public type AccountListSheetsAllOf2 record {
-    # The action applied to the specified object
-    "LIST_SHEETS" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "ACCOUNT" objectType?;
 };
 
 # Represents the Queries record for the operation: share-workspace
@@ -6097,27 +3920,6 @@ public type DeactivateUserHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type InlineResponse20071 record {
@@ -6184,17 +3986,6 @@ public type InlineResponse20078 record {
     *InlineResponse20078AllOf2;
 };
 
-# Triggered when a user sends selected sheet row(s) by email to user(s) or user group(s). 
-# 
-# An individual `SHEET - SEND_ROW` event is issued for each user or user group listed as recipient
-public type SheetSendRowAllOf2 record {
-    # The action applied to the specified object
-    "SEND_ROW" action?;
-    SheetSendRowAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
-};
-
 public type InlineResponse20077 record {
     *UserProfile;
     *InlineResponse20077AllOf2;
@@ -6205,27 +3996,6 @@ public type ListFoldersHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type InlineResponse20079 record {
@@ -6238,27 +4008,6 @@ public type DiscussionGetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type Discussion record {
@@ -6266,6 +4015,7 @@ public type Discussion record {
     Attachment[] commentAttachments?;
     # Array of comments in discussion. Only returned if the include query string parameter contains comments
     Comment[] comments?;
+    # Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
     AccessLevel accessLevel?;
     # `User` object containing `name` and `email` of the user who created the discussion
     MiniUser createdBy?;
@@ -6286,59 +4036,30 @@ public type Discussion record {
     MiniUser lastCommentedUser?;
 };
 
-# Triggered when an existing sheet is renamed
-public type SheetRenameAllOf2 record {
-    # The action applied to the specified object
-    "RENAME" action?;
-    SheetRenameAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
-};
-
 # If **true**,a rich version of the sheet is published with the ability to edit cells and manage attachments and discussions
 public type ReadWriteEnabled boolean;
 
-# Triggered when a group or user is added to a workspace's sharing list. 
-# 
-# Note that this event will appear for each sheet that is in the workspace. If a group or user is added to a workspace's sharing list and the workspace is empty, then no events will be recorded
-public type SheetAddWorkspaceShareAllOf2 record {
-    # The action applied to the specified object
-    "ADD_WORKSPACE_SHARE" action?;
-    SheetAddWorkspaceShareAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
-};
-
-# An object that contains an array of column Ids if you want to limit the subscription to a subscope. Specified when a webhook is created and cannot be changed
-public type Subscope record {
-    # A column Id or Ids
-    decimal[] columnIds?;
-};
-
 public type AccountImportUsers record {
     *Event;
-    *AccountImportUsersAllOf2;
+    # The action applied to the specified object
+    "IMPORT_USERS" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "ACCOUNT" objectType?;
 };
 
 public type SheetMoveRow record {
     *Event;
-    *SheetMoveRowAllOf2;
+    # The action applied to the specified object
+    "MOVE_ROW" action?;
+    SheetMoveRowAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 public type InlineResponse20081 record {
     *GenericResult;
     *InlineResponse20081AllOf2;
-};
-
-# Triggered when an attachment is **directly** (i.e. instead of indirectly as part of another operation) sent by email to user(s) or user group(s). 
-# 
-# An individual `ATTACHMENT - SEND` event is issued for each user or user group listed as recipient
-public type AttachmentSendAllOf2 record {
-    # The action applied to the specified object
-    "SEND" action?;
-    AttachmentSendAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "ATTACHMENT" objectType?;
 };
 
 public type InlineResponse20080 record {
@@ -6368,27 +4089,6 @@ public type UpdateReportShareHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type InlineResponse20087 record {
@@ -6401,29 +4101,9 @@ public type ColumnGetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
+# Represents a user's profile image including its unique ID, width, and height
 public type ProfileImage record {
     # Unique image Id
     string imageId?;
@@ -6443,29 +4123,9 @@ public type InlineResponse20089 record {
     *InlineResponse20089AllOf2;
 };
 
-# Triggered when a group or user is added to a workspace's sharing list. 
-# 
-# Note that this event will appear for each report that is in the workspace. If a group or user is added to a workspace's sharing list and the workspace is empty, then no events will be recorded
-public type ReportAddWorkspaceShareAllOf2 record {
-    # The action applied to the specified object
-    "ADD_WORKSPACE_SHARE" action?;
-    ReportAddWorkspaceShareAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "REPORT" objectType?;
-};
-
 public type InlineResponse20088 record {
     *GenericResult;
     *InlineResponse20088AllOf2;
-};
-
-# Triggered when a sheet is in the deleted items bin and is restored (`Undelete`)
-public type SheetRestoreAllOf2 record {
-    # The action applied to the specified object
-    "RESTORE" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
 };
 
 # Represents the Headers record for the operation: automationrule-delete
@@ -6473,27 +4133,6 @@ public type AutomationruleDeleteHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type InlineResponse2001AllOf2 record {
@@ -6503,6 +4142,7 @@ public type InlineResponse2001AllOf2 record {
 
 # Sheet to create from scratch using the specified columns
 public type SheetToCreate record {
+    # List of columns to include in the new sheet
     ColumnToCreateASheet[] columns?;
     # Sheet name
     Name name?;
@@ -6513,27 +4153,6 @@ public type ShareReportHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type UpdateRequestAllOf2 record {
@@ -6564,27 +4183,6 @@ public type DeleteFolderHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type UpdateProofStatusRequest record {
@@ -6653,15 +4251,6 @@ public type InlineResponse20072AllOf2 record {
     SightResult result?;
 };
 
-# Triggered when a user disables publish option for a dashboard
-public type DashboardRemovePublishAllOf2 record {
-    # The action applied to the specified object
-    "REMOVE_PUBLISH" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DASHBOARD" objectType?;
-};
-
 # Represents the Queries record for the operation: list-crosssheet-references
 public type ListCrosssheetReferencesQueries record {
     # The maximum number of items to return per page. Unless otherwise stated for a specific endpoint, defaults to 100. If only page is specified, defaults to a page size of 100. For reports, the default is 100 rows. If you need larger sets of data from your report, returns a maximum of 10,000 rows per request
@@ -6692,7 +4281,11 @@ public type ListUsersQueries record {
 
 public type UserAddToAccount record {
     *Event;
-    *UserAddToAccountAllOf2;
+    # The action applied to the specified object
+    "ADD_TO_ACCOUNT" action?;
+    UserAddToAccountAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "USER" objectType?;
 };
 
 # Represents the Headers record for the operation: list-users
@@ -6700,39 +4293,10 @@ public type ListUsersHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
-};
-
-# Triggered when a workspace ownership is transferred
-public type WorkspaceTransferOwnershipAllOf2 record {
-    # The action applied to the specified object
-    "TRANSFER_OWNERSHIP" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "WORKSPACE" objectType?;
 };
 
 public type WorkspaceListing record {
+    # Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
     AccessLevel accessLevel?;
     # Workspace name
     string name?;
@@ -6740,15 +4304,6 @@ public type WorkspaceListing record {
     decimal id?;
     # URL that represents a direct link to the workspace in Smartsheet
     string permalink?;
-};
-
-# Triggered when an admin downloads published items report. This can be done through `User Management` console on UI
-public type AccountDownloadPublishedItemsReportAllOf2 record {
-    # The action applied to the specified object
-    "DOWNLOAD_PUBLISHED_ITEMS_REPORT" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "ACCOUNT" objectType?;
 };
 
 public type CopyOrMoveRowDestination record {
@@ -6782,9 +4337,14 @@ public type Token record {
 
 public type WorkspaceRequestBackup record {
     *Event;
-    *WorkspaceRequestBackupAllOf2;
+    # The action applied to the specified object
+    "REQUEST_BACKUP" action?;
+    FolderRequestBackupAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "WORKSPACE" objectType?;
 };
 
+# Represents an image object, including its unique ID, dimensions, and alternate text
 public type Image record {
     # Alternate text for the image
     string altText?;
@@ -6794,15 +4354,6 @@ public type Image record {
     string id?;
     # Original height (in pixels) of the uploaded image
     decimal height?;
-};
-
-# Triggered when a user accepts an invitation to join an organization account through email
-public type UserAcceptInviteAllOf2 record {
-    # The action applied to the specified object
-    "ACCEPT_INVITE" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "USER" objectType?;
 };
 
 # Represents the Queries record for the operation: get-favorites
@@ -6822,27 +4373,6 @@ public type CreateSheetInFolderHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -6850,6 +4380,7 @@ public type CreateSheetInFolderHeaders record {
 
 # Create group request
 public type GroupCreate1 record {
+    # An array of GroupMemberAdd objects, each specifying the email address of a user to be added to a group
     GroupMembersAddArray members?;
     # **name** (required)
     # 
@@ -6876,7 +4407,11 @@ public type ReportTransferOwnershipAdditionalDetails record {
 
 public type DashboardUpdate record {
     *Event;
-    *DashboardUpdateAllOf2;
+    # The action applied to the specified object
+    "UPDATE" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DASHBOARD" objectType?;
 };
 
 # When applicable for PICKLIST column type
@@ -6887,27 +4422,6 @@ public type MoveFolderHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -6946,12 +4460,20 @@ public type ReportCreateAdditionalDetails record {
 
 public type ReportCreate record {
     *Event;
-    *ReportCreateAllOf2;
+    # The action applied to the specified object
+    "CREATE" action?;
+    ReportCreateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "REPORT" objectType?;
 };
 
 public type UserTransferOwnedGroups record {
     *Event;
-    *UserTransferOwnedGroupsAllOf2;
+    # The action applied to the specified object
+    "TRANSFER_OWNED_GROUPS" action?;
+    GroupTransferOwnershipAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "USER" objectType?;
 };
 
 public type SheetList record {
@@ -6970,27 +4492,6 @@ public type ListAlternateEmailsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type ReportRemoveShareMemberAdditionalDetails record {
@@ -7012,49 +4513,27 @@ public type SheetSendHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
 };
 
-# Triggered when a sheet is created (inserted)
-public type SheetCreateAllOf2 record {
-    # The action applied to the specified object
-    "CREATE" action?;
-    SheetCreateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
-};
-
 public type ReportTransferOwnership record {
     *Event;
-    *ReportTransferOwnershipAllOf2;
+    # The action applied to the specified object
+    "TRANSFER_OWNERSHIP" action?;
+    ReportTransferOwnershipAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "REPORT" objectType?;
 };
 
 public type UserTransferOwnedItems record {
     *Event;
-    *UserTransferOwnedItemsAllOf2;
+    # The action applied to the specified object
+    "TRANSFER_OWNED_ITEMS" action?;
+    GroupTransferOwnershipAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "USER" objectType?;
 };
 
 public type SheetssheetIdrowsOneOf2 Row[];
@@ -7064,27 +4543,6 @@ public type UpdateWorkspaceHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type FolderIdCopyBody ContainerDestinationForCopy;
@@ -7094,36 +4552,6 @@ public type RemoveUserHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
-};
-
-# Triggered when a group or user is removed from a sheet's sharing list
-public type SheetRemoveShareAllOf2 record {
-    # The action applied to the specified object
-    "REMOVE_SHARE" action?;
-    SheetRemoveShareAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
 };
 
 # Represents the Queries record for the operation: copy-sheet
@@ -7161,27 +4589,6 @@ public type CopySheetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -7206,6 +4613,7 @@ public type AddColumns record {
 
 # A list of fieldIds corresponding to all summary fields that were successfully deleted
 public type InlineResponse20065AllOf2 record {
+    # List of field IDs for summary fields that were successfully deleted
     decimal[] result?;
 };
 
@@ -7214,27 +4622,6 @@ public type AddSummaryFieldsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Queries record for the operation: list-search-sheet
@@ -7249,41 +4636,11 @@ public type UpdateSheetQueries record {
     decimal accessApiLevel = 0;
 };
 
-# Triggered when a group or user is added to the workspace's sharing list, or when a group or user's share permissions are changed
-public type WorkspaceAddShareAllOf2 record {
-    # The action applied to the specified object
-    "ADD_SHARE" action?;
-    WorkspaceAddShareAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "WORKSPACE" objectType?;
-};
-
 # Represents the Headers record for the operation: get-favorites
 public type GetFavoritesHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # UserId of the user
     @http:Header {name: "x-smar-sc-actor-id"}
     string xSmarScActorId?;
@@ -7314,15 +4671,6 @@ public type Folder record {
     boolean favorite?;
 };
 
-# Triggered when the user account is updated. This can be done through User Management on UI or via the API
-public type UserUpdateUserAllOf2 record {
-    # The action applied to the specified object
-    "UPDATE_USER" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "USER" objectType?;
-};
-
 public type InlineResponse20013AllOf2 record {
     GroupMember|GroupMember[] result?;
 };
@@ -7332,45 +4680,9 @@ public type CreateWorkspaceFolderHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
-};
-
-# Triggered when a user saves a copy of a sheet by using the `Save As New` option. 
-# 
-# This event is recorded for the original sheet. 
-# 
-# If the original sheet belongs to a different organization, then an event will be generated for organization with original sheet and for the organization with copied sheet.
-# 
-# For copied sheet, `Save As New` event is paired with a [SHEET - CREATE](/api/smartsheet/openapi/schemas/sheet_create) event
-public type SheetSaveAsNewAllOf2 record {
-    # The action applied to the specified object
-    "SAVE_AS_NEW" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
 };
 
 # Represents the Headers record for the operation: list-summary-fields
@@ -7378,27 +4690,6 @@ public type ListSummaryFieldsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Queries record for the operation: create-sheet-in-folder
@@ -7409,6 +4700,7 @@ public type CreateSheetInFolderQueries record {
 };
 
 public type InlineResponse20015Data record {
+    # Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
     AccessLevel accessLevel?;
     # The report's name
     string name?;
@@ -7425,27 +4717,6 @@ public type UpdaterequestsDeleteHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Queries record for the operation: proofs-listRequestActions
@@ -7470,27 +4741,6 @@ public type RowsSendHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -7501,36 +4751,6 @@ public type DeleteGroupMembersHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
-};
-
-# Triggered when a report is created (inserted)
-public type ReportCreateAllOf2 record {
-    # The action applied to the specified object
-    "CREATE" action?;
-    ReportCreateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "REPORT" objectType?;
 };
 
 # Represents the Headers record for the operation: column-updateColumn
@@ -7538,27 +4758,6 @@ public type ColumnUpdateColumnHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Queries record for the operation: list-workspace-shares
@@ -7603,7 +4802,11 @@ public type RowGetQueries record {
 
 public type GroupTransferOwnership record {
     *Event;
-    *GroupTransferOwnershipAllOf2;
+    # The action applied to the specified object
+    "TRANSFER_OWNERSHIP" action?;
+    GroupTransferOwnershipAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "GROUP" objectType?;
 };
 
 public type AddRowsObject record {
@@ -7645,67 +4848,16 @@ public type AttachmentsListOnRowHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # URL that represents a direct link to the sheet in Smartsheet
 public type Permalink string;
-
-# Triggered when a user exports the workspace
-public type WorkspaceExportAllOf2 record {
-    # The action applied to the specified object
-    "EXPORT" action?;
-    WorkspaceExportAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "WORKSPACE" objectType?;
-};
 
 # Represents the Headers record for the operation: getReport
 public type GetReportHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # The Accept request-header field can be used to specify certain media types which are acceptable for the response
     @http:Header {name: "Accept"}
     string accept?;
@@ -7713,7 +4865,11 @@ public type GetReportHeaders record {
 
 public type SheetRename record {
     *Event;
-    *SheetRenameAllOf2;
+    # The action applied to the specified object
+    "RENAME" action?;
+    SheetRenameAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 # Represents the Headers record for the operation: list-search-sheet
@@ -7721,32 +4877,15 @@ public type ListSearchSheetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type DashboardMove record {
     *Event;
-    *DashboardMoveAllOf2;
+    # The action applied to the specified object
+    "MOVE" action?;
+    DashboardMoveAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DASHBOARD" objectType?;
 };
 
 public type Result ItemResult;
@@ -7761,6 +4900,7 @@ public type Template record {
     string largeImage?;
     # Indicates whether the template is blank. Only applicable to public templates
     boolean blank?;
+    # Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
     AccessLevel accessLevel?;
     # Type of global template
     string name?;
@@ -7798,18 +4938,13 @@ public type CreateFolderFolderQueries record {
     "sheetHyperlinks" exclude?;
 };
 
-# Triggered when a dashboard is deleted
-public type DashboardDeleteAllOf2 record {
-    # The action applied to the specified object
-    "DELETE" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DASHBOARD" objectType?;
-};
-
 public type ReportAddShareMember record {
     *Event;
-    *ReportAddShareMemberAllOf2;
+    # The action applied to the specified object
+    "ADD_SHARE_MEMBER" action?;
+    ReportAddShareMemberAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "REPORT" objectType?;
 };
 
 # Returned only if the column is the Primary Column (value = **true**)
@@ -7817,12 +4952,20 @@ public type Primary boolean;
 
 public type ReportAddWorkspaceShare record {
     *Event;
-    *ReportAddWorkspaceShareAllOf2;
+    # The action applied to the specified object
+    "ADD_WORKSPACE_SHARE" action?;
+    ReportAddWorkspaceShareAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "REPORT" objectType?;
 };
 
 public type ReportSaveAsNew record {
     *Event;
-    *ReportSaveAsNewAllOf2;
+    # The action applied to the specified object
+    "SAVE_AS_NEW" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "REPORT" objectType?;
 };
 
 public type WorkspacesBody record {
@@ -7835,33 +4978,14 @@ public type ProofsListRequestActionsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type Cell record {
     # The format descriptor describing this cell's conditional format. Only returned if the include query string parameter contains **format** and this cell has a conditional format applied
     string conditionalFormat?;
+    # Represents a hyperlink, which can be a URL or a link to a report, sheet, or dashboard
     Hyperlink hyperlink?;
+    # Represents an image object, including its unique ID, dimensions, and alternate text
     Image image?;
     # The Id of the column that the cell is located in
     decimal columnId?;
@@ -7885,15 +5009,6 @@ public type Cell record {
     CellLink[] linksOutToCells?;
 };
 
-# Triggered when a group's ownership is transferred
-public type GroupTransferOwnershipAllOf2 record {
-    # The action applied to the specified object
-    "TRANSFER_OWNERSHIP" action?;
-    GroupTransferOwnershipAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "GROUP" objectType?;
-};
-
 public type InlineResponse20057AllOf2 record {
     decimal[] result?;
 };
@@ -7908,6 +5023,7 @@ public type UserProfileImageResponse record {
     string firstName?;
     # User's last name.
     string lastName?;
+    # Represents a user's profile image including its unique ID, width, and height
     ProfileImage profileImage?;
     # User Id.
     decimal id?;
@@ -7945,7 +5061,11 @@ public type RemoveUserQueries record {
 
 public type ReportRemoveShareMember record {
     *Event;
-    *ReportRemoveShareMemberAllOf2;
+    # The action applied to the specified object
+    "REMOVE_SHARE_MEMBER" action?;
+    ReportRemoveShareMemberAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "REPORT" objectType?;
 };
 
 # Represents the Headers record for the operation: share-workspace
@@ -7953,27 +5073,6 @@ public type ShareWorkspaceHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: delete-workspace-share
@@ -7981,32 +5080,15 @@ public type DeleteWorkspaceShareHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type FolderCreate record {
     *Event;
-    *FolderCreateAllOf2;
+    # The action applied to the specified object
+    "CREATE" action?;
+    FolderCreateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "FOLDER" objectType?;
 };
 
 # Represents the Queries record for the operation: add-summary-fields
@@ -8025,27 +5107,6 @@ public type TokensDeleteHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Container object for additional event-specific properties. Properties depend upon the event type, but all events include an `emailAddress` property, representing the user responsible for the event. 
@@ -8064,7 +5125,11 @@ public type TokensDeleteQueries record {
 
 public type UserRemoveShares record {
     *Event;
-    *UserRemoveSharesAllOf2;
+    # The action applied to the specified object
+    "REMOVE_SHARES" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "USER" objectType?;
 };
 
 # Object containing a Contact
@@ -8075,16 +5140,8 @@ public type ContactObjectValue record {
     string name?;
     # Email address of the Contact
     string email?;
+    # The type of this object, always set to 'CONTACT
     "CONTACT" objectType?;
-};
-
-# Triggered when an access token is refreshed. See the [`POST /token`](/api/smartsheet/openapi/tokens/tokens-getorrefresh) operation for more information about access token refresh
-public type AccesstokenRefreshAllOf2 record {
-    # The action applied to the specified object
-    "REFRESH" action?;
-    AccesstokenRefreshAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "ACCESS_TOKEN" objectType?;
 };
 
 # Object containing zero or more media items, including images, videos, and documents, for review, editing, or approval
@@ -8093,6 +5150,7 @@ public type Proof record {
     MiniUser lastUpdatedBy?;
     # Array of Attachment objects. Only returned if the include query string parameter contains attachments
     Attachment[] attachments?;
+    # The date and time when the proof was last updated
     Timestamp lastUpdatedAt?;
     # File type for the proof version
     "DOCUMENT"|"IMAGE"|"MIXED"|"NONE"|"VIDEO" proofType?;
@@ -8145,27 +5203,6 @@ public type ProofsCreateVersionHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -8206,6 +5243,7 @@ public type UserProfile record {
     string role?;
     # Indicates whether the user is a system admin (can manage user accounts and organization account)
     boolean admin?;
+    # Represents a user's profile image including its unique ID, width, and height
     ProfileImage profileImage?;
     # Current user's locale (see [ServerInfo](/api/smartsheet/openapi/serverinfo/serverinfo))
     string locale?;
@@ -8262,27 +5300,6 @@ public type GetSheetVersionHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: add-group
@@ -8290,27 +5307,6 @@ public type AddGroupHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type WebhookStats record {
@@ -8355,27 +5351,6 @@ public type CreateFolderFolderHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -8401,12 +5376,20 @@ public type ReportAddShareMemberAdditionalDetails record {
 
 public type FormCreate record {
     *Event;
-    *FormCreateAllOf2;
+    # The action applied to the specified object
+    "CREATE" action?;
+    FormCreateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "FORM" objectType?;
 };
 
 public type UserRemoveFromAccount record {
     *Event;
-    *UserRemoveFromAccountAllOf2;
+    # The action applied to the specified object
+    "REMOVE_FROM_ACCOUNT" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "USER" objectType?;
 };
 
 public type InlineResponse20060AllOf2 record {
@@ -8444,18 +5427,13 @@ public type GetColumn record {
     boolean validation?;
 };
 
-# Triggered when a folder is deleted
-public type FolderDeleteAllOf2 record {
-    # The action applied to the specified object
-    "DELETE" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "FOLDER" objectType?;
-};
-
 public type ReportAddShare record {
     *Event;
-    *ReportAddShareAllOf2;
+    # The action applied to the specified object
+    "ADD_SHARE" action?;
+    ReportAddShareAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "REPORT" objectType?;
 };
 
 # Represents the Headers record for the operation: proofs-createDiscussion
@@ -8463,27 +5441,6 @@ public type ProofsCreateDiscussionHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -8491,7 +5448,11 @@ public type ProofsCreateDiscussionHeaders record {
 
 public type DashboardRemoveShareMember record {
     *Event;
-    *DashboardRemoveShareMemberAllOf2;
+    # The action applied to the specified object
+    "REMOVE_SHARE_MEMBER" action?;
+    DashboardRemoveShareMemberAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DASHBOARD" objectType?;
 };
 
 # The error caused by the failed item
@@ -8509,36 +5470,6 @@ public type ListWorkspaceSharesHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
-};
-
-# Triggered when a comment that has no replies is deleted
-public type DiscussionDeleteAllOf2 record {
-    # The action applied to the specified object
-    "DELETE" action?;
-    DiscussionCreateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DISCUSSION" objectType?;
 };
 
 # Represents the Headers record for the operation: copy-sight
@@ -8546,44 +5477,18 @@ public type CopySightHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
 };
 
-# Triggered when a report is deleted
-public type ReportDeleteAllOf2 record {
-    # The action applied to the specified object
-    "DELETE" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "REPORT" objectType?;
-};
-
 public type WorkspaceTransferOwnership record {
     *Event;
-    *WorkspaceTransferOwnershipAllOf2;
+    # The action applied to the specified object
+    "TRANSFER_OWNERSHIP" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "WORKSPACE" objectType?;
 };
 
 # Represents the Queries record for the operation: attachments-listOnRow
@@ -8618,7 +5523,11 @@ public type InlineResponse20055AllOf2 record {
 
 public type AccountDownloadLoginHistory record {
     *Event;
-    *AccountDownloadLoginHistoryAllOf2;
+    # The action applied to the specified object
+    "DOWNLOAD_LOGIN_HISTORY" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "ACCOUNT" objectType?;
 };
 
 # Can contain dashboards, folders, reports, sheets, and templates
@@ -8631,6 +5540,7 @@ public type Workspace record {
     Folder[] folders?;
     # Dashboards contained in the workspace
     DashboardListing[] sights?;
+    # Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
     AccessLevel accessLevel?;
     # Workspace name
     string name?;
@@ -8646,42 +5556,17 @@ public type UpdateWorkspaceShareQueries record {
     decimal accessApiLevel = 0;
 };
 
-# Triggered when a sheet form is deactivated
-public type FormDeactivateAllOf2 record {
-    # The action applied to the specified object
-    "DEACTIVATE" action?;
-    FormActivateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "FORM" objectType?;
-};
-
-# Triggered when a user is removed from a group that a report has been shared to via the report's sharing list, or via a workspace's sharing list. 
-# 
-# If a report has been shared to a group directly via the report's sharing list, and via a workspace's sharing list, then an event will be generated for each of these shares
-public type ReportRemoveShareMemberAllOf2 record {
-    # The action applied to the specified object
-    "REMOVE_SHARE_MEMBER" action?;
-    ReportRemoveShareMemberAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "REPORT" objectType?;
-};
-
 public type SheetAddWorkspaceShare record {
     *Event;
-    *SheetAddWorkspaceShareAllOf2;
+    # The action applied to the specified object
+    "ADD_WORKSPACE_SHARE" action?;
+    SheetAddWorkspaceShareAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 public type InlineResponse20068AllOf2 record {
     UpdateRequest result?;
-};
-
-# Triggered when a user requests a backup for a folder
-public type FolderRequestBackupAllOf2 record {
-    # The action applied to the specified object
-    "REQUEST_BACKUP" action?;
-    FolderRequestBackupAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "FOLDER" objectType?;
 };
 
 public type ContainerDestinationForCopy record {
@@ -8711,7 +5596,11 @@ public type DiscussionsListQueries record {
 
 public type WorkspaceExport record {
     *Event;
-    *WorkspaceExportAllOf2;
+    # The action applied to the specified object
+    "EXPORT" action?;
+    WorkspaceExportAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "WORKSPACE" objectType?;
 };
 
 # Represents the Headers record for the operation: update-folder
@@ -8719,27 +5608,6 @@ public type UpdateFolderHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type AddAlternateEmail record {
@@ -8749,7 +5617,11 @@ public type AddAlternateEmail record {
 
 public type AccountDownloadPublishedItemsReport record {
     *Event;
-    *AccountDownloadPublishedItemsReportAllOf2;
+    # The action applied to the specified object
+    "DOWNLOAD_PUBLISHED_ITEMS_REPORT" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "ACCOUNT" objectType?;
 };
 
 # Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
@@ -8831,27 +5703,6 @@ public type GetWorkspaceHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type SuccessResult record {
@@ -8869,37 +5720,26 @@ public type ProofsGetQueries record {
 
 public type SheetRequestBackup record {
     *Event;
-    *SheetRequestBackupAllOf2;
+    # The action applied to the specified object
+    "REQUEST_BACKUP" action?;
+    FolderRequestBackupAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 # MiniUser Object
 public type MiniUser record {
+    # User's full name
     string name?;
+    # User's email address
     string email?;
-};
-
-# Triggered when the ownership of a dashboard is transferred
-public type DashboardTransferOwnershipAllOf2 record {
-    # The action applied to the specified object
-    "TRANSFER_OWNERSHIP" action?;
-    DashboardTransferOwnershipAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DASHBOARD" objectType?;
-};
-
-# Triggered when an admin downloads sheet access report for a user. This can be done through User Management console on UI
-public type UserDownloadSheetAccessReportAllOf2 record {
-    # The action applied to the specified object
-    "DOWNLOAD_SHEET_ACCESS_REPORT" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "USER" objectType?;
 };
 
 # Object representing a checkbox
 public type CheckboxObjectValue record {
     # true if checked; false otherwise
     boolean value?;
+    # Type of this object, always set to 'CHECKBOX'
     "CHECKBOX" objectType?;
 };
 
@@ -8915,7 +5755,10 @@ public type InlineResponse20082AllOf2 record {
 
 public type DashboardCreate record {
     *Event;
-    *DashboardCreateAllOf2;
+    "CREATE" action?;
+    DashboardCreateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DASHBOARD" objectType?;
 };
 
 # Represents the Headers record for the operation: add-crosssheet-reference
@@ -8923,27 +5766,6 @@ public type AddCrosssheetReferenceHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -8956,27 +5778,6 @@ public type UpdateSightShareHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type Predecessor record {
@@ -9003,41 +5804,15 @@ public type GetGroupHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type AttachmentCreate record {
     *Event;
-    *AttachmentCreateAllOf2;
-};
-
-# Triggered when a sheet form is created
-public type FormCreateAllOf2 record {
     # The action applied to the specified object
     "CREATE" action?;
-    FormCreateAdditionalDetails additionalDetails?;
+    AttachmentCreateAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
-    "FORM" objectType?;
+    "ATTACHMENT" objectType?;
 };
 
 # Represents the Headers record for the operation: createWebhook
@@ -9045,27 +5820,6 @@ public type CreateWebhookHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -9076,27 +5830,6 @@ public type DeleteWorkspaceHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: list-report-shares
@@ -9104,37 +5837,20 @@ public type ListReportSharesHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
-# A list of updated summary fields
 public type InlineResponse20063AllOf2 record {
+    # A list of updated summary fields
     SummaryField[] result?;
 };
 
 public type AccountListSheets record {
     *Event;
-    *AccountListSheetsAllOf2;
+    # The action applied to the specified object
+    "LIST_SHEETS" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "ACCOUNT" objectType?;
 };
 
 # Represents the Headers record for the operation: row-discussions-create
@@ -9142,27 +5858,6 @@ public type RowDiscussionsCreateHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -9185,39 +5880,9 @@ public type DeleteFavoritesByTypeAndIdHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # UserId of the user
     @http:Header {name: "x-smar-sc-actor-id"}
     string xSmarScActorId?;
-};
-
-# Triggered when the ownership of a sheet is transferred
-public type SheetTransferOwnershipAllOf2 record {
-    # The action applied to the specified object
-    "TRANSFER_OWNERSHIP" action?;
-    ReportTransferOwnershipAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
 };
 
 # Represents the Queries record for the operation: import-sheet-into-folder
@@ -9231,26 +5896,6 @@ public type ImportSheetIntoFolderQueries record {
     decimal primaryColumnIndex = 0;
 };
 
-# Triggered when a group or user is removed from a workspace's sharing list. 
-# 
-# Note that this event will appear for each sheet that is in the workspace. If a group or user is removed from a workspace's sharing list and the workspace is empty, then no events will be recorded
-public type SheetRemoveWorkspaceShareAllOf2 record {
-    # The action applied to the specified object
-    "REMOVE_WORKSPACE_SHARE" action?;
-    DashboardRemoveWorkspaceShareAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
-};
-
-# Triggered when an admin sends/resends an invitation link to the user. This can be done through User Management console on UI or via the API (Add User). 
-public type UserSendInviteAllOf2 record {
-    # The action applied to the specified object
-    "SEND_INVITE" action?;
-    UserAddToAccountAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "USER" objectType?;
-};
-
 # Represents the Queries record for the operation: update-rows
 public type UpdateRowsQueries record {
     # Allows COMMENTER access for inputs and return values. For backwards-compatibility, VIEWER is the default. For example, to see whether a user has COMMENTER access for a sheet, use accessApiLevel=1
@@ -9259,17 +5904,6 @@ public type UpdateRowsQueries record {
     boolean allowPartialSuccess = false;
     # You may use the query string parameter **overrideValidation** with a value of **true** to allow a cell value outside of the validation limits. You must specify **strict** with a value of **false** to bypass value type checking
     boolean overrideValidation = false;
-};
-
-# Triggered when a folder is created. 
-# 
-# Folders can be created in the UI with the `Create New` button, by selecting the `Save As New` option on an existing folder, or through the API
-public type FolderCreateAllOf2 record {
-    # The action applied to the specified object
-    "CREATE" action?;
-    FolderCreateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "FOLDER" objectType?;
 };
 
 public type SearchResult record {
@@ -9288,27 +5922,6 @@ public type ListSearchHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type InlineBodyItemsApplicationjsonimageurls ImageUrl;
@@ -9321,21 +5934,20 @@ public type DeleteFavoritesByTypeQueries record {
 
 public type SheetPurge record {
     *Event;
-    *SheetPurgeAllOf2;
-};
-
-# Triggered when an admin transfers ownership of all groups owned by a user to another user. This can be done through User Management on UI
-public type UserTransferOwnedGroupsAllOf2 record {
     # The action applied to the specified object
-    "TRANSFER_OWNED_GROUPS" action?;
-    GroupTransferOwnershipAdditionalDetails additionalDetails?;
+    "PURGE" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
-    "USER" objectType?;
+    "SHEET" objectType?;
 };
 
 public type SheetCopyRow record {
     *Event;
-    *SheetCopyRowAllOf2;
+    # The action applied to the specified object
+    "COPY_ROW" action?;
+    SheetCopyRowAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 public type GroupIdMembersBody GroupMember|GroupsgroupIdmembersOneOf2;
@@ -9406,6 +6018,7 @@ public type FormActivateAdditionalDetails record {
 public type MultiPicklistObjectValue record {
     # List of strings to choose from
     string[] values?;
+    # Type of this object, always set to 'MULTI_PICKLIST'
     "MULTI_PICKLIST" objectType?;
 };
 
@@ -9467,7 +6080,11 @@ public type FolderRequestBackupAdditionalDetails record {
 
 public type ReportRestore record {
     *Event;
-    *ReportRestoreAllOf2;
+    # The action applied to the specified object
+    "RESTORE" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "REPORT" objectType?;
 };
 
 # Represents the Headers record for the operation: updateSheet
@@ -9475,27 +6092,6 @@ public type UpdateSheetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type SentUpdateRequest record {
@@ -9533,7 +6129,11 @@ public type UpdateSightShareQueries record {
 
 public type DashboardAddShare record {
     *Event;
-    *DashboardAddShareAllOf2;
+    # The action applied to the specified object
+    "ADD_SHARE" action?;
+    DashboardAddShareAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DASHBOARD" objectType?;
 };
 
 public type SheetExportAdditionalDetails record {
@@ -9543,18 +6143,13 @@ public type SheetExportAdditionalDetails record {
     "png_gantt"|"mspdi"|"excel"|"pdf" formatType?;
 };
 
-# Triggered when an admin removes an user from all groups owned by users on the organization account. This can be done through User Management on UI
-public type UserRemoveFromGroupsAllOf2 record {
-    # The action applied to the specified object
-    "REMOVE_FROM_GROUPS" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "USER" objectType?;
-};
-
 public type ReportRename record {
     *Event;
-    *ReportRenameAllOf2;
+    # The action applied to the specified object
+    "RENAME" action?;
+    ReportRenameAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "REPORT" objectType?;
 };
 
 # Represents the Headers record for the operation: list-summary-fields-paginated
@@ -9562,27 +6157,6 @@ public type ListSummaryFieldsPaginatedHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Sheet name
@@ -9593,27 +6167,6 @@ public type SendReportViaEmailHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -9625,15 +6178,6 @@ public type ShareSightQueries record {
     decimal accessApiLevel = 0;
     # Either true or false to indicate whether to notify the user by email. Default is false. If true, limit is 1000 emails
     boolean sendEmail = false;
-};
-
-# Triggered when an admin bulk updates users. This can be done through User Managementconsole on UI
-public type AccountBulkUpdateAllOf2 record {
-    # The action applied to the specified object
-    "BULK_UPDATE" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "ACCOUNT" objectType?;
 };
 
 public type GetRowObject record {
@@ -9658,41 +6202,11 @@ public type ShareSightGetQueries record {
     decimal accessApiLevel = 0;
 };
 
-# Triggered when a dashboard is in the deleted items bin and is restored (`Undelete`)
-public type DashboardRestoreAllOf2 record {
-    # The action applied to the specified object
-    "RESTORE" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DASHBOARD" objectType?;
-};
-
 # Represents the Headers record for the operation: cellHistory-get
 public type CellHistoryGetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: import-sheet-into-folder
@@ -9700,27 +6214,6 @@ public type ImportSheetIntoFolderHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Should be equal to "attachment" to tell the API that a file is in the body of the POST request, followed by a semicolon, followed by **filename=** and the URL-encoded filename in quotes
     @http:Header {name: "Content-Disposition"}
     string contentDisposition?;
@@ -9733,7 +6226,11 @@ public type ImportSheetIntoFolderHeaders record {
 
 public type ReportMove record {
     *Event;
-    *ReportMoveAllOf2;
+    # The action applied to the specified object
+    "MOVE" action?;
+    ReportMoveAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "REPORT" objectType?;
 };
 
 public type ImageUrl record {
@@ -9758,27 +6255,6 @@ public type MoveSheetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -9789,27 +6265,6 @@ public type GetWorkspaceFoldersHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type FavoritesOneOf2 Favorite[];
@@ -9819,27 +6274,6 @@ public type ProofsGetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: update-summary-fields
@@ -9847,27 +6281,6 @@ public type UpdateSummaryFieldsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type SightResult SightName;
@@ -9887,27 +6300,6 @@ public type DiscussionsCreateHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -9915,7 +6307,11 @@ public type DiscussionsCreateHeaders record {
 
 public type DashboardPurge record {
     *Event;
-    *DashboardPurgeAllOf2;
+    # The action applied to the specified object
+    "PURGE" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DASHBOARD" objectType?;
 };
 
 # Array of the options available for the column
@@ -9926,27 +6322,6 @@ public type ListGroupsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type InlineResponse20066AllOf2 record {
@@ -9955,7 +6330,11 @@ public type InlineResponse20066AllOf2 record {
 
 public type UserAcceptInvite record {
     *Event;
-    *UserAcceptInviteAllOf2;
+    # The action applied to the specified object
+    "ACCEPT_INVITE" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "USER" objectType?;
 };
 
 # Represents the Headers record for the operation: list-filtered-events
@@ -9963,27 +6342,6 @@ public type ListFilteredEventsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Strongly recommended to make sure payload is compressed. Must be set to one of the following values:
     # * deflate
     # * gzip
@@ -9992,6 +6350,7 @@ public type ListFilteredEventsHeaders record {
 };
 
 public type ComponentsSchemasSheet record {
+    # Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
     AccessLevel accessLevel?;
     # Sheet name
     Name name?;
@@ -10022,7 +6381,11 @@ public type ListSummaryFieldsPaginatedQueries record {
 
 public type AccountDownloadUserList record {
     *Event;
-    *AccountDownloadUserListAllOf2;
+    # The action applied to the specified object
+    "DOWNLOAD_USER_LIST" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "ACCOUNT" objectType?;
 };
 
 # Represents the Headers record for the operation: comment-get
@@ -10030,32 +6393,15 @@ public type CommentGetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type WorkspaceAddShare record {
     *Event;
-    *WorkspaceAddShareAllOf2;
+    # The action applied to the specified object
+    "ADD_SHARE" action?;
+    WorkspaceAddShareAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "WORKSPACE" objectType?;
 };
 
 public type InlineResponse20089AllOf2 record {
@@ -10072,27 +6418,6 @@ public type UpdateWorkspaceShareHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: updateWebhook
@@ -10100,27 +6425,6 @@ public type UpdateWebhookHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -10128,7 +6432,11 @@ public type UpdateWebhookHeaders record {
 
 public type AccountRename record {
     *Event;
-    *AccountRenameAllOf2;
+    # The action applied to the specified object
+    "RENAME" action?;
+    AccountRenameAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "ACCOUNT" objectType?;
 };
 
 # CrossSheetReference object to create which will refer to the entire rows in the range from startRowId to endRowId
@@ -10151,32 +6459,15 @@ public type ProofsUpdateHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type FolderRename record {
     *Event;
-    *FolderRenameAllOf2;
+    # The action applied to the specified object
+    "RENAME" action?;
+    FolderRenameAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "FOLDER" objectType?;
 };
 
 public type InlineResponse20015AllOf2 record {
@@ -10218,27 +6509,6 @@ public type RowGetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type ReportExportAdditionalDetails record {
@@ -10277,7 +6547,11 @@ public type ImportSheetIntoSheetsFolderQueries record {
 
 public type WorkspaceCreate record {
     *Event;
-    *WorkspaceCreateAllOf2;
+    # The action applied to the specified object
+    "CREATE" action?;
+    WorkspaceCreateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "WORKSPACE" objectType?;
 };
 
 # Represents the Headers record for the operation: delete-sheet-share
@@ -10285,27 +6559,6 @@ public type DeleteSheetShareHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: create-home-folder
@@ -10313,27 +6566,6 @@ public type CreateHomeFolderHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -10341,7 +6573,11 @@ public type CreateHomeFolderHeaders record {
 
 public type GroupAddMember record {
     *Event;
-    *GroupAddMemberAllOf2;
+    # The action applied to the specified object
+    "ADD_MEMBER" action?;
+    GroupAddMemberAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "GROUP" objectType?;
 };
 
 # Represents the Queries record for the operation: proofs-getVersions
@@ -10352,15 +6588,6 @@ public type ProofsGetVersionsQueries record {
     boolean includeAll = false;
     # Which page to return. Defaults to 1 if not specified. If you specify a value greater than the total number of pages, the last page of results is returned
     decimal page = 1;
-};
-
-# Triggered when a reply is made to a comment, or a reply is deleted from a comment
-public type DiscussionUpdateAllOf2 record {
-    # The action applied to the specified object
-    "UPDATE" action?;
-    DiscussionCreateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DISCUSSION" objectType?;
 };
 
 public type InlineResponse20038AllOf2 record {
@@ -10390,27 +6617,6 @@ public type ListImageUrlsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -10427,27 +6633,6 @@ public type AttachmentsGetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: row-attachments-attachFile
@@ -10455,27 +6640,6 @@ public type RowAttachmentsAttachFileHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -10498,27 +6662,6 @@ public type ListContactsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type InlineResponse20022 record {
@@ -10563,24 +6706,6 @@ public type InlineResponse20024 record {
     *InlineResponse20024AllOf2;
 };
 
-# Triggered when an access token creation is authorized by a user
-public type AccesstokenAuthorizeAllOf2 record {
-    # The action applied to the specified object
-    "AUTHORIZE" action?;
-    AccesstokenAuthorizeAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "ACCESS_TOKEN" objectType?;
-};
-
-# Triggered when an existing report is updated
-public type ReportUpdateAllOf2 record {
-    # The action applied to the specified object
-    "UPDATE" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "REPORT" objectType?;
-};
-
 public type InlineResponse20027 Attachment;
 
 public type InlineResponse20026 record {
@@ -10593,7 +6718,9 @@ public type InlineResponse20029 AutomationRule;
 
 # SummaryField object to create
 public type SummaryFieldCreateRequest record {
+    # Represents a hyperlink, which can be a URL or a link to a report, sheet, or dashboard
     Hyperlink hyperlink?;
+    # Represents an image object, including its unique ID, dimensions, and alternate text
     Image image?;
     # When applicable for PICKLIST column type
     PropertiesSymbol symbol?;
@@ -10607,6 +6734,7 @@ public type SummaryFieldCreateRequest record {
     ObjectValue objectValue?;
     # Arbitrary name, must be unique within summary
     PropertiesTitle title?;
+    # Specifies the type of a column property. Valid values include various column data types such as CHECKBOX, CONTACT_LIST, DATE, PICKLIST, and others
     PropertiesType 'type?;
     # When applicable for PICKLIST column type. Array of the options available for the field
     PropertiesOptions options?;
@@ -10641,15 +6769,6 @@ public type WorkspaceAddShareAdditionalDetails record {
 public type CommentCreationRequest record {
     # Comment body
     string text?;
-};
-
-# Triggered when a change is made to a dashboard and the dashboard is saved
-public type DashboardUpdateAllOf2 record {
-    # The action applied to the specified object
-    "UPDATE" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DASHBOARD" objectType?;
 };
 
 # Represents the Queries record for the operation: cellHistory-get
@@ -10691,41 +6810,11 @@ public type CellObjectForRows record {
     string|decimal|boolean value?;
 };
 
-# Triggered when the ownership of a report is transferred
-public type ReportTransferOwnershipAllOf2 record {
-    # The action applied to the specified object
-    "TRANSFER_OWNERSHIP" action?;
-    ReportTransferOwnershipAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "REPORT" objectType?;
-};
-
 # Represents the Headers record for the operation: updaterequests-update
 public type UpdaterequestsUpdateHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -10736,27 +6825,6 @@ public type CreateSheetInSheetsFolderHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -10783,27 +6851,6 @@ public type ListWorkspacesHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Queries record for the operation: get-workspace-folders
@@ -10832,12 +6879,20 @@ public type TemplatesListPublicQueries record {
 
 public type AttachmentLoad record {
     *Event;
-    *AttachmentLoadAllOf2;
+    # The action applied to the specified object
+    "LOAD" action?;
+    AttachmentLoadAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "ATTACHMENT" objectType?;
 };
 
 public type UserRemoveFromGroups record {
     *Event;
-    *UserRemoveFromGroupsAllOf2;
+    # The action applied to the specified object
+    "REMOVE_FROM_GROUPS" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "USER" objectType?;
 };
 
 public type InlineResponse20030 record {
@@ -10850,27 +6905,6 @@ public type TemplatesListPublicHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type InlineResponse20032 record {
@@ -10929,27 +6963,6 @@ public type PromoteAlternateEmailHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: list-org-sheets
@@ -10957,32 +6970,15 @@ public type ListOrgSheetsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type ReportDelete record {
     *Event;
-    *ReportDeleteAllOf2;
+    # The action applied to the specified object
+    "DELETE" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "REPORT" objectType?;
 };
 
 # Represents the Headers record for the operation: import-sheet-into-sheets-folder
@@ -10990,27 +6986,6 @@ public type ImportSheetIntoSheetsFolderHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Should be equal to "attachment" to tell the API that a file is in the body of the POST request, followed by a semicolon, followed by **filename=** and the URL-encoded filename in quotes
     @http:Header {name: "Content-Disposition"}
     string contentDisposition?;
@@ -11023,6 +6998,7 @@ public type ImportSheetIntoSheetsFolderHeaders record {
 
 public type UserIdAlternateemailsBody AddAlternateEmail|UsersuserIdalternateemailsOneOf2;
 
+# Specifies the type of a column property. Valid values include various column data types such as CHECKBOX, CONTACT_LIST, DATE, PICKLIST, and others
 public type PropertiesType "ABSTRACT_DATETIME"|"CHECKBOX"|"CONTACT_LIST"|"DATE"|"DATETIME"|"DURATION"|"MULTI_CONTACT_LIST"|"MULTI_PICKLIST"|"PICKLIST"|"PREDECESSOR"|"TEXT_NUMBER";
 
 public type InlineResponse20041 record {
@@ -11037,6 +7013,7 @@ public type InlineResponse20040 record {
 
 public type SchemasSheet record {
     Timestamp createdAt?;
+    # Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
     AccessLevel accessLevel?;
     Timestamp modifiedAt?;
     # Sheet name
@@ -11071,15 +7048,6 @@ public type InlineResponse20046 record {
     *InlineResponse20046AllOf2;
 };
 
-# Triggered when a sheet is deleted
-public type SheetDeleteAllOf2 record {
-    # The action applied to the specified object
-    "DELETE" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
-};
-
 public type InlineResponse20049 record {
     *IndexResult;
     *InlineResponse20049AllOf2;
@@ -11095,32 +7063,15 @@ public type ListSightsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type WorkspaceRemoveShare record {
     *Event;
-    *WorkspaceRemoveShareAllOf2;
+    # The action applied to the specified object
+    "REMOVE_SHARE" action?;
+    WorkspaceRemoveShareAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "WORKSPACE" objectType?;
 };
 
 public type InlineResponse20019AllOf2 record {
@@ -11132,27 +7083,6 @@ public type ProofsAttachToProofHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -11174,50 +7104,15 @@ public type HomeListFoldersHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
-};
-
-# Triggered when a user is removed from a group that a dashboard has been shared to via the dashboard's sharing list, or via a workspace's sharing list. If a dashboard has been shared to a group directly via the dashboard's sharing list, and via a workspace's sharing list, then an event will be generated for each of these shares
-public type DashboardRemoveShareMemberAllOf2 record {
-    # The action applied to the specified object
-    "REMOVE_SHARE_MEMBER" action?;
-    DashboardRemoveShareMemberAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DASHBOARD" objectType?;
 };
 
 public type SheetSaveAsNew record {
     *Event;
-    *SheetSaveAsNewAllOf2;
-};
-
-# Triggered when the main contact of the organization account is updated. This can be done through `Account Administration` console on UI
-public type AccountUpdateMainContactAllOf2 record {
     # The action applied to the specified object
-    "UPDATE_MAIN_CONTACT" action?;
-    AccountUpdateMainContactAdditionalDetails additionalDetails?;
+    "SAVE_AS_NEW" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
-    "ACCOUNT" objectType?;
+    "SHEET" objectType?;
 };
 
 public type InlineResponse20050 record {
@@ -11286,15 +7181,6 @@ public type InlineResponse20057 record {
     *InlineResponse20057AllOf2;
 };
 
-# Triggered when a member is added to a group
-public type GroupAddMemberAllOf2 record {
-    # The action applied to the specified object
-    "ADD_MEMBER" action?;
-    GroupAddMemberAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "GROUP" objectType?;
-};
-
 public type InlineResponse20059 record {
     *Result;
     *InlineResponse20059AllOf2;
@@ -11316,30 +7202,16 @@ public type AddImageSummaryFieldQueries record {
 
 public type GroupRemoveMember record {
     *Event;
-    *GroupRemoveMemberAllOf2;
+    # The action applied to the specified object
+    "REMOVE_MEMBER" action?;
+    GroupRemoveMemberAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "GROUP" objectType?;
 };
 
 public type SightName record {
     # Dashboard name
     string name?;
-};
-
-# Triggered when a dashboard is deleted from the deleted items bin
-public type DashboardPurgeAllOf2 record {
-    # The action applied to the specified object
-    "PURGE" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DASHBOARD" objectType?;
-};
-
-# Triggered when a report is deleted ("Delete Forever") from the deleted items bin
-public type ReportPurgeAllOf2 record {
-    # The action applied to the specified object
-    "PURGE" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "REPORT" objectType?;
 };
 
 public type GroupRenameAdditionalDetails record {
@@ -11360,41 +7232,9 @@ public type UpdateUserProfileImageHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
-};
-
-# Triggered when a user sends a sheet as email attachment to user(s) or user group(s). 
-# 
-# An individual `SHEET - SEND_AS_ATTACHMENT` event is issued for each user or user group listed as recipient
-public type SheetSendAsAttachmentAllOf2 record {
-    # The action applied to the specified object
-    "SEND_AS_ATTACHMENT" action?;
-    SheetSendAsAttachmentAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
 };
 
 # Represents the Headers record for the operation: comment-delete
@@ -11402,61 +7242,24 @@ public type CommentDeleteHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
-};
-
-# Triggered when a sheet is viewed in the UI or loaded through the API
-public type SheetLoadAllOf2 record {
-    # The action applied to the specified object
-    "LOAD" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
-};
-
-# Triggered when a user saves a copy of a sheet as a template by using the `Save As Template` option. 
-# 
-# This event is recorded for the original sheet. 
-# 
-# If the original sheet belongs to a different organization, then an event will be generated for organization with original sheet and for the organization with copied sheet.
-# 
-# For copied sheet, `Save As Template` event is paired with a [SHEET - CREATE](/api/smartsheet/openapi/schemas/sheet_create) event
-public type SheetSaveAsTemplateAllOf2 record {
-    # The action applied to the specified object
-    "SAVE_AS_TEMPLATE" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
 };
 
 public type WorkspaceAddShareMember record {
     *Event;
-    *WorkspaceAddShareMemberAllOf2;
+    # The action applied to the specified object
+    "ADD_SHARE_MEMBER" action?;
+    WorkspaceAddShareMemberAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "WORKSPACE" objectType?;
 };
 
 public type WorkspaceCreateRecurringBackup record {
     *Event;
-    *WorkspaceCreateRecurringBackupAllOf2;
+    # The action applied to the specified object
+    "CREATE_RECURRING_BACKUP" action?;
+    WorkspaceCreateRecurringBackupAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "WORKSPACE" objectType?;
 };
 
 public type InlineResponse20034AllOf2 record {
@@ -11499,7 +7302,11 @@ public type SheetMoveRowAdditionalDetails record {
 
 public type DiscussionSend record {
     *Event;
-    *DiscussionSendAllOf2;
+    # The action applied to the specified object
+    "SEND" action?;
+    DiscussionSendAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DISCUSSION" objectType?;
 };
 
 public type IndexResult record {
@@ -11515,7 +7322,11 @@ public type IndexResult record {
 
 public type SheetAddShareMember record {
     *Event;
-    *SheetAddShareMemberAllOf2;
+    # The action applied to the specified object
+    "ADD_SHARE_MEMBER" action?;
+    SheetAddShareMemberAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "SHEET" objectType?;
 };
 
 public type InlineResponse20081AllOf2 record {
@@ -11529,7 +7340,11 @@ public type InlineResponse20031AllOf2 record {
 
 public type AccountUpdateMainContact record {
     *Event;
-    *AccountUpdateMainContactAllOf2;
+    # The action applied to the specified object
+    "UPDATE_MAIN_CONTACT" action?;
+    AccountUpdateMainContactAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "ACCOUNT" objectType?;
 };
 
 # Represents the Headers record for the operation: deleteSheet
@@ -11537,27 +7352,6 @@ public type DeleteSheetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type SheetIdCrosssheetreferencesBody CrossSheetReferenceRequestWithColumnIds|CrossSheetReferenceRequestWithRowIds|CrossSheetReferenceRequestWithColumnAndRowIds;
@@ -11567,27 +7361,6 @@ public type GetUserHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type SheetCreateAdditionalDetails record {
@@ -11609,12 +7382,20 @@ public type SheetCreateAdditionalDetails record {
 
 public type WorkspaceRename record {
     *Event;
-    *WorkspaceRenameAllOf2;
+    # The action applied to the specified object
+    "RENAME" action?;
+    WorkspaceRenameAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "WORKSPACE" objectType?;
 };
 
 public type DashboardRestore record {
     *Event;
-    *DashboardRestoreAllOf2;
+    # The action applied to the specified object
+    "RESTORE" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "DASHBOARD" objectType?;
 };
 
 public type UpdateColumn record {
@@ -11645,12 +7426,20 @@ public type WebhooksBody record {
 
 public type FolderExport record {
     *Event;
-    *FolderExportAllOf2;
+    # The action applied to the specified object
+    "EXPORT" action?;
+    FolderExportAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "FOLDER" objectType?;
 };
 
 public type FormUpdate record {
     *Event;
-    *FormUpdateAllOf2;
+    # The action applied to the specified object
+    "UPDATE" action?;
+    FormActivateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "FORM" objectType?;
 };
 
 public type Favorite record {
@@ -11661,7 +7450,9 @@ public type Favorite record {
 
 # SummaryField object to update
 public type SummaryFieldUpdateRequest record {
+    # Represents a hyperlink, which can be a URL or a link to a report, sheet, or dashboard
     Hyperlink hyperlink?;
+    # Represents an image object, including its unique ID, dimensions, and alternate text
     Image image?;
     # When applicable for PICKLIST column type
     PropertiesSymbol symbol?;
@@ -11675,6 +7466,7 @@ public type SummaryFieldUpdateRequest record {
     ObjectValue objectValue?;
     # Arbitrary name, must be unique within summary
     PropertiesTitle title?;
+    # Specifies the type of a column property. Valid values include various column data types such as CHECKBOX, CONTACT_LIST, DATE, PICKLIST, and others
     PropertiesType 'type?;
     # When applicable for PICKLIST column type. Array of the options available for the field
     PropertiesOptions options?;
@@ -11693,27 +7485,6 @@ public type ShareSightGetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # User Object
@@ -11726,6 +7497,7 @@ public type User record {
     string customWelcomeScreenViewed?;
     # Indicates whether the user is a system admin (can manage user accounts and organization account)
     boolean admin = false;
+    # Represents a user's profile image including its unique ID, width, and height
     ProfileImage profileImage?;
     # User's first name
     string firstName?;
@@ -11751,19 +7523,11 @@ public type User record {
     "ACTIVE"|"DECLINED"|"PENDING"|"DEACTIVATED" status?;
 };
 
-# Triggered when row(s) are copied from one sheet to another
-public type SheetCopyRowAllOf2 record {
-    # The action applied to the specified object
-    "COPY_ROW" action?;
-    SheetCopyRowAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
-};
-
 # Object representing a datetime
 public type DatetimeObjectValue record {
     # Datetime, in the **date-time** format defined by <a href="https://tools.ietf.org/html/rfc3339#section-5.6" target="_blank" rel="noopener noreferrer">RFC 3339, section 5.6</a>
     string value?;
+    # Type of this object, always set to 'DATETIME'
     "DATETIME" objectType?;
 };
 
@@ -11776,7 +7540,11 @@ public type RowsSortQueries record {
 
 public type FormDeactivate record {
     *Event;
-    *FormDeactivateAllOf2;
+    # The action applied to the specified object
+    "DEACTIVATE" action?;
+    FormActivateAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "FORM" objectType?;
 };
 
 # Arbitrary name, must be unique within summary
@@ -11787,27 +7555,6 @@ public type AddImageSummaryFieldHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Should be equal to "attachment" to tell the API that a file is in the body of the POST request, followed by a semicolon, followed by **filename=** and the URL-encoded filename in quotes
     @http:Header {name: "Content-Disposition"}
     string contentDisposition?;
@@ -11833,55 +7580,24 @@ public type ProofsGetVersionsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
-};
-
-# Triggered when an attachment is created (i.e. uploaded) in a sheet, in a sheet row, or in a workspace
-public type AttachmentCreateAllOf2 record {
-    # The action applied to the specified object
-    "CREATE" action?;
-    AttachmentCreateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "ATTACHMENT" objectType?;
 };
 
 public type ReportUpdate record {
     *Event;
-    *ReportUpdateAllOf2;
-};
-
-# Triggered when a group or user is removed from a workspace's sharing list. Note that this event will appear for each dashboard that is in the workspace. If a group or user is removed from a workspace's sharing list and the workspace is empty, then no events will be recorded
-public type DashboardRemoveWorkspaceShareAllOf2 record {
     # The action applied to the specified object
-    "REMOVE_WORKSPACE_SHARE" action?;
-    DashboardRemoveWorkspaceShareAdditionalDetails additionalDetails?;
+    "UPDATE" action?;
+    AccountBulkUpdateAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
-    "DASHBOARD" objectType?;
+    "REPORT" objectType?;
 };
 
 public type ReportSendAsAttachment record {
     *Event;
-    *ReportSendAsAttachmentAllOf2;
+    # The action applied to the specified object
+    "SEND_AS_ATTACHMENT" action?;
+    ReportSendAsAttachmentAdditionalDetails additionalDetails?;
+    # The Smartsheet resource impacted by the event
+    "REPORT" objectType?;
 };
 
 public type InlineResponse200AllOf2 record {
@@ -11939,36 +7655,6 @@ public type DiscussionsListHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
-};
-
-# Triggered when a dashboard is viewed in the UI or loaded through the API
-public type DashboardLoadAllOf2 record {
-    # The action applied to the specified object
-    "LOAD" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "DASHBOARD" objectType?;
 };
 
 # Updates group properties, including name, description, and owner
@@ -11985,17 +7671,6 @@ public type GroupUpdate1 record {
     decimal ownerId?;
 };
 
-# Triggered when a user is added to a group that a sheet has been shared to via the sheet's sharing list, or via a workspace's sharing list.
-# 
-# If a sheet has been shared to a group directly via the sheet's sharing list, and via a workspace's sharing list, then an event will be generated for each of these shares
-public type SheetAddShareMemberAllOf2 record {
-    # The action applied to the specified object
-    "ADD_SHARE_MEMBER" action?;
-    SheetAddShareMemberAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "SHEET" objectType?;
-};
-
 # Describes the current user's editing permissions for a specific sheet
 public type SheetUserPermissions record {
     # One of:
@@ -12006,41 +7681,11 @@ public type SheetUserPermissions record {
     "ADMIN"|"READ_DELETE"|"READ_ONLY"|"READ_WRITE" summaryPermissions?;
 };
 
-# Triggered when a user deletes a recurring backup schedule for a workspace
-public type WorkspaceDeleteRecurringBackupAllOf2 record {
-    # The action applied to the specified object
-    "DELETE_RECURRING_BACKUP" action?;
-    AccountBulkUpdateAdditionalDetails additionalDetails?;
-    # The Smartsheet resource impacted by the event
-    "WORKSPACE" objectType?;
-};
-
 # Represents the Headers record for the operation: share-sight
 public type ShareSightHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: update-rows
@@ -12048,27 +7693,6 @@ public type UpdateRowsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -12093,27 +7717,6 @@ public type UpdaterequestsGetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 # Represents the Headers record for the operation: comment-edit
@@ -12121,27 +7724,6 @@ public type CommentEditHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
@@ -12166,27 +7748,6 @@ public type DeleteFavoritesByTypeHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
     # UserId of the user
     @http:Header {name: "x-smar-sc-actor-id"}
     string xSmarScActorId?;
@@ -12209,27 +7770,6 @@ public type TemplatesListHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type InlineResponse20011 record {
@@ -12249,27 +7789,6 @@ public type AutomationruleGetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-    # Uses the following metadata to distinguish between human-initiated API requests and third-party service-initiated calls by AI Connectors or ITSM:
-    # 
-    # - Integration source type
-    # - Organization name
-    # - Integration source name 
-    # 
-    # Format:
-    # 
-    # ```
-    # TYPE,OrgName,SourceName
-    # ```
-    # 
-    # Examples: 
-    # 
-    # `AI,SampleOrg,My-AI-Connector-v2`
-    # 
-    # `SCRIPT,SampleOrg2,Accounting-updater-script`
-    # 
-    # `APPLICATION,SampleOrg3,SheetUpdater`
-    @http:Header {name: "smartsheet-integration-source"}
-    string smartsheetIntegrationSource?;
 };
 
 public type InlineResponse20016 record {
