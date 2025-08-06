@@ -1,6 +1,6 @@
 _Author_:  @nostoc \
 _Created_: 28/07/2025 \
-_Updated_: 31/07/2025 \
+_Updated_: 06/08/2025 \
 _Edition_: Swan Lake
 
 # Sanitation for OpenAPI specification
@@ -187,6 +187,16 @@ These changes are done in order to improve the overall usability, and as workaro
    - For array fields, moved the `description` outside the `items` block to the array field itself.
 
    These fixes ensured that the Ballerina `openapi` tool correctly included field-level documentation in the generated `types.bal`.
+
+4. **Replaced auto-generated schema names with meaningful names**
+
+   The OpenAPI specification contained auto-generated schema names like `InlineResponse200`, `InlineResponse2001`, etc., which resulted in non-descriptive record names in the generated Ballerina types.
+
+   **Sanitation:**
+   - Manually renamed schema names like `InlineResponse2007` in the aligned OpenAPI spec to more meaningful names such as `SharedSecretResponse`, `WebhookResponse`, `ContactListResponse`, etc.
+   - Updated all corresponding `$ref` references throughout the OpenAPI specification to point to the new schema names.
+   - This change improved code readability and maintainability by providing descriptive type names in the generated Ballerina client.
+
 
 ---
 

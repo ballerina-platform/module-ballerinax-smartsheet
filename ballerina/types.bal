@@ -23,7 +23,11 @@ import ballerina/http;
 
 public type WorkspaceIdCopyBody ContainerDestinationForCopy;
 
-public type InlineResponse2001Data AccesstokenAuthorize|AccesstokenRefresh|AccesstokenRevoke|AccountBulkUpdate|AccountDownloadLoginHistory|AccountDownloadPublishedItemsReport|AccountDownloadSheetAccessReport|AccountDownloadUserList|AccountImportUsers|AccountListSheets|AccountRename|AccountUpdateMainContact|AttachmentCreate|AttachmentDelete|AttachmentLoad|AttachmentSend|AttachmentUpdate|DashboardAddPublish|DashboardAddShare|DashboardAddShareMember|DashboardAddWorkspaceShare|DashboardCreate|DashboardDelete|DashboardLoad|DashboardMove|DashboardPurge|DashboardRemovePublish|DashboardRemoveShare|DashboardRemoveShareMember|DashboardRemoveWorkspaceShare|DashboardRename|DashboardRestore|DashboardSaveAsNew|DashboardTransferOwnership|DashboardUpdate|DiscussionCreate|DiscussionDelete|DiscussionSend|DiscussionSendcomment|DiscussionUpdate|FolderCreate|FolderDelete|FolderExport|FolderRename|FolderRequestBackup|FolderSaveAsNew|FormActivate|FormCreate|FormDeactivate|FormDelete|FormUpdate|GroupAddMember|GroupCreate1|GroupDelete|GroupDownloadSheetAccessReport|GroupRemoveMember|GroupRename|GroupTransferOwnership|GroupUpdate1|ReportAddShare|ReportAddShareMember|ReportAddWorkspaceShare|ReportCreate|ReportDelete|ReportExport|ReportLoad|ReportMove|ReportPurge|ReportRemoveShare|ReportRemoveShareMember|ReportRemoveWorkspaceShare|ReportRename|ReportRestore|ReportSaveAsNew|ReportSendAsAttachment|ReportTransferOwnership|ReportUpdate|SheetAddShare|SheetAddShareMember|SheetAddWorkspaceShare|SheetCopyRow|SheetCreate|SheetCreateCellLink|SheetDelete|SheetExport|SheetLoad|SheetMove|SheetMoveRow|SheetPurge|SheetRemoveShare|SheetRemoveShareMember|SheetRemoveWorkspaceShare|SheetRename|SheetRequestBackup|SheetRestore|SheetSaveAsNew|SheetSaveAsTemplate|SheetSendAsAttachment|SheetSendRow|SheetTransferOwnership|SheetUpdate|UpdateRequestCreate|UserAcceptInvite|UserAddToAccount|UserDeclineInvite|UserDownloadSheetAccessReport|UserRemoveFromAccount|UserRemoveFromGroups|UserRemoveShares|UserSendInvite|UserSendPasswordReset|UserTransferOwnedGroups|UserTransferOwnedItems|UserUpdateUser|WorkspaceAddShare|WorkspaceAddShareMember|WorkspaceCreate|WorkspaceCreateRecurringBackup|WorkspaceDelete|WorkspaceDeleteRecurringBackup|WorkspaceExport|WorkspaceRemoveShare|WorkspaceRemoveShareMember|WorkspaceRename|WorkspaceRequestBackup|WorkspaceSaveAsNew|WorkspaceTransferOwnership|WorkspaceUpdateRecurringBackup;
+public type ProofVersionResponse record {
+    *GenericResult;
+    # Object containing zero or more media items, including images, videos, and documents, for review, editing, or approval
+    Proof result?;
+};
 
 public type DiscussionCreate record {
     *Event;
@@ -32,6 +36,19 @@ public type DiscussionCreate record {
     DiscussionCreateAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
     "DISCUSSION" objectType?;
+};
+
+public type TemplateItemData record {
+    # Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
+    AccessLevel accessLevel?;
+    # The report's name
+    string name?;
+    # It is `true` if the report is a sheet summary; otherwise it is a row report
+    boolean isSummaryReport?;
+    # The report's unique identifier
+    decimal id?;
+    # URL to the report in Smartsheet
+    string permalink?;
 };
 
 public type AttachmentLoadAdditionalDetails record {
@@ -45,6 +62,11 @@ public type AttachmentLoadAdditionalDetails record {
     # Id of the workspace that directly contains the attachment. (This property is included only if the `sheetId` property above isn't included)
     @constraint:Int {minValue: 0}
     int workspaceId?;
+};
+
+public type SentUpdateRequestListData record {
+    # list of Sent Update Requests
+    SentUpdateRequest[] data?;
 };
 
 # Represents the Headers record for the operation: reactivate-user
@@ -90,6 +112,11 @@ public type DeleteAlternateEmailHeaders record {
 @deprecated
 public type ReadOnlyFullShowToolbar boolean;
 
+public type WebhookListResponse record {
+    *GenericResult;
+    *WebhookListData;
+};
+
 public type DashboardTransferOwnershipAdditionalDetails record {
     # New access level of the new owner: `"OWNER"`
     "OWNER" newAccessLevel = "OWNER";
@@ -117,9 +144,10 @@ public type AttachmentsListOnSheetQueries record {
     decimal page = 1;
 };
 
-public type InlineResponse20070AllOf2 record {
-    # List of Dashboards
-    SightListItem[] data?;
+public type SummaryFieldListResponse record {
+    *IndexResult;
+    # List of Summary Fields
+    SummaryField[] data?;
 };
 
 public type AttachmentSendAdditionalDetails record {
@@ -155,6 +183,11 @@ public type SearchResultItem record {
     string objectType?;
 };
 
+public type WebhookResponse record {
+    *GenericResult;
+    *WebhookData;
+};
+
 # Describes the dashboard's publish settings
 public type SightPublish record {
     # URL for 'Read-Only Full' view of the published dashboard. Only returned in a response if readOnlyFullEnabled = true
@@ -171,6 +204,11 @@ public type SightPublish record {
     "ALL"|"ORG" readOnlyFullAccessibleBy?;
 };
 
+public type HomeContentsData record {
+    # List of Sheets
+    SheetList[] data?;
+};
+
 # Indicates which view the user has set for a read-only, default view of the published sheet. Must be one of the listed enum values
 public type ReadOnlyFullDefaultView "CALENDAR"|"CARD"|"GRID";
 
@@ -182,10 +220,6 @@ public type UpdaterequestsCreateHeaders record {
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
-};
-
-public type InlineResponse20088AllOf2 record {
-    WorkspaceListing result?;
 };
 
 # Represents the Headers record for the operation: automationrule-update
@@ -257,6 +291,16 @@ public type WorkspaceCreateRecurringBackupAdditionalDetails record {
     boolean sendCompletionEmail?;
 };
 
+public type WorkspaceResponse record {
+    *GenericResult;
+    *WorkspaceData;
+};
+
+public type AutomationRuleListResponse record {
+    *IndexResult;
+    *AutomationRuleListData;
+};
+
 public type FolderDelete record {
     *Event;
     # The action applied to the specified object
@@ -322,10 +366,6 @@ public type ReportPurge record {
     "REPORT" objectType?;
 };
 
-public type InlineResponse2003AllOf2 record {
-    Favorite|Favorite[] result?;
-};
-
 public type SheetRemoveShareMember record {
     *Event;
     # The action applied to the specified object
@@ -333,6 +373,12 @@ public type SheetRemoveShareMember record {
     SheetRemoveShareMemberAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
     "SHEET" objectType?;
+};
+
+public type AttachmentVersionResponse record {
+    *GenericResult;
+    # Attachment Object
+    Attachment result?;
 };
 
 public type DashboardRenameAdditionalDetails record {
@@ -354,6 +400,13 @@ public type GroupRename record {
     # The Smartsheet resource impacted by the event
     "GROUP" objectType?;
 };
+
+public type GroupMembersData record {
+    # List of Group Members
+    GroupMember[] members?;
+};
+
+public type RowResponse GetRowObject;
 
 public type SheetUpdate record {
     *Event;
@@ -492,6 +545,10 @@ public type UserUpdate record {
 
 public type SheetsBody SheetToCreate|SheetToCreateFromTemplate;
 
+public type ShareCreateData record {
+    SightResult result?;
+};
+
 # Represents the Headers record for the operation: is-favorite
 public type IsFavoriteHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
@@ -502,17 +559,17 @@ public type IsFavoriteHeaders record {
     string xSmarScActorId?;
 };
 
-public type InlineResponse20075AllOf2 record {
-    # List of User Objects
-    User[] data?;
-};
-
 # Represents the Queries record for the operation: addImageToCell
 public type AddImageToCellQueries record {
     # Url-encoded alternate text for the image
     string altText?;
     # You may use the query string parameter **overrideValidation** with a value of **true** to allow a cell value outside of the validation limits. You must specify **strict** with a value of **false** to bypass value type checking
     boolean overrideValidation = false;
+};
+
+public type UserProfileImageData record {
+    # List of Groups
+    Group[] data?;
 };
 
 public type Email record {
@@ -524,6 +581,16 @@ public type Email record {
     string subject?;
     # The message of the email
     string message?;
+};
+
+public type ProofRequestCreateResponse record {
+    *GenericResult;
+    *ProofRequestCreateData;
+};
+
+public type WorkspaceShareListResponse record {
+    *IndexResult;
+    *WorkspaceShareListData;
 };
 
 # Represents the project settings dependencies for a specific sheet. Project settings may be updated on sheets that the user has editor access
@@ -568,6 +635,11 @@ public type UpdaterequestsListQueries record {
 
 public type SheetIdSharesBody Share|SheetssheetIdsharesOneOf2;
 
+public type AlternateEmailResponse record {
+    *SearchResult;
+    *AlternateEmailData;
+};
+
 # Represents the Queries record for the operation: get-sight
 public type GetSightQueries record {
     # Allows COMMENTER access for inputs and return values. For backwards-compatibility, VIEWER is the default. For example, to see whether a user has COMMENTER access for a sheet, use accessApiLevel=1
@@ -580,11 +652,6 @@ public type GetSightQueries record {
     int level = 0;
     # You can optionally choose to receive and send dates/times in numeric format, as milliseconds since the UNIX epoch (midnight on January 1, 1970 in UTC time), using the query string parameter numericDates with a value of true. This query parameter works for any API request
     boolean numericDates = false;
-};
-
-public type InlineResponse20041AllOf2 record {
-    # list of discussions
-    Discussion[] data?;
 };
 
 # Indicates whether summary field values are restricted to the type
@@ -641,6 +708,11 @@ public type CommentsCreateHeaders record {
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
+};
+
+public type SheetPublishResponse record {
+    *GenericResult;
+    *SheetPublishData;
 };
 
 public type AccesstokenRevoke record {
@@ -761,10 +833,6 @@ public type DashboardAddWorkspaceShareAdditionalDetails record {
     int workspaceId?;
 };
 
-public type InlineResponse20016AllOf2 record {
-    ReportPublish result?;
-};
-
 # Represents the Queries record for the operation: getSheet
 public type GetSheetQueries record {
     # Allows COMMENTER access for inputs and return values. For backwards-compatibility, VIEWER is the default. For example, to see whether a user has COMMENTER access for a sheet, use accessApiLevel=1
@@ -826,6 +894,11 @@ public type Home record {
     Template[] templates?;
 };
 
+public type GroupMembersResponse record {
+    *Group;
+    *GroupMembersData;
+};
+
 public type Report Sheet;
 
 # Sheet imported from CSV / XLSX file
@@ -840,6 +913,11 @@ public type SheetImported record {
     string 'type?;
     # URL that represents a direct link to the sheet in Smartsheet
     Permalink permalink?;
+};
+
+public type SummaryFieldBulkCreateResponse record {
+    *Result;
+    *SummaryFieldBulkCreateData;
 };
 
 # Represents the Queries record for the operation: tokens-getOrRefresh
@@ -868,10 +946,12 @@ public type TokensGetOrRefreshQueries record {
     string redirectUrl?;
 };
 
-public type InlineResponse20067AllOf2 record {
-    # list of UpdateRequest objects
-    UpdateRequest[] data?;
+public type AttachmentListResponse record {
+    *GenericResult;
+    *AttachmentListData;
 };
+
+public type EventUnionData AccesstokenAuthorize|AccesstokenRefresh|AccesstokenRevoke|AccountBulkUpdate|AccountDownloadLoginHistory|AccountDownloadPublishedItemsReport|AccountDownloadSheetAccessReport|AccountDownloadUserList|AccountImportUsers|AccountListSheets|AccountRename|AccountUpdateMainContact|AttachmentCreate|AttachmentDelete|AttachmentLoad|AttachmentSend|AttachmentUpdate|DashboardAddPublish|DashboardAddShare|DashboardAddShareMember|DashboardAddWorkspaceShare|DashboardCreate|DashboardDelete|DashboardLoad|DashboardMove|DashboardPurge|DashboardRemovePublish|DashboardRemoveShare|DashboardRemoveShareMember|DashboardRemoveWorkspaceShare|DashboardRename|DashboardRestore|DashboardSaveAsNew|DashboardTransferOwnership|DashboardUpdate|DiscussionCreate|DiscussionDelete|DiscussionSend|DiscussionSendcomment|DiscussionUpdate|FolderCreate|FolderDelete|FolderExport|FolderRename|FolderRequestBackup|FolderSaveAsNew|FormActivate|FormCreate|FormDeactivate|FormDelete|FormUpdate|GroupAddMember|GroupCreate1|GroupDelete|GroupDownloadSheetAccessReport|GroupRemoveMember|GroupRename|GroupTransferOwnership|GroupUpdate1|ReportAddShare|ReportAddShareMember|ReportAddWorkspaceShare|ReportCreate|ReportDelete|ReportExport|ReportLoad|ReportMove|ReportPurge|ReportRemoveShare|ReportRemoveShareMember|ReportRemoveWorkspaceShare|ReportRename|ReportRestore|ReportSaveAsNew|ReportSendAsAttachment|ReportTransferOwnership|ReportUpdate|SheetAddShare|SheetAddShareMember|SheetAddWorkspaceShare|SheetCopyRow|SheetCreate|SheetCreateCellLink|SheetDelete|SheetExport|SheetLoad|SheetMove|SheetMoveRow|SheetPurge|SheetRemoveShare|SheetRemoveShareMember|SheetRemoveWorkspaceShare|SheetRename|SheetRequestBackup|SheetRestore|SheetSaveAsNew|SheetSaveAsTemplate|SheetSendAsAttachment|SheetSendRow|SheetTransferOwnership|SheetUpdate|UpdateRequestCreate|UserAcceptInvite|UserAddToAccount|UserDeclineInvite|UserDownloadSheetAccessReport|UserRemoveFromAccount|UserRemoveFromGroups|UserRemoveShares|UserSendInvite|UserSendPasswordReset|UserTransferOwnedGroups|UserTransferOwnedItems|UserUpdateUser|WorkspaceAddShare|WorkspaceAddShareMember|WorkspaceCreate|WorkspaceCreateRecurringBackup|WorkspaceDelete|WorkspaceDeleteRecurringBackup|WorkspaceExport|WorkspaceRemoveShare|WorkspaceRemoveShareMember|WorkspaceRename|WorkspaceRequestBackup|WorkspaceSaveAsNew|WorkspaceTransferOwnership|WorkspaceUpdateRecurringBackup;
 
 public type AutomationRule record {
     # A timestamp of when the rule was originally added
@@ -936,7 +1016,8 @@ public type SheetCreate record {
     "SHEET" objectType?;
 };
 
-public type InlineResponse20020AllOf2 record {
+public type ColumnUpdateData record {
+    UpdateColumn result?;
 };
 
 public type ReportRemoveWorkspaceShare record {
@@ -1090,6 +1171,8 @@ public type ListSheetsHeaders record {
     string authorization?;
 };
 
+public type ProofCreateResponse GenericResult;
+
 # If **true**, a rich version of the sheet is published with the ability to download row attachments and discussions
 public type ReadOnlyFullEnabled boolean;
 
@@ -1198,6 +1281,16 @@ public type SentupdaterequestsListQueries record {
     decimal page = 1;
 };
 
+public type ProofRequestActionListData record {
+    # list of proof request actions
+    ProofRequestAction[] data?;
+};
+
+public type UserProfileData record {
+    # User Object
+    User result?;
+};
+
 public type AccountDownloadSheetAccessReport record {
     *Event;
     # The action applied to the specified object
@@ -1225,6 +1318,11 @@ public type DashboardListing record {
     decimal id?;
     # URL that represents a direct link to the asset in Smartsheet
     string permalink?;
+};
+
+public type ProofDetailListData record {
+    # list of all proofs
+    Proof[] data?;
 };
 
 # Represents the Queries record for the operation: copy-rows
@@ -1258,13 +1356,10 @@ public type WorkspaceDelete record {
     "WORKSPACE" objectType?;
 };
 
-public type InlineResponse20059AllOf2 record {
-    Row result?;
-};
-
-public type InlineResponse20046AllOf2 record {
-    # list of all proofs
-    Proof[] data?;
+# A list of fieldIds corresponding to all summary fields that were successfully deleted
+public type SummaryFieldDeleteData record {
+    # List of field IDs for summary fields that were successfully deleted
+    decimal[] result?;
 };
 
 # Display width of the column in pixels
@@ -1288,11 +1383,6 @@ public type UpdateRowsObject record {
     decimal version?;
     # The Id of the parent
     decimal parentId?;
-};
-
-public type InlineResponse20012AllOf2 record {
-    # List of Group Members
-    GroupMember[] members?;
 };
 
 public type SharedSecret record {
@@ -1383,9 +1473,22 @@ public type ProofsDeleteProofRequestsHeaders record {
     string authorization?;
 };
 
-public type InlineResponse20054AllOf2 record {
-    # Describes the sheet's publish settings
-    SheetPublish result?;
+public type CommentCreateResponse record {
+    *GenericResult;
+    Comment result?;
+};
+
+public type WorkspaceData record {
+    WorkspaceListing result?;
+};
+
+public type FolderContentItemData record {
+    # The folder's name
+    string name?;
+    # The folder's unique identifier
+    decimal id?;
+    # URL to the folder in Smartsheet
+    string permalink?;
 };
 
 # Represents the Queries record for the operation: get-folder
@@ -1427,14 +1530,7 @@ public type DashboardAddWorkspaceShare record {
     "DASHBOARD" objectType?;
 };
 
-public type InlineResponse20011AllOf2 record {
-    Group result?;
-};
-
-public type InlineResponse20061AllOf2 record {
-    # list of Sent Update Requests
-    SentUpdateRequest[] data?;
-};
+public type CommentUpdateResponse GenericResult;
 
 public type UserSendPasswordReset record {
     *Event;
@@ -1443,6 +1539,11 @@ public type UserSendPasswordReset record {
     AccountBulkUpdateAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
     "USER" objectType?;
+};
+
+public type ShareCreateResponse record {
+    *ItemResult;
+    *ShareCreateData;
 };
 
 public type SheetRemoveShare record {
@@ -1504,6 +1605,11 @@ public type DiscussionSendAdditionalDetails record {
     # Id of the workspace the discussion is directly on. (This property is included only if the `sheetId` property above isn't included)
     @constraint:Int {minValue: 0}
     int workspaceId?;
+};
+
+public type EventFilterResponse record {
+    *StreamResult;
+    *EventFilterData;
 };
 
 # Represents the Headers record for the operation: discussion-listAttachments
@@ -1629,15 +1735,6 @@ public type ReportPublish record {
     string readOnlyFullDefaultView?;
 };
 
-public type InlineResponse20090Data record {
-    # The folder's name
-    string name?;
-    # The folder's unique identifier
-    decimal id?;
-    # URL to the folder in Smartsheet
-    string permalink?;
-};
-
 public type WorkspaceRemoveShareAdditionalDetails record {
     # Email address of the user responsible for the event
     string emailAddress;
@@ -1689,6 +1786,11 @@ public type UpdaterequestsListHeaders record {
 # The format descriptor. Only returned if the include query string parameter contains format and this column has a non-default format applied to it
 public type Format string;
 
+public type SummaryResponse record {
+    *GenericResult;
+    *SummaryData;
+};
+
 public type TimestampDateTime string;
 
 # Represents the Headers record for the operation: columns-listOnSheet
@@ -1734,6 +1836,12 @@ public type UserUpdateUser record {
 
 public type SheetssheetIdsharesOneOf2 Share[];
 
+# A list of created summary fields
+public type SummaryFieldBulkCreateData record {
+    # List of summary fields created by the operation
+    SummaryField[] result?;
+};
+
 public type DiscussionCreationRequest record {
     # Comment
     CommentRequest comment?;
@@ -1761,11 +1869,26 @@ public type WorkspaceExportAdditionalDetails record {
     "excel"|"pdf" formatType?;
 };
 
+public type ColumnListResponse record {
+    *IndexResult;
+    *ColumnListData;
+};
+
+public type ProofListResponse record {
+    *GenericResult;
+    *ProofListData;
+};
+
 # Represents the Headers record for the operation: discussion-delete
 public type DiscussionDeleteHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
+};
+
+public type FolderCreateData record {
+    # Updated User Properties
+    AlternateEmail[] data?;
 };
 
 public type SummaryField record {
@@ -1894,16 +2017,16 @@ public type Sheet record {
     ProjectSettings projectSettings?;
 };
 
+public type ProofDetailListResponse record {
+    *IndexResult;
+    *ProofDetailListData;
+};
+
 # Represents the Headers record for the operation: update-group
 public type UpdateGroupHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-};
-
-public type InlineResponse20028AllOf2 record {
-    # list of Automation Rules
-    AutomationRule[] data?;
 };
 
 # Represents the Headers record for the operation: delete-summary-fields
@@ -1962,6 +2085,14 @@ public type SetSightPublishStatusHeaders record {
     string contentType = "application/json";
 };
 
+public type AlternateEmailData record {
+    SearchResultItem[] result?;
+};
+
+public type RowCopyData record {
+    UpdateRowsObject[] result?;
+};
+
 public type FolderCreateAdditionalDetails record {
     # Email address of the user responsible for the event
     string emailAddress;
@@ -1984,6 +2115,11 @@ public type ListReportSharesQueries record {
     decimal page = 1;
 };
 
+public type AlternateEmailListResponse record {
+    *IndexResult;
+    *AlternateEmailListData;
+};
+
 # Represents the Headers record for the operation: create-workspace
 public type CreateWorkspaceHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
@@ -2001,6 +2137,10 @@ public type Currency record {
     string code?;
 };
 
+public type ContactData record {
+    Favorite[] data?;
+};
+
 public type SheetssheetIdrowsOneOf21 Row[];
 
 public type SheetRemoveWorkspaceShare record {
@@ -2010,6 +2150,13 @@ public type SheetRemoveWorkspaceShare record {
     DashboardRemoveWorkspaceShareAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
     "SHEET" objectType?;
+};
+
+public type AutomationRuleResponse AutomationRule;
+
+public type RowAttachmentListResponse record {
+    *IndexResult;
+    *RowAttachmentListData;
 };
 
 public type FolderSaveAsNew record {
@@ -2059,6 +2206,11 @@ public type AccesstokenAuthorize record {
     "ACCESS_TOKEN" objectType?;
 };
 
+public type TemplateListData record {
+    # List of all accessible reports, referenced by their ID, name, access level, and summary report flag values
+    TemplateItemData[] data?;
+};
+
 # Represents the Queries record for the operation: attachments-versionList
 public type AttachmentsVersionListQueries record {
     # The maximum number of items to return per page. Unless otherwise stated for a specific endpoint, defaults to 100. If only page is specified, defaults to a page size of 100. For reports, the default is 100 rows. If you need larger sets of data from your report, returns a maximum of 10,000 rows per request
@@ -2067,6 +2219,10 @@ public type AttachmentsVersionListQueries record {
     boolean includeAll = false;
     # Which page to return. Defaults to 1 if not specified. If you specify a value greater than the total number of pages, the last page of results is returned
     decimal page = 1;
+};
+
+public type ProofRequestCreateData record {
+    ProofRequest result?;
 };
 
 public type UserSendInvite record {
@@ -2078,21 +2234,16 @@ public type UserSendInvite record {
     "USER" objectType?;
 };
 
-public type InlineResponse20090AllOf2 record {
-    # Array of all the workspace folders, referenced by their ID, name, and URL
-    InlineResponse20090Data[] data?;
-};
-
-public type InlineResponse2009AllOf2 record {
-    # Sheet imported from CSV / XLSX file
-    SheetImported result?;
-};
-
 # Represents the Headers record for the operation: delete-rows
 public type DeleteRowsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
+};
+
+public type UserListData record {
+    # List of User Objects
+    User[] data?;
 };
 
 public type Group record {
@@ -2119,10 +2270,12 @@ public type SheetAddShare record {
     "SHEET" objectType?;
 };
 
-public type InlineResponse20076AllOf2 record {
-    # User Object
-    User result?;
+public type SheetPublishData record {
+    # Describes the sheet's publish settings
+    SheetPublish result?;
 };
+
+public type ColumnResponse GetColumn;
 
 # Represents the Queries record for the operation: share-sheet-get
 public type ShareSheetGetQueries record {
@@ -2180,6 +2333,15 @@ public type SheetExport record {
     SheetExportAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
     "SHEET" objectType?;
+};
+
+public type WorkspaceShareListData record {
+    WorkspaceListing[] data?;
+};
+
+public type ContactResponse record {
+    *IndexResult;
+    *ContactData;
 };
 
 # Represents the Queries record for the operation: move-rows
@@ -2241,6 +2403,11 @@ public type CreateSheetInWorkspaceHeaders record {
     string contentType = "application/json";
 };
 
+public type GroupResponse record {
+    *IndexResult;
+    *GroupData;
+};
+
 # Represents the Queries record for the operation: create-workspace
 public type CreateWorkspaceQueries record {
     # Allows COMMENTER access for inputs and return values. For backwards-compatibility, VIEWER is the default. For example, to see whether a user has COMMENTER access for a sheet, use accessApiLevel=1
@@ -2263,13 +2430,9 @@ public type CreateWorkspaceQueries record {
     "cellLinks"|"reports"|"sheetHyperlinks"|"sights" skipRemap?;
 };
 
-public type InlineResponse2004AllOf2 record {
-    # List of sheet Ids specified in the request that the user does not have access to
-    string[] unavailableSheetIds?;
-    # List of Events
-    Event[] data?;
-    # List of workspace Ids specified in the request that the user does not have access to
-    string[] unavailableWorkspaceIds?;
+public type HomeFolderCreateResponse record {
+    *GenericResult;
+    *HomeFolderCreateData;
 };
 
 public type Webhook record {
@@ -2297,23 +2460,14 @@ public type ShareSheetGetHeaders record {
     string authorization?;
 };
 
-public type InlineResponse20074AllOf2 record {
-    # list of Templates
-    Template[] data?;
-};
-
 # Represents the Queries record for the operation: update-sight
 public type UpdateSightQueries record {
     # You can optionally choose to receive and send dates/times in numeric format, as milliseconds since the UNIX epoch (midnight on January 1, 1970 in UTC time), using the query string parameter numericDates with a value of true. This query parameter works for any API request
     boolean numericDates = false;
 };
 
-public type InlineResponse2002AllOf2 record {
-    Favorite[] data?;
-};
-
-public type InlineResponse20044AllOf2 record {
-    Comment result?;
+public type FavoriteData record {
+    AutomationRule result?;
 };
 
 public type WorkspaceDeleteRecurringBackup record {
@@ -2354,6 +2508,10 @@ public type CopyFolderQueries record {
     "sheetHyperlinks" exclude?;
 };
 
+public type GroupCreateData record {
+    Group result?;
+};
+
 # Represents the Headers record for the operation: attachments-versionUpload
 public type AttachmentsVersionUploadHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
@@ -2379,14 +2537,6 @@ public type ImportSheetIntoWorkspaceHeaders record {
     "text/csv"|"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" contentType;
 };
 
-public type InlineResponse20021AllOf2 record {
-    SearchResultItem[] result?;
-};
-
-public type InlineResponse20071AllOf2 record {
-    Sight result?;
-};
-
 # Sheet created from scratch using the specified columns
 public type SheetCreated record {
     # Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
@@ -2406,6 +2556,16 @@ public type UpdateRequest record {
     *UpdateRequestAllOf2;
 };
 
+public type SearchResponse record {
+    *IndexResult;
+    *SearchResultData;
+};
+
+public type CrossSheetReferenceData record {
+    # Can contain dashboards, folders, reports, sheets, or templates
+    Folder result?;
+};
+
 public type ItemResult GenericResult;
 
 # Represents the Headers record for the operation: getWebhook
@@ -2420,6 +2580,11 @@ public type ListSheetSharesHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
+};
+
+public type WorkspaceListResponse record {
+    *IndexResult;
+    *WorkspaceListData;
 };
 
 # Represents the Queries record for the operation: getReport
@@ -2444,6 +2609,11 @@ public type GetReportQueries record {
     "linkInFromCellDetails"|"linksOutToCellsDetails" exclude?;
     # Which page to return. Defaults to 1 if not specified. If you specify a value greater than the total number of pages, the last page of results is returned
     decimal page = 1;
+};
+
+public type SentUpdateRequestListResponse record {
+    *IndexResult;
+    *SentUpdateRequestListData;
 };
 
 public type WorkspaceSaveAsNew record {
@@ -2472,6 +2642,10 @@ public type DiscussionUpdate record {
     DiscussionCreateAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
     "DISCUSSION" objectType?;
+};
+
+public type ColumnCreateData record {
+    AddColumns[] result?;
 };
 
 public type ContainerDestinationForMove record {
@@ -2518,6 +2692,11 @@ public type SentupdaterequestGetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
+};
+
+public type SummaryFieldCreateResponse record {
+    *Result;
+    *SummaryFieldCreateData;
 };
 
 # Represents the Queries record for the operation: share-sheet
@@ -2624,6 +2803,11 @@ public type SheetSaveAsTemplate record {
     "SHEET" objectType?;
 };
 
+public type UpdateRequestListData record {
+    # list of UpdateRequest objects
+    UpdateRequest[] data?;
+};
+
 # Represents the Headers record for the operation: move-sight
 public type MoveSightHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
@@ -2634,6 +2818,11 @@ public type MoveSightHeaders record {
     string contentType = "application/json";
 };
 
+public type UserResponse record {
+    *Result;
+    *UserData;
+};
+
 public type ProofRequestBody Email;
 
 # Represents the Headers record for the operation: get-crosssheet-reference
@@ -2641,6 +2830,15 @@ public type GetCrosssheetReferenceHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
+};
+
+public type ColumnListData record {
+    GetColumn[] data?;
+};
+
+public type EventStreamData record {
+    # List of Events
+    EventUnionData[] data?;
 };
 
 public type RowEmail Email;
@@ -2661,11 +2859,6 @@ public type SheetCreatedFromTemplate record {
     Id id?;
     # URL that represents a direct link to the sheet in Smartsheet
     Permalink permalink?;
-};
-
-public type InlineResponse20078AllOf2 record {
-    # List of Sheets
-    SheetList[] data?;
 };
 
 public type UpdateWebhookRequest record {
@@ -2691,6 +2884,16 @@ public type CopyWorkspaceQueries record {
     "all"|"attachments"|"brand"|"cellLinks"|"data"|"discussions"|"filters"|"forms"|"ruleRecipients"|"rules"|"shares" include?;
     # A comma-separated list of references to NOT re-map for the newly created folder
     "cellLinks"|"reports"|"sheetHyperlinks"|"sights" skipRemap?;
+};
+
+public type SummaryFieldCreateData record {
+    # A list of updated summary fields
+    SummaryField[] result?;
+};
+
+public type RowAttachmentListData record {
+    # List of cell history objects
+    CellHistory[] data?;
 };
 
 public type UserDeclineInviteAdditionalDetails record {
@@ -2737,20 +2940,11 @@ public type ListHomeContentsQueries record {
     "source"|"distributionLink"|"ownerInfo"|"sheetVersion" include?;
 };
 
-public type InlineResponse2006AllOf2 record {
-    Folder[] result?;
-};
-
 # Represents the Headers record for the operation: row-discussions-list
 public type RowDiscussionsListHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-};
-
-public type InlineResponse20073AllOf2 record {
-    # Describes the dashboard's publish settings
-    SightPublish result?;
 };
 
 # Represents the Headers record for the operation: list-home-contents
@@ -2768,11 +2962,6 @@ public type ColumnDeleteHeaders record {
 };
 
 public type ReportIdSharesBody Share|ReportsreportIdsharesOneOf2;
-
-public type InlineResponse20025AllOf2 record {
-    # list of attachments
-    Attachment[] data?;
-};
 
 # Represents the Headers record for the operation: proofs-delete
 public type ProofsDeleteHeaders record {
@@ -2818,6 +3007,20 @@ public type AddUserHeaders record {
     string authorization?;
 };
 
+public type WorkspaceCreateData record {
+    # Can contain dashboards, folders, reports, sheets, and templates
+    Workspace result?;
+};
+
+public type UpdateRequestCreateData record {
+    UpdateRequest result?;
+};
+
+public type HomeFolderCreateData record {
+    # Updated User Properties
+    UserProfileImageResponse[] data?;
+};
+
 public type SummaryFieldAddImage record {
     # Represents an image object, including its unique ID, dimensions, and alternate text
     Image image?;
@@ -2847,10 +3050,6 @@ public type GetSightHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-};
-
-public type InlineResponse20040AllOf2 record {
-    CrossSheetReference result?;
 };
 
 public type WorkspaceRenameAdditionalDetails record {
@@ -2887,6 +3086,11 @@ public type ListWebhooksQueries record {
     boolean includeAll = false;
     # Which page to return. Defaults to 1 if not specified. If you specify a value greater than the total number of pages, the last page of results is returned
     decimal page = 1;
+};
+
+public type ProofVersionListData record {
+    # list of proof versions
+    Proof[] data?;
 };
 
 public type Share record {
@@ -2995,6 +3199,10 @@ public type WebhookAllOf2 record {
     "DISABLED_ADMINISTRATIVE"|"DISABLED_APP_REVOKED"|"DISABLED_BY_OWNER"|"DISABLED_CALLBACK_FAILED"|"DISABLED_SCOPE_INACCESSIBLE"|"DISABLED_VERIFICATION_FAILED"|"ENABLED"|"NEW_NOT_VERIFIED" status?;
 };
 
+public type PublicTemplateListData record {
+    Share[] result?;
+};
+
 public type GenericResult record {
     # * '0' Success
     # * '3' Partial Success of Bulk Operation
@@ -3018,8 +3226,9 @@ public type AttachmentDelete record {
     "ATTACHMENT" objectType?;
 };
 
-public type InlineResponse20024AllOf2 record {
-    Sheet result?;
+public type EventStreamResponse record {
+    *StreamResult;
+    *EventStreamData;
 };
 
 # See [System Columns](/api/smartsheet/openapi/columns)
@@ -3041,14 +3250,7 @@ public type SentupdaterequestDeleteHeaders record {
 
 public type CellHistory Cell;
 
-public type InlineResponse2005AllOf2 record {
-    # Can contain dashboards, folders, reports, sheets, or templates
-    Folder result?;
-};
-
-public type InlineResponse2008AllOf2 record {
-    SheetCreated|SheetCreatedFromTemplate result?;
-};
+public type AttachmentResponse Attachment;
 
 # Represents the Headers record for the operation: resetSharedSecret
 public type ResetSharedSecretHeaders record {
@@ -3068,9 +3270,9 @@ public type ResetSharedSecretHeaders record {
 # Only returned in the response if **readWriteEnabled = true**
 public type ReadWriteAccessibleBy "ALL"|"ORG"|"SHARED";
 
-public type InlineResponse20091AllOf2 record {
-    # Can contain dashboards, folders, reports, sheets, or templates
-    FolderSimpleResponse result?;
+public type GroupMembersListResponse record {
+    *GenericResult;
+    *GroupMembersListData;
 };
 
 # Represents the Queries record for the operation: proofs-listDiscussions
@@ -3085,16 +3287,6 @@ public type ProofsListDiscussionsQueries record {
     boolean includeAll = false;
     # Which page to return. Defaults to 1 if not specified. If you specify a value greater than the total number of pages, the last page of results is returned
     decimal page = 1;
-};
-
-public type InlineResponse20077AllOf2 record {
-    # List of Groups
-    Group[] data?;
-};
-
-public type ListofContactResponses record {
-    *IndexResult;
-    *InlineResponse2002AllOf2;
 };
 
 # Represents the Headers record for the operation: attachments-attachToSheet
@@ -3131,6 +3323,16 @@ public type DashboardRemoveShare record {
     "DASHBOARD" objectType?;
 };
 
+public type TokenResponse record {
+    *Result;
+    *TokenData;
+};
+
+public type WorkspaceFolderCreateResponse record {
+    *Result;
+    *WorkspaceFolderCreateData;
+};
+
 public type SheetCreateCellLink record {
     *Event;
     # The action applied to the specified object
@@ -3142,8 +3344,9 @@ public type SheetCreateCellLink record {
 
 public type TimestampNumber decimal;
 
-public type InlineResponse2007AllOf2 record {
-    Folder result?;
+public type CommentResponse Comment;
+
+public type UserCreateData record {
 };
 
 public type DashboardRemoveWorkspaceShare record {
@@ -3173,9 +3376,9 @@ public type ReportAddWorkspaceShareAdditionalDetails record {
     int workspaceId?;
 };
 
-public type InlineResponse20079AllOf2 record {
-    # Updated User Properties
-    UserProfileImageResponse[] data?;
+public type UserCreateResponse record {
+    *SearchResult;
+    *UserCreateData;
 };
 
 public type ProofRequest ProofRequestBody;
@@ -3186,6 +3389,8 @@ public type ProofsListDiscussionsHeaders record {
     @http:Header {name: "Authorization"}
     string authorization?;
 };
+
+public type DiscussionResponse Discussion;
 
 public type ColumnToCreateASheet record {
     # When applicable for **CHECKBOX** or **PICKLIST** column types. See [Symbol Columns](/api/smartsheet/openapi/columns)
@@ -3238,6 +3443,15 @@ public type DeleteSightHeaders record {
 public type WebhooksAllOf2 record {
 };
 
+public type ReportPublishResponse record {
+    *ItemResult;
+    *ReportPublishData;
+};
+
+public type CrossSheetReferenceListData record {
+    ComponentsSchemasSheet result?;
+};
+
 # Represents the Queries record for the operation: create-sheet-in-workspace
 public type CreateSheetInWorkspaceQueries record {
     # Allows COMMENTER access for inputs and return values. For backwards-compatibility, VIEWER is the default. For example, to see whether a user has COMMENTER access for a sheet, use accessApiLevel=1
@@ -3261,11 +3475,6 @@ public type ListWebhooksHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-};
-
-public type InlineResponse20048AllOf2 record {
-    # list of proof attachments
-    Attachment[] data?;
 };
 
 # Represents the Queries record for the operation: column-get
@@ -3292,6 +3501,10 @@ public type ListEventsHeaders record {
     # * gzip
     @http:Header {name: "Accept-Encoding"}
     "deflate"|"gzip" acceptEncoding?;
+};
+
+public type SummaryData record {
+    SummaryFieldAddImage result?;
 };
 
 public type ReportAddShareAdditionalDetails record {
@@ -3333,12 +3546,17 @@ public type ProofsGetAllProofsHeaders record {
     string authorization?;
 };
 
-public type InlineResponse20022AllOf2 record {
-    SchemasSheet[] data?;
+public type ProofRequestActionListResponse record {
+    *IndexResult;
+    *ProofRequestActionListData;
 };
 
-public type InlineResponse20030AllOf2 record {
-    AutomationRule result?;
+public type WorkspaceShareCreateData record {
+    SharedSecret result?;
+};
+
+public type GroupMembersListData record {
+    GroupMember|GroupMember[] result?;
 };
 
 # Represents the Headers record for the operation: rows-addToSheet
@@ -3379,14 +3597,9 @@ public type RowsAddToSheetQueries record {
     boolean overrideValidation = false;
 };
 
-public type InlineResponse2009 record {
-    *GenericResult;
-    *InlineResponse2009AllOf2;
-};
-
-public type InlineResponse2008 record {
-    *GenericResult;
-    *InlineResponse2008AllOf2;
+public type UpdateRequestCreateResponse record {
+    *Result;
+    *UpdateRequestCreateData;
 };
 
 public type GroupMember record {
@@ -3453,6 +3666,11 @@ public type FormatTables record {
     string[] thousandsSeparator?;
 };
 
+public type DiscussionCreateData record {
+    # list of discussions
+    Discussion[] data?;
+};
+
 public type SheetSendRow record {
     *Event;
     # The action applied to the specified object
@@ -3464,7 +3682,17 @@ public type SheetSendRow record {
 
 public type UsersuserIdalternateemailsOneOf2 AddAlternateEmail[];
 
+public type WorkspaceFolderListData record {
+    # list of Webhooks
+    Webhook[] data?;
+};
+
 public type SightListItem SightResult;
+
+public type RowMoveResponse record {
+    *GenericResult;
+    *RowMoveData;
+};
 
 # Object containing a list of references to rows on which the current row depends
 public type PredecessorList record {
@@ -3521,6 +3749,16 @@ public type ListEventsQueries record {
     string since?;
 };
 
+public type CrossSheetReferenceResponse record {
+    *Result;
+    *CrossSheetReferenceData;
+};
+
+public type AttachmentVersionListResponse record {
+    *IndexResult;
+    *AttachmentVersionListData;
+};
+
 # Represents the Headers record for the operation: columns-addToSheet
 public type ColumnsAddToSheetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
@@ -3561,9 +3799,13 @@ public type IndexResultUnknownPages record {
     decimal totalCount?;
 };
 
-public type InlineResponse2001 record {
-    *StreamResult;
-    *InlineResponse2001AllOf2;
+public type WorkspaceCreateResponse record {
+    *Result;
+    *WorkspaceCreateData;
+};
+
+public type RowMoveData record {
+    AddRowsObject[] result?;
 };
 
 public type AttachmentCreateAdditionalDetails record {
@@ -3579,31 +3821,11 @@ public type AttachmentCreateAdditionalDetails record {
     int workspaceId?;
 };
 
-public type InlineResponse2003 record {
-    *GenericResult;
-    *InlineResponse2003AllOf2;
-};
-
 # Represents the Headers record for the operation: list-crosssheet-references
 public type ListCrosssheetReferencesHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-};
-
-public type InlineResponse2005 record {
-    *Result;
-    *InlineResponse2005AllOf2;
-};
-
-public type InlineResponse2004 record {
-    *StreamResult;
-    *InlineResponse2004AllOf2;
-};
-
-public type InlineResponse2007 record {
-    *GenericResult;
-    *InlineResponse2007AllOf2;
 };
 
 public type DashboardAddPublishAdditionalDetails record {
@@ -3615,11 +3837,6 @@ public type DashboardAddPublishAdditionalDetails record {
     "read_only" publishType?;
     # Indicates format of the published dashboard. Dashboards are published in a rich media format: `"FULL"`,
     "FULL" publishFormat?;
-};
-
-public type InlineResponse2006 record {
-    *IndexResult;
-    *InlineResponse2006AllOf2;
 };
 
 # Represents a hyperlink, which can be a URL or a link to a report, sheet, or dashboard
@@ -3704,16 +3921,6 @@ public type ListSummaryFieldsQueries record {
     "displayValue"|"image"|"imageAltText" exclude?;
 };
 
-public type InlineResponse20061 record {
-    *IndexResult;
-    *InlineResponse20061AllOf2;
-};
-
-public type InlineResponse20060 record {
-    *IndexResult;
-    *InlineResponse20060AllOf2;
-};
-
 public type DashboardLoad record {
     *Event;
     # The action applied to the specified object
@@ -3757,11 +3964,6 @@ public type SheetPublishRequest record {
     ReadWriteShowToolbar readWriteShowToolbar?;
 };
 
-public type InlineResponse20063 record {
-    *Result;
-    *InlineResponse20063AllOf2;
-};
-
 public type AttachmentSend record {
     *Event;
     # The action applied to the specified object
@@ -3774,57 +3976,14 @@ public type AttachmentSend record {
 # A number that is incremented every time a sheet is modified
 public type Version decimal;
 
-public type InlineResponse20062 record {
-    *IndexResult;
-    # List of Summary Fields
-    SummaryField[] data?;
-};
-
-# A list of created summary fields
-public type InlineResponse20064AllOf2 record {
-    # List of summary fields created by the operation
-    SummaryField[] result?;
-};
-
-public type InlineResponse20065 record {
-    *Result;
-    *InlineResponse20065AllOf2;
-};
-
 # Represents the Queries record for the operation: share-report
 public type ShareReportQueries record {
     # Either true or false to indicate whether to notify the user by email. Default is false. If true, limit is 1000 emails
     boolean sendEmail = false;
 };
 
-public type InlineResponse20064 record {
-    *Result;
-    *InlineResponse20064AllOf2;
-};
-
-public type InlineResponse20067 record {
-    *IndexResult;
-    *InlineResponse20067AllOf2;
-};
-
-public type InlineResponse20066 record {
-    *GenericResult;
-    *InlineResponse20066AllOf2;
-};
-
-public type InlineResponse20069 Sheet;
-
-public type InlineResponse20068 record {
-    *Result;
-    *InlineResponse20068AllOf2;
-};
-
 # Array of ContactOption objects to specify a pre-defined list of values for the column. Column **type** must be **CONTACT_LIST**
 public type ContactOptions ContactOption[];
-
-public type InlineResponse20051AllOf2 record {
-    ProofRequest result?;
-};
 
 # Represents individual user settings for a specific sheet. User settings may be updated even on sheets where the current user only has read access (for example, viewer permissions or a read-only sheet)
 public type SheetUserSettings record {
@@ -3832,6 +3991,11 @@ public type SheetUserSettings record {
     boolean criticalPathEnabled?;
     # Does this user have "Display Summary Tasks" turned on for this sheet? Applies only to sheets where "Calendar View" has been configured
     boolean displaySummaryTasks?;
+};
+
+public type DashboardListData record {
+    # List of Dashboards
+    SightListItem[] data?;
 };
 
 # SummaryField Id
@@ -3921,36 +4085,11 @@ public type ShareWorkspaceQueries record {
     boolean sendEmail = false;
 };
 
-public type InlineResponse20070 record {
-    *IndexResult;
-    *InlineResponse20070AllOf2;
-};
-
-public type InlineResponse20072 record {
-    *ItemResult;
-    *InlineResponse20072AllOf2;
-};
-
 # Represents the Headers record for the operation: deactivate-user
 public type DeactivateUserHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-};
-
-public type InlineResponse20071 record {
-    *ItemResult;
-    *InlineResponse20071AllOf2;
-};
-
-public type InlineResponse20074 record {
-    *IndexResult;
-    *InlineResponse20074AllOf2;
-};
-
-public type InlineResponse20073 record {
-    *ItemResult;
-    *InlineResponse20073AllOf2;
 };
 
 public type DiscussionSendcommentAdditionalDetails record {
@@ -3987,36 +4126,11 @@ public type ListFoldersQueries record {
     decimal page = 1;
 };
 
-public type InlineResponse20076 record {
-    *GenericResult;
-    *InlineResponse20076AllOf2;
-};
-
-public type InlineResponse20075 record {
-    *IndexResult;
-    *InlineResponse20075AllOf2;
-};
-
-public type InlineResponse20078 record {
-    *IndexResultUnknownPages;
-    *InlineResponse20078AllOf2;
-};
-
-public type InlineResponse20077 record {
-    *UserProfile;
-    *InlineResponse20077AllOf2;
-};
-
 # Represents the Headers record for the operation: list-folders
 public type ListFoldersHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-};
-
-public type InlineResponse20079 record {
-    *GenericResult;
-    *InlineResponse20079AllOf2;
 };
 
 # Represents the Headers record for the operation: discussion-get
@@ -4052,8 +4166,18 @@ public type Discussion record {
     MiniUser lastCommentedUser?;
 };
 
+public type RowCopyResponse record {
+    *GenericResult;
+    *RowCopyData;
+};
+
 # If **true**,a rich version of the sheet is published with the ability to edit cells and manage attachments and discussions
 public type ReadWriteEnabled boolean;
+
+public type UserProfileResponse record {
+    *GenericResult;
+    *UserProfileData;
+};
 
 public type AccountImportUsers record {
     *Event;
@@ -4064,6 +4188,8 @@ public type AccountImportUsers record {
     "ACCOUNT" objectType?;
 };
 
+public type SheetResponse Sheet;
+
 public type SheetMoveRow record {
     *Event;
     # The action applied to the specified object
@@ -4073,31 +4199,19 @@ public type SheetMoveRow record {
     "SHEET" objectType?;
 };
 
-public type InlineResponse20081 record {
+public type FolderCopyResponse record {
     *GenericResult;
-    *InlineResponse20081AllOf2;
+    *FolderCopyData;
 };
 
-public type InlineResponse20080 record {
-    *IndexResult;
-    *InlineResponse20080AllOf2;
-};
-
-public type InlineResponse20083 record {
-    *IndexResult;
-    *InlineResponse20083AllOf2;
-};
-
-public type InlineResponse20082 record {
-    *GenericResult;
-    *InlineResponse20082AllOf2;
-};
-
-public type InlineResponse20085 Result;
-
-public type InlineResponse20084 record {
+public type AutomationRuleUpdateResponse record {
     *Result;
-    *InlineResponse20084AllOf2;
+    *FavoriteData;
+};
+
+public type WebhookListData record {
+    # Sheet imported from CSV / XLSX file
+    SheetImported result?;
 };
 
 # Represents the Headers record for the operation: update-report-share
@@ -4107,9 +4221,9 @@ public type UpdateReportShareHeaders record {
     string authorization?;
 };
 
-public type InlineResponse20087 record {
+public type ProofVersionListResponse record {
     *IndexResult;
-    *InlineResponse20087AllOf2;
+    *ProofVersionListData;
 };
 
 # Represents the Headers record for the operation: column-get
@@ -4129,31 +4243,11 @@ public type ProfileImage record {
     string height?;
 };
 
-public type InlineResponse20086 record {
-    *Result;
-    *InlineResponse20086AllOf2;
-};
-
-public type InlineResponse20089 record {
-    *Result;
-    *InlineResponse20089AllOf2;
-};
-
-public type InlineResponse20088 record {
-    *GenericResult;
-    *InlineResponse20088AllOf2;
-};
-
 # Represents the Headers record for the operation: automationrule-delete
 public type AutomationruleDeleteHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-};
-
-public type InlineResponse2001AllOf2 record {
-    # List of Events
-    InlineResponse2001Data[] data?;
 };
 
 # Sheet to create from scratch using the specified columns
@@ -4184,14 +4278,9 @@ public type UpdateRequestAllOf2 record {
     MiniUser sentBy?;
 };
 
-public type InlineResponse20090 record {
-    *IndexResult;
-    *InlineResponse20090AllOf2;
-};
-
-public type InlineResponse20091 record {
-    *GenericResult;
-    *InlineResponse20091AllOf2;
+public type WorkspaceListData record {
+    # list of Templates
+    Template[] data?;
 };
 
 # Represents the Headers record for the operation: delete-folder
@@ -4263,8 +4352,9 @@ public type Schedule record {
     TimestampWriteable startAt?;
 };
 
-public type InlineResponse20072AllOf2 record {
-    SightResult result?;
+public type CrossSheetReferenceListResponse record {
+    *Result;
+    *CrossSheetReferenceListData;
 };
 
 # Represents the Queries record for the operation: list-crosssheet-references
@@ -4295,6 +4385,16 @@ public type ListUsersQueries record {
     string email?;
 };
 
+public type WorkspaceShareCreateResponse record {
+    *Result;
+    *WorkspaceShareCreateData;
+};
+
+public type CellHistoryData record {
+    # Can contain dashboards, folders, reports, sheets, or templates
+    FolderSimpleResponse result?;
+};
+
 public type UserAddToAccount record {
     *Event;
     # The action applied to the specified object
@@ -4302,6 +4402,14 @@ public type UserAddToAccount record {
     UserAddToAccountAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
     "USER" objectType?;
+};
+
+public type WebhookData record {
+    SheetCreated|SheetCreatedFromTemplate result?;
+};
+
+public type FavoritesResultData record {
+    Favorite|Favorite[] result?;
 };
 
 # Represents the Headers record for the operation: list-users
@@ -4421,6 +4529,15 @@ public type ReportTransferOwnershipAdditionalDetails record {
     "ADMIN" oldAccessLevel = "ADMIN";
 };
 
+public type RowCreateResponse record {
+    *Result;
+    *RowCreateData;
+};
+
+public type ShareData record {
+    Sight result?;
+};
+
 public type DashboardUpdate record {
     *Event;
     # The action applied to the specified object
@@ -4455,6 +4572,11 @@ public type ListSheetSharesQueries record {
     boolean includeAll = false;
     # Which page to return. Defaults to 1 if not specified. If you specify a value greater than the total number of pages, the last page of results is returned
     decimal page = 1;
+};
+
+public type FolderListData record {
+    # list of attachments
+    AlternateEmail[] data?;
 };
 
 public type WorkspaceIdSheetsBody SheetToCreate|SheetToCreateFromTemplate;
@@ -4563,6 +4685,8 @@ public type UpdateWorkspaceHeaders record {
 
 public type FolderIdCopyBody ContainerDestinationForCopy;
 
+public type WorkspaceShareDeleteResponse Result;
+
 # Represents the Headers record for the operation: remove-user
 public type RemoveUserHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
@@ -4627,12 +4751,6 @@ public type AddColumns record {
     boolean validation?;
 };
 
-# A list of fieldIds corresponding to all summary fields that were successfully deleted
-public type InlineResponse20065AllOf2 record {
-    # List of field IDs for summary fields that were successfully deleted
-    decimal[] result?;
-};
-
 # Represents the Headers record for the operation: add-summary-fields
 public type AddSummaryFieldsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
@@ -4687,10 +4805,6 @@ public type Folder record {
     boolean favorite?;
 };
 
-public type InlineResponse20013AllOf2 record {
-    GroupMember|GroupMember[] result?;
-};
-
 # Represents the Headers record for the operation: create-workspace-folder
 public type CreateWorkspaceFolderHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
@@ -4715,17 +4829,8 @@ public type CreateSheetInFolderQueries record {
     "attachments"|"cellLinks"|"data"|"discussions"|"filters"|"forms"|"ruleRecipients"|"rules" include?;
 };
 
-public type InlineResponse20015Data record {
-    # Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
-    AccessLevel accessLevel?;
-    # The report's name
-    string name?;
-    # It is `true` if the report is a sheet summary; otherwise it is a row report
-    boolean isSummaryReport?;
-    # The report's unique identifier
-    decimal id?;
-    # URL to the report in Smartsheet
-    string permalink?;
+public type SharedSecretData record {
+    Folder result?;
 };
 
 # Represents the Headers record for the operation: updaterequests-delete
@@ -4774,6 +4879,11 @@ public type ColumnUpdateColumnHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
+};
+
+public type ShareUpdateData record {
+    # Describes the dashboard's publish settings
+    SightPublish result?;
 };
 
 # Represents the Queries record for the operation: list-workspace-shares
@@ -4849,14 +4959,14 @@ public type SortCriterion record {
     "ASCENDING"|"DESCENDING" direction = "ASCENDING";
 };
 
-public type InlineResponse20052AllOf2 record {
-    # list of proof versions
-    Proof[] data?;
-};
-
 public type UpdateWebhookRequestAllOf2 record {
     # Indicates whether the webhook is on (true) or off (false)
     boolean enabled?;
+};
+
+public type UserListResponse record {
+    *IndexResult;
+    *UserListData;
 };
 
 # Represents the Headers record for the operation: attachments-listOnRow
@@ -4893,6 +5003,11 @@ public type ListSearchSheetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
+};
+
+public type ShareUpdateResponse record {
+    *ItemResult;
+    *ShareUpdateData;
 };
 
 public type DashboardMove record {
@@ -4952,6 +5067,11 @@ public type CreateFolderFolderQueries record {
     "cellLinks"|"reports"|"sheetHyperlinks"|"sights" skipRemap?;
     # When specified with a value of **sheetHyperlinks**, excludes this category from the response
     "sheetHyperlinks" exclude?;
+};
+
+public type FolderContentsData record {
+    # Array of all the workspace folders, referenced by their ID, name, and URL
+    FolderContentItemData[] data?;
 };
 
 public type ReportAddShareMember record {
@@ -5025,10 +5145,6 @@ public type Cell record {
     CellLink[] linksOutToCells?;
 };
 
-public type InlineResponse20057AllOf2 record {
-    decimal[] result?;
-};
-
 # User profile image response
 public type UserProfileImageResponse record {
     # User's primary email address.
@@ -5049,6 +5165,11 @@ public type UserProfileImageResponse record {
 public type GetReportsQueries record {
     # When specified with a date and time value, response only includes the objects that are modified on or after the date and time specified. If you need to keep track of frequent changes, it may be more useful to use Get Sheet Version
     Timestamp modifiedSince?;
+};
+
+public type UserImgProfileResponse record {
+    *UserProfile;
+    *UserProfileImageData;
 };
 
 # Represents the Queries record for the operation: remove-user
@@ -5098,6 +5219,21 @@ public type DeleteWorkspaceShareHeaders record {
     string authorization?;
 };
 
+public type GroupData record {
+    # List of Groups
+    Group[] data?;
+};
+
+public type RowListResponse record {
+    *GenericResult;
+    *RowListData;
+};
+
+public type FavoriteResultResponse record {
+    *GenericResult;
+    *FavoritesResultData;
+};
+
 public type FolderCreate record {
     *Event;
     # The action applied to the specified object
@@ -5123,6 +5259,10 @@ public type TokensDeleteHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
+};
+
+public type RowListData record {
+    decimal[] result?;
 };
 
 # Container object for additional event-specific properties. Properties depend upon the event type, but all events include an `emailAddress` property, representing the user responsible for the event. 
@@ -5158,6 +5298,13 @@ public type ContactObjectValue record {
     string email?;
     # The type of this object, always set to 'CONTACT
     "CONTACT" objectType?;
+};
+
+public type ImageUrlMapResponse ImageUrlMap;
+
+public type FolderCopyData record {
+    # list of alternate email results
+    AlternateEmail[] data?;
 };
 
 # Object containing zero or more media items, including images, videos, and documents, for review, editing, or approval
@@ -5244,8 +5391,8 @@ public type SheetCopyRowAdditionalDetails record {
 
 public type Sight SightListItem;
 
-public type InlineResponse20056AllOf2 record {
-    AddRowsObject[] result?;
+public type SearchResultData record {
+    Folder[] result?;
 };
 
 public type UserProfile record {
@@ -5303,12 +5450,15 @@ public type UserProfile record {
     boolean salesforceAdmin?;
 };
 
+public type UserData record {
+    Share[] result?;
+};
+
 # When applicable for **CHECKBOX** or **PICKLIST** column types. See [Symbol Columns](/api/smartsheet/openapi/columns)
 public type Symbol string;
 
-public type InlineResponse200 record {
-    *IndexResult;
-    *InlineResponse200AllOf2;
+public type WorkspaceFolderCreateData record {
+    Webhook result?;
 };
 
 # Represents the Headers record for the operation: get-sheetVersion
@@ -5323,6 +5473,13 @@ public type AddGroupHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
+};
+
+public type FavoriteResponse Sheet|SheetVersion;
+
+public type FolderCreateResponse record {
+    *GenericResult;
+    *FolderCreateData;
 };
 
 public type WebhookStats record {
@@ -5346,11 +5503,6 @@ public type DashboardRemoveShareMemberAdditionalDetails record {
     # Id of the workspace that the group is shared to. (Specific to cases where the dashboard is shared to the group via a workspace's sharing list)
     @constraint:Int {minValue: 0}
     int workspaceId?;
-};
-
-public type InlineResponse20049AllOf2 record {
-    # list of proof discussions
-    Discussion[] data?;
 };
 
 public type FolderRenameAdditionalDetails record {
@@ -5406,11 +5558,6 @@ public type UserRemoveFromAccount record {
     AccountBulkUpdateAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
     "USER" objectType?;
-};
-
-public type InlineResponse20060AllOf2 record {
-    # List of cell history objects
-    CellHistory[] data?;
 };
 
 public type Comment record {
@@ -5533,10 +5680,6 @@ public type ContactOption record {
     string email?;
 };
 
-public type InlineResponse20055AllOf2 record {
-    UpdateRowsObject[] result?;
-};
-
 public type AccountDownloadLoginHistory record {
     *Event;
     # The action applied to the specified object
@@ -5572,6 +5715,11 @@ public type UpdateWorkspaceShareQueries record {
     decimal accessApiLevel = 0;
 };
 
+public type DiscussionAttachmentListResponse record {
+    *GenericResult;
+    Discussion result?;
+};
+
 public type SheetAddWorkspaceShare record {
     *Event;
     # The action applied to the specified object
@@ -5579,10 +5727,6 @@ public type SheetAddWorkspaceShare record {
     SheetAddWorkspaceShareAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
     "SHEET" objectType?;
-};
-
-public type InlineResponse20068AllOf2 record {
-    UpdateRequest result?;
 };
 
 public type ContainerDestinationForCopy record {
@@ -5684,6 +5828,11 @@ public type ConnectionConfig record {|
     boolean laxDataBinding = true;
 |};
 
+public type GroupCreateResponse record {
+    *GenericResult;
+    *GroupCreateData;
+};
+
 # Represents the Queries record for the operation: get-workspace
 public type GetWorkspaceQueries record {
     # Allows COMMENTER access for inputs and return values. For backwards-compatibility, VIEWER is the default. For example, to see whether a user has COMMENTER access for a sheet, use accessApiLevel=1
@@ -5707,11 +5856,6 @@ public type StreamResult record {
     # This string should be passed back to the next GET events call to obtain
     # subsequent events
     string nextStreamPosition?;
-};
-
-public type InlineResponse20050AllOf2 record {
-    # list of proof request actions
-    ProofRequestAction[] data?;
 };
 
 # Represents the Headers record for the operation: get-workspace
@@ -5759,14 +5903,8 @@ public type CheckboxObjectValue record {
     "CHECKBOX" objectType?;
 };
 
-public type InlineResponse20010AllOf2 record {
-    # List of Groups
-    Group[] data?;
-};
-
-public type InlineResponse20082AllOf2 record {
-    # list of alternate email results
-    AlternateEmail[] data?;
+public type DiscussionListData record {
+    CrossSheetReference result?;
 };
 
 public type DashboardCreate record {
@@ -5775,6 +5913,11 @@ public type DashboardCreate record {
     DashboardCreateAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
     "DASHBOARD" objectType?;
+};
+
+public type CellHistoryResponse record {
+    *GenericResult;
+    *CellHistoryData;
 };
 
 # Represents the Headers record for the operation: add-crosssheet-reference
@@ -5855,11 +5998,6 @@ public type ListReportSharesHeaders record {
     string authorization?;
 };
 
-public type InlineResponse20063AllOf2 record {
-    # A list of updated summary fields
-    SummaryField[] result?;
-};
-
 public type AccountListSheets record {
     *Event;
     # The action applied to the specified object
@@ -5912,6 +6050,8 @@ public type ImportSheetIntoFolderQueries record {
     decimal primaryColumnIndex = 0;
 };
 
+public type ProofResponse Proof;
+
 # Represents the Queries record for the operation: update-rows
 public type UpdateRowsQueries record {
     # Allows COMMENTER access for inputs and return values. For backwards-compatibility, VIEWER is the default. For example, to see whether a user has COMMENTER access for a sheet, use accessApiLevel=1
@@ -5927,10 +6067,6 @@ public type SearchResult record {
     SearchResultItem[] results?;
     # Total number of search results.
     decimal totalCount?;
-};
-
-public type InlineResponse20087AllOf2 record {
-    WorkspaceListing[] data?;
 };
 
 # Represents the Headers record for the operation: list-search
@@ -6072,6 +6208,15 @@ public type DashboardAddShareAdditionalDetails record {
     int workspaceId?;
 };
 
+public type AttachmentListData record {
+    Sheet result?;
+};
+
+public type ProofAttachmentListResponse record {
+    *IndexResult;
+    *ProofAttachmentListData;
+};
+
 # Represents the Queries record for the operation: list-org-sheets
 public type ListOrgSheetsQueries record {
     # When specified with a date and time value, response only includes the objects that are modified on or after the date and time specified. If you need to keep track of frequent changes, it may be more useful to use Get Sheet Version
@@ -6196,6 +6341,10 @@ public type ShareSightQueries record {
     boolean sendEmail = false;
 };
 
+public type RowCreateData record {
+    Row result?;
+};
+
 public type GetRowObject record {
     Timestamp createdAt?;
     # Indicates whether the row is expanded or collapsed
@@ -6249,6 +6398,11 @@ public type ReportMove record {
     "REPORT" objectType?;
 };
 
+public type SummaryFieldDeleteResponse record {
+    *Result;
+    *SummaryFieldDeleteData;
+};
+
 public type ImageUrl record {
     # Image Id
     string imageId?;
@@ -6262,10 +6416,6 @@ public type ImageUrl record {
     decimal height?;
 };
 
-public type InlineResponse20017AllOf2 record {
-    Share[] result?;
-};
-
 # Represents the Headers record for the operation: move-sheet
 public type MoveSheetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
@@ -6274,6 +6424,11 @@ public type MoveSheetHeaders record {
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
+};
+
+public type DashboardListResponse record {
+    *IndexResult;
+    *DashboardListData;
 };
 
 # Represents the Headers record for the operation: get-workspace-folders
@@ -6340,10 +6495,6 @@ public type ListGroupsHeaders record {
     string authorization?;
 };
 
-public type InlineResponse20066AllOf2 record {
-    SummaryFieldAddImage result?;
-};
-
 public type UserAcceptInvite record {
     *Event;
     # The action applied to the specified object
@@ -6395,6 +6546,10 @@ public type ListSummaryFieldsPaginatedQueries record {
     decimal page = 1;
 };
 
+public type ReportPublishData record {
+    ReportPublish result?;
+};
+
 public type AccountDownloadUserList record {
     *Event;
     # The action applied to the specified object
@@ -6418,15 +6573,6 @@ public type WorkspaceAddShare record {
     WorkspaceAddShareAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
     "WORKSPACE" objectType?;
-};
-
-public type InlineResponse20089AllOf2 record {
-    # Can contain dashboards, folders, reports, sheets, and templates
-    Workspace result?;
-};
-
-public type InlineResponse20039AllOf2 record {
-    CrossSheetReference[] data?;
 };
 
 # Represents the Headers record for the operation: update-workspace-share
@@ -6467,8 +6613,18 @@ public type CrossSheetReferenceRequestWithRowIds record {
     decimal endRowId?;
 };
 
+public type UpdateRequestListResponse record {
+    *IndexResult;
+    *UpdateRequestListData;
+};
+
 # Column title
 public type Title string;
+
+public type HomeContentsResponse record {
+    *IndexResultUnknownPages;
+    *HomeContentsData;
+};
 
 # Represents the Headers record for the operation: proofs-update
 public type ProofsUpdateHeaders record {
@@ -6484,11 +6640,6 @@ public type FolderRename record {
     FolderRenameAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
     "FOLDER" objectType?;
-};
-
-public type InlineResponse20015AllOf2 record {
-    # List of all accessible reports, referenced by their ID, name, access level, and summary report flag values
-    InlineResponse20015Data[] data?;
 };
 
 # Represents the Queries record for the operation: list-search
@@ -6508,6 +6659,15 @@ public type ListSearchQueries record {
     ("attachments"|"cellData"|"comments"|"folderNames"|"reportNames"|"sheetNames"|"sightNames"|"summaryFields"|"templateNames"|"workspaceNames")[] scopes?;
 };
 
+public type DiscussionCreateResponse record {
+    *IndexResult;
+    *DiscussionCreateData;
+};
+
+public type ProofListData record {
+    Comment result?;
+};
+
 public type SheetSendAsAttachmentAdditionalDetails record {
     # Email address of the user responsible for the event
     string emailAddress;
@@ -6518,6 +6678,10 @@ public type SheetSendAsAttachmentAdditionalDetails record {
     "excel"|"pdf"|"pdf_gantt"|"pdf_calendar" formatType?;
     # Single email address either of a user explicitly included in the recipient list or of the sender (when *CC sender* is requested). (This property is included only if the `recipientGroupId` property below isn't included)
     string recipientEmail?;
+};
+
+public type TokenData record {
+    Share|Share[] result?;
 };
 
 # Represents the Headers record for the operation: row-get
@@ -6534,20 +6698,16 @@ public type ReportExportAdditionalDetails record {
     "png_gantt"|"mspdi"|"excel"|"pdf" formatType?;
 };
 
-public type InlineResponse20018AllOf2 record {
-    Share|Share[] result?;
-};
-
-public type InlineResponse20019 record {
-    *Result;
-    *InlineResponse20019AllOf2;
-};
-
 public type Account record {
     # Account name
     string name?;
     # Account Id
     decimal id?;
+};
+
+public type TemplateListResponse record {
+    *IndexResult;
+    *TemplateListData;
 };
 
 # Represents the Queries record for the operation: import-sheet-into-sheets-folder
@@ -6606,10 +6766,6 @@ public type ProofsGetVersionsQueries record {
     decimal page = 1;
 };
 
-public type InlineResponse20038AllOf2 record {
-    ComponentsSchemasSheet result?;
-};
-
 # If **true**, a lightweight version of the sheet is published without row attachments and discussions
 public type ReadOnlyLiteEnabled boolean;
 
@@ -6638,10 +6794,19 @@ public type ListImageUrlsHeaders record {
     string contentType = "application/json";
 };
 
+public type CrossSheetReferenceCreateData record {
+    CrossSheetReference[] data?;
+};
+
 # Represents the Queries record for the operation: update-report-share
 public type UpdateReportShareQueries record {
     # Allows COMMENTER access for inputs and return values. For backwards-compatibility, VIEWER is the default. For example, to see whether a user has COMMENTER access for a sheet, use accessApiLevel=1
     decimal accessApiLevel = 0;
+};
+
+public type FolderListResponse record {
+    *IndexResult;
+    *FolderListData;
 };
 
 # Represents the Headers record for the operation: attachments-get
@@ -6661,28 +6826,11 @@ public type RowAttachmentsAttachFileHeaders record {
     string contentType = "application/json";
 };
 
-public type InlineResponse20021 record {
-    *SearchResult;
-    *InlineResponse20021AllOf2;
-};
-
-public type InlineResponse20020 record {
-    *SearchResult;
-    *InlineResponse20020AllOf2;
-};
-
-public type InlineResponse20023 Sheet|SheetVersion;
-
 # Represents the Headers record for the operation: list-contacts
 public type ListContactsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
-};
-
-public type InlineResponse20022 record {
-    *IndexResult;
-    *InlineResponse20022AllOf2;
 };
 
 public type AccesstokenAuthorizeAdditionalDetails record {
@@ -6712,26 +6860,6 @@ public type WorkspaceCreateAdditionalDetails record {
     string workspaceName?;
 };
 
-public type InlineResponse20025 record {
-    *IndexResult;
-    *InlineResponse20025AllOf2;
-};
-
-public type InlineResponse20024 record {
-    *GenericResult;
-    *InlineResponse20024AllOf2;
-};
-
-public type InlineResponse20027 Attachment;
-
-public type InlineResponse20026 record {
-    *GenericResult;
-    # Attachment Object
-    Attachment result?;
-};
-
-public type InlineResponse20029 AutomationRule;
-
 # SummaryField object to create
 public type SummaryFieldCreateRequest record {
     # Represents a hyperlink, which can be a URL or a link to a report, sheet, or dashboard
@@ -6760,11 +6888,6 @@ public type SummaryFieldCreateRequest record {
     Locked locked?;
     # Indicates whether summary field values are restricted to the type
     Validation validation?;
-};
-
-public type InlineResponse20028 record {
-    *IndexResult;
-    *InlineResponse20028AllOf2;
 };
 
 public type WorkspaceAddShareAdditionalDetails record {
@@ -6911,9 +7034,9 @@ public type UserRemoveFromGroups record {
     "USER" objectType?;
 };
 
-public type InlineResponse20030 record {
-    *Result;
-    *InlineResponse20030AllOf2;
+public type CrossSheetReferenceCreateResponse record {
+    *IndexResult;
+    *CrossSheetReferenceCreateData;
 };
 
 # Represents the Headers record for the operation: templates-listPublic
@@ -6923,44 +7046,13 @@ public type TemplatesListPublicHeaders record {
     string authorization?;
 };
 
-public type InlineResponse20032 record {
-    *GenericResult;
-    *InlineResponse20032AllOf2;
+public type AttachmentVersionListData record {
+    # list of attachments
+    Attachment[] data?;
 };
 
-public type InlineResponse20031 record {
-    *IndexResult;
-    *InlineResponse20031AllOf2;
-};
-
-public type InlineResponse20034 record {
-    *GenericResult;
-    *InlineResponse20034AllOf2;
-};
-
-public type InlineResponse20033 GetColumn;
-
-public type InlineResponse20036 record {
-    *GenericResult;
-    Comment result?;
-};
-
-public type InlineResponse20035 Comment;
-
-public type InlineResponse20038 record {
-    *Result;
-    *InlineResponse20038AllOf2;
-};
-
-public type InlineResponse20037 GenericResult;
-
-public type InlineResponse20039 record {
-    *IndexResult;
-    *InlineResponse20039AllOf2;
-};
-
-public type InlineResponse20086AllOf2 record {
-    SharedSecret result?;
+public type AlternateEmailListData record {
+    SchemasSheet[] data?;
 };
 
 public type AccountBulkUpdateAdditionalDetails record {
@@ -6997,6 +7089,11 @@ public type ReportDelete record {
     "REPORT" objectType?;
 };
 
+public type ContactListResponse record {
+    *IndexResult;
+    *ContactListData;
+};
+
 # Represents the Headers record for the operation: import-sheet-into-sheets-folder
 public type ImportSheetIntoSheetsFolderHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
@@ -7017,16 +7114,6 @@ public type UserIdAlternateemailsBody AddAlternateEmail|UsersuserIdalternateemai
 # Specifies the type of a column property. Valid values include various column data types such as CHECKBOX, CONTACT_LIST, DATE, PICKLIST, and others
 public type PropertiesType "ABSTRACT_DATETIME"|"CHECKBOX"|"CONTACT_LIST"|"DATE"|"DATETIME"|"DURATION"|"MULTI_CONTACT_LIST"|"MULTI_PICKLIST"|"PICKLIST"|"PREDECESSOR"|"TEXT_NUMBER";
 
-public type InlineResponse20041 record {
-    *IndexResult;
-    *InlineResponse20041AllOf2;
-};
-
-public type InlineResponse20040 record {
-    *Result;
-    *InlineResponse20040AllOf2;
-};
-
 public type SchemasSheet record {
     Timestamp createdAt?;
     # Specifies the user's level of access or permissions, such as ADMIN, OWNER, EDITOR, or VIEWER
@@ -7043,42 +7130,20 @@ public type SchemasSheet record {
     Version version?;
 };
 
-public type InlineResponse20043 Discussion;
-
-public type InlineResponse20042 record {
-    *GenericResult;
-    Discussion result?;
-};
-
-public type InlineResponse20045 GenericResult;
-
-public type InlineResponse20044 record {
-    *GenericResult;
-    *InlineResponse20044AllOf2;
-};
-
-public type InlineResponse20047 Proof;
-
-public type InlineResponse20046 record {
-    *IndexResult;
-    *InlineResponse20046AllOf2;
-};
-
-public type InlineResponse20049 record {
-    *IndexResult;
-    *InlineResponse20049AllOf2;
-};
-
-public type InlineResponse20048 record {
-    *IndexResult;
-    *InlineResponse20048AllOf2;
-};
-
 # Represents the Headers record for the operation: list-sights
 public type ListSightsHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
     @http:Header {name: "Authorization"}
     string authorization?;
+};
+
+public type EventFilterData record {
+    # List of sheet Ids specified in the request that the user does not have access to
+    string[] unavailableSheetIds?;
+    # List of Events
+    Event[] data?;
+    # List of workspace Ids specified in the request that the user does not have access to
+    string[] unavailableWorkspaceIds?;
 };
 
 public type WorkspaceRemoveShare record {
@@ -7090,10 +7155,6 @@ public type WorkspaceRemoveShare record {
     "WORKSPACE" objectType?;
 };
 
-public type InlineResponse20019AllOf2 record {
-    Share[] result?;
-};
-
 # Represents the Headers record for the operation: proofs-attachToProof
 public type ProofsAttachToProofHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
@@ -7102,11 +7163,6 @@ public type ProofsAttachToProofHeaders record {
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
-};
-
-public type InlineResponse20080AllOf2 record {
-    # list of attachments
-    AlternateEmail[] data?;
 };
 
 # Represents the entire summary, or a list of defined fields and values, for a specific sheet
@@ -7131,11 +7187,6 @@ public type SheetSaveAsNew record {
     "SHEET" objectType?;
 };
 
-public type InlineResponse20050 record {
-    *IndexResult;
-    *InlineResponse20050AllOf2;
-};
-
 public type AccountUpdateMainContactAdditionalDetails record {
     # Email address of the user responsible for the event
     string emailAddress;
@@ -7145,11 +7196,6 @@ public type AccountUpdateMainContactAdditionalDetails record {
     # Id of the new main contact
     @constraint:Int {minValue: 0}
     int newContactUserId?;
-};
-
-public type InlineResponse20052 record {
-    *IndexResult;
-    *InlineResponse20052AllOf2;
 };
 
 # Represents the Queries record for the operation: templates-list
@@ -7164,42 +7210,9 @@ public type TemplatesListQueries record {
     decimal page = 1;
 };
 
-public type InlineResponse20051 record {
+public type SharedSecretResponse record {
     *GenericResult;
-    *InlineResponse20051AllOf2;
-};
-
-public type InlineResponse20054 record {
-    *GenericResult;
-    *InlineResponse20054AllOf2;
-};
-
-public type InlineResponse20053 record {
-    *GenericResult;
-    # Object containing zero or more media items, including images, videos, and documents, for review, editing, or approval
-    Proof result?;
-};
-
-public type InlineResponse20056 record {
-    *GenericResult;
-    *InlineResponse20056AllOf2;
-};
-
-public type InlineResponse20055 record {
-    *GenericResult;
-    *InlineResponse20055AllOf2;
-};
-
-public type InlineResponse20058 GetRowObject;
-
-public type InlineResponse20057 record {
-    *GenericResult;
-    *InlineResponse20057AllOf2;
-};
-
-public type InlineResponse20059 record {
-    *Result;
-    *InlineResponse20059AllOf2;
+    *SharedSecretData;
 };
 
 # Comment
@@ -7239,10 +7252,6 @@ public type GroupRenameAdditionalDetails record {
     string oldName?;
 };
 
-public type InlineResponse20084AllOf2 record {
-    Webhook result?;
-};
-
 # Represents the Headers record for the operation: update-user-profile-image
 public type UpdateUserProfileImageHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
@@ -7251,6 +7260,11 @@ public type UpdateUserProfileImageHeaders record {
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
+};
+
+public type DiscussionListResponse record {
+    *Result;
+    *DiscussionListData;
 };
 
 # Represents the Headers record for the operation: comment-delete
@@ -7276,10 +7290,6 @@ public type WorkspaceCreateRecurringBackup record {
     WorkspaceCreateRecurringBackupAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
     "WORKSPACE" objectType?;
-};
-
-public type InlineResponse20034AllOf2 record {
-    UpdateColumn result?;
 };
 
 public type SheetMoveAdditionalDetails record {
@@ -7345,15 +7355,6 @@ public type SheetAddShareMember record {
     "SHEET" objectType?;
 };
 
-public type InlineResponse20081AllOf2 record {
-    # Updated User Properties
-    AlternateEmail[] data?;
-};
-
-public type InlineResponse20031AllOf2 record {
-    GetColumn[] data?;
-};
-
 public type AccountUpdateMainContact record {
     *Event;
     # The action applied to the specified object
@@ -7371,6 +7372,11 @@ public type DeleteSheetHeaders record {
 };
 
 public type SheetIdCrosssheetreferencesBody CrossSheetReferenceRequestWithColumnIds|CrossSheetReferenceRequestWithRowIds|CrossSheetReferenceRequestWithColumnAndRowIds;
+
+public type ProofDiscussionListData record {
+    # list of proof discussions
+    Discussion[] data?;
+};
 
 # Represents the Headers record for the operation: get-user
 public type GetUserHeaders record {
@@ -7403,6 +7409,16 @@ public type WorkspaceRename record {
     WorkspaceRenameAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
     "WORKSPACE" objectType?;
+};
+
+public type ShareResponse record {
+    *ItemResult;
+    *ShareData;
+};
+
+public type ColumnCreateResponse record {
+    *GenericResult;
+    *ColumnCreateData;
 };
 
 public type DashboardRestore record {
@@ -7566,6 +7582,11 @@ public type FormDeactivate record {
 # Arbitrary name, must be unique within summary
 public type PropertiesTitle string;
 
+public type ProofAttachmentListData record {
+    # list of proof attachments
+    Attachment[] data?;
+};
+
 # Represents the Headers record for the operation: add-image-summaryField
 public type AddImageSummaryFieldHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
@@ -7607,6 +7628,11 @@ public type ReportUpdate record {
     "REPORT" objectType?;
 };
 
+public type AutomationRuleListData record {
+    # list of Automation Rules
+    AutomationRule[] data?;
+};
+
 public type ReportSendAsAttachment record {
     *Event;
     # The action applied to the specified object
@@ -7614,11 +7640,6 @@ public type ReportSendAsAttachment record {
     ReportSendAsAttachmentAdditionalDetails additionalDetails?;
     # The Smartsheet resource impacted by the event
     "REPORT" objectType?;
-};
-
-public type InlineResponse200AllOf2 record {
-    # List of Contacts
-    Contact[] data?;
 };
 
 public type Column record {
@@ -7714,8 +7735,14 @@ public type UpdateRowsHeaders record {
     string contentType = "application/json";
 };
 
-public type InlineResponse20032AllOf2 record {
-    AddColumns[] result?;
+public type WorkspaceFolderListResponse record {
+    *IndexResult;
+    *WorkspaceFolderListData;
+};
+
+public type ProofDiscussionListResponse record {
+    *IndexResult;
+    *ProofDiscussionListData;
 };
 
 # Represents the Queries record for the operation: home-list-folders
@@ -7735,6 +7762,11 @@ public type UpdaterequestsGetHeaders record {
     string authorization?;
 };
 
+public type ColumnUpdateResponse record {
+    *GenericResult;
+    *ColumnUpdateData;
+};
+
 # Represents the Headers record for the operation: comment-edit
 public type CommentEditHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
@@ -7743,11 +7775,6 @@ public type CommentEditHeaders record {
     # Required for POST and PUT requests. Defines the structure for the request body
     @http:Header {name: "Content-Type"}
     string contentType = "application/json";
-};
-
-public type InlineResponse20083AllOf2 record {
-    # list of Webhooks
-    Webhook[] data?;
 };
 
 public type Contact record {
@@ -7771,14 +7798,14 @@ public type DeleteFavoritesByTypeHeaders record {
 
 public type GroupsgroupIdmembersOneOf2 GroupMember[];
 
-public type InlineResponse20010 record {
+public type FolderContentsResponse record {
     *IndexResult;
-    *InlineResponse20010AllOf2;
+    *FolderContentsData;
 };
 
-public type InlineResponse20012 record {
-    *Group;
-    *InlineResponse20012AllOf2;
+public type ContactListData record {
+    # List of Contacts
+    Contact[] data?;
 };
 
 # Represents the Headers record for the operation: templates-list
@@ -7788,18 +7815,6 @@ public type TemplatesListHeaders record {
     string authorization?;
 };
 
-public type InlineResponse20011 record {
-    *GenericResult;
-    *InlineResponse20011AllOf2;
-};
-
-public type InlineResponse20014 ImageUrlMap;
-
-public type InlineResponse20013 record {
-    *GenericResult;
-    *InlineResponse20013AllOf2;
-};
-
 # Represents the Headers record for the operation: automationrule-get
 public type AutomationruleGetHeaders record {
     # API Access Token used to authenticate requests to Smartsheet APIs
@@ -7807,9 +7822,9 @@ public type AutomationruleGetHeaders record {
     string authorization?;
 };
 
-public type InlineResponse20016 record {
-    *ItemResult;
-    *InlineResponse20016AllOf2;
+public type PublicTemplateListResponse record {
+    *IndexResult;
+    *PublicTemplateListData;
 };
 
 public type SheetRemoveShareMemberAdditionalDetails record {
@@ -7824,19 +7839,4 @@ public type SheetRemoveShareMemberAdditionalDetails record {
     # Id of the workspace that the group is shared to. (Specific to cases where the sheet is shared to the group via a workspace's sharing list)
     @constraint:Int {minValue: 0}
     int workspaceId?;
-};
-
-public type InlineResponse20015 record {
-    *IndexResult;
-    *InlineResponse20015AllOf2;
-};
-
-public type InlineResponse20018 record {
-    *Result;
-    *InlineResponse20018AllOf2;
-};
-
-public type InlineResponse20017 record {
-    *IndexResult;
-    *InlineResponse20017AllOf2;
 };
