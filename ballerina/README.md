@@ -1,9 +1,15 @@
 ## Overview
 
-[Smartsheet](https://www.smartsheet.com/) is a cloud-based platform that enables teams to plan, capture, manage, automate, and report on work at scale, empowering you to move from idea to impact, fast.
+[Smartsheet](https://www.smartsheet.com/) is a cloud-based platform that enables teams to plan, capture, manage, automate, and report on work at scale. It empowers organizations to move from idea to impact efficiently through its robust collaborative features.
 
-The `ballerinax/smartsheet` package offers APIs to connect and interact with [Smartsheet API](https://developers.smartsheet.com/api/smartsheet/introduction) endpoints, specifically based on [Smartsheet API v2.0](https://developers.smartsheet.com/api/smartsheet/openapi).
+The Smartsheet connector offers APIs to connect and interact with Smartsheet API endpoints, specifically based on Smartsheet API v2.0.
 
+### Key Features
+
+- Plan, capture, and manage work at scale
+- Support for Smartsheet API v2.0
+- Automate workflows and reporting processes
+- Efficient interaction with sheets, reports, and dashboards
 
 ## Setup guide
 
