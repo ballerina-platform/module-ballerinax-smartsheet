@@ -5,7 +5,7 @@ name = "smartsheet"
 version = "@toml.version@"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = ["Project Management", "Task Automation", "Workflow Automation", "Spreadsheet Integration", "Vendor/Smartsheet", "Area/Productivity", "Type/Connector"]
+keywords = ["Project Management", "Task Automation", "Workflow Automation", "Spreadsheet Integration", "Vendor/Smartsheet", "Area/Productivity & Collaboration", "Type/Connector"]
 icon = "icon.png"
 repository = "https://github.com/ballerina-platform/module-ballerinax-smartsheet"
 
